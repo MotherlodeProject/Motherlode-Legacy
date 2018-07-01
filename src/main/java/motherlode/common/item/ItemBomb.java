@@ -27,9 +27,9 @@ public class ItemBomb extends Item {
 		this.setCreativeTab(CreativeTabs.MISC);
 		
 		// Add override to change texture depending on fuseState, see json
-//		if (!MotherlodeMod.proxy.isDedicatedServer()) {
-//			this.addPropertyOverride(new ResourceLocation("fuseState"), new ItemBombAnimation());
-//		}
+		if (!MotherlodeMod.proxy.isDedicatedServer()) {
+			this.addPropertyOverride(new ResourceLocation("fuseState"), new ItemBombAnimation());
+		}
 	}
 	
 	@Override
