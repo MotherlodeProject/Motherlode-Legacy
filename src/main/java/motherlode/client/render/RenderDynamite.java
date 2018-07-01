@@ -1,7 +1,7 @@
 package motherlode.client.render;
 
-import motherlode.client.model.ModelBomb;
-import motherlode.common.entity.EntityBomb;
+import motherlode.client.model.ModelDynamite;
+import motherlode.common.entity.EntityDynamite;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -11,17 +11,17 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class RenderBomb extends Render<EntityBomb> {
+public class RenderDynamite extends Render<EntityDynamite> {
 	
-	public ModelBomb model;
+	public ModelDynamite model;
 
-	public RenderBomb(RenderManager renderManagerIn) {
+	public RenderDynamite(RenderManager renderManagerIn) {
 		super(renderManagerIn);
-		this.model = new ModelBomb();
+		this.model = new ModelDynamite();
 	}
 	
 	@Override
-	public void doRender(EntityBomb entity, double x, double y, double z, float entityYaw, float partialTicks) {
+	public void doRender(EntityDynamite entity, double x, double y, double z, float entityYaw, float partialTicks) {
         GlStateManager.pushMatrix();
         GlStateManager.translate((float)x, (float)y, (float)z);
         GlStateManager.enableRescaleNormal();
@@ -29,7 +29,7 @@ public class RenderBomb extends Render<EntityBomb> {
 //        GlStateManager.rotate(-this.renderManager.playerViewY, 0.0F, 1.0F, 0.0F); // angle, vector (x,y,z)
 //        GlStateManager.rotate((float)(this.renderManager.options.thirdPersonView == 2 ? -1 : 1) * this.renderManager.playerViewX, 1.0F, 0.0F, 0.0F);
 //        GlStateManager.rotate(180.0F, 0.0F, 1.0F, 0.0F);
-//        this.bindTexture(new ResourceLocation("motherlode", "textures/items/item_bomb.png"));
+//        this.bindTexture(new ResourceLocation("motherlode", "textures/items/item_Dynamite.png"));
         GlStateManager.disableRescaleNormal();
         this.model.render(entity, 0F, 0F, 0F, 0F, 0F, 0.1F);
         GlStateManager.popMatrix();
@@ -38,17 +38,17 @@ public class RenderBomb extends Render<EntityBomb> {
 	
 
 	@Override
-	protected ResourceLocation getEntityTexture(EntityBomb entity) {
-		return new ResourceLocation("motherlode", "textures/item/item_bomb_0.png");
+	protected ResourceLocation getEntityTexture(EntityDynamite entity) {
+		return new ResourceLocation("motherlode", "textures/item/item_dynamite_0.png");
 	}
 	
-	public static class Factory implements IRenderFactory<EntityBomb> {
+	public static class Factory implements IRenderFactory<EntityDynamite> {
 		
 		public static final Factory INSTANCE = new Factory();
 
 		@Override
-		public Render<? super EntityBomb> createRenderFor(RenderManager manager) {
-			return new RenderBomb(manager);
+		public Render<? super EntityDynamite> createRenderFor(RenderManager manager) {
+			return new RenderDynamite(manager);
 		}
 	}
 }

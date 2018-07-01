@@ -1,6 +1,6 @@
 package motherlode.common.entity;
 
-import motherlode.common.item.ItemBomb;
+import motherlode.common.item.ItemDynamite;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.MoverType;
 import net.minecraft.entity.projectile.EntityThrowable;
@@ -10,48 +10,48 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.RayTraceResult.Type;
 import net.minecraft.world.World;
 
-public class EntityBomb extends EntityThrowable {
+public class EntityDynamite extends EntityThrowable {
 	
-	private static final double FRICTION_COEFFICIENT = 0.6D;
+	private static final double FRICTION_COEFFICIENT = 0.8D;
 	private float rotationYaw;
 	private World world;
 	private float width = 0.5F;
 	private float height = 0.5F;
-	private int fuseStepTicks; // Number of ticks for each of the four bomb update steps. Or an inverse speed of burning
+	private int fuseStepTicks; // Number of ticks for each of the four Dynamite update steps. Or an inverse speed of burning
 	private int fuseTicksAlive; // Total fuse lifetime
 	private float explosionStrength;
 	
-	public EntityBomb(World worldIn) {
+	public EntityDynamite(World worldIn) {
 		super(worldIn);
 		this.world = worldIn;
 		this.setSize(this.width, this.height); //bounding box
 		this.rotationYaw = 0;
 		this.rotationPitch = 0;
-		this.setFuseStepTicks(ItemBomb.FUSE_TICKS);
+		this.setFuseStepTicks(ItemDynamite.FUSE_TICKS);
 		this.setFuseTicksAlive(0);
-		this.setExplosionStrength(ItemBomb.EXPLOSION_STRENGTH);
+		this.setExplosionStrength(ItemDynamite.EXPLOSION_STRENGTH);
 	}
 	
-	public EntityBomb(World worldIn, EntityLivingBase throwerIn) {
+	public EntityDynamite(World worldIn, EntityLivingBase throwerIn) {
         super(worldIn, throwerIn);
 		this.world = worldIn;
 		this.setSize(this.width, this.height); //bounding box
 		this.rotationYaw = throwerIn.rotationYaw;
 		this.rotationPitch = throwerIn.rotationPitch;
-		this.setFuseStepTicks(ItemBomb.FUSE_TICKS);
+		this.setFuseStepTicks(ItemDynamite.FUSE_TICKS);
 		this.setFuseTicksAlive(0);
-		this.setExplosionStrength(ItemBomb.EXPLOSION_STRENGTH);
+		this.setExplosionStrength(ItemDynamite.EXPLOSION_STRENGTH);
     }
 	
-	public EntityBomb(World worldIn, double x, double y, double z) {
+	public EntityDynamite(World worldIn, double x, double y, double z) {
         super(worldIn, x, y, z);
 		this.world = worldIn;
 		this.setSize(this.width, this.height); //bounding box
 		this.rotationYaw = 0;
 		this.rotationPitch = 0;
-		this.setFuseStepTicks(ItemBomb.FUSE_TICKS);
+		this.setFuseStepTicks(ItemDynamite.FUSE_TICKS);
 		this.setFuseTicksAlive(0);
-		this.setExplosionStrength(ItemBomb.EXPLOSION_STRENGTH);
+		this.setExplosionStrength(ItemDynamite.EXPLOSION_STRENGTH);
     }
 	
 	@Override
@@ -124,8 +124,8 @@ public class EntityBomb extends EntityThrowable {
 		return false;
 	}
 	
-	// ItemBomb sets rotation based on the player at the moment of throwing,
-	// RenderBomb calls the getter
+	// ItemDynamite sets rotation based on the player at the moment of throwing,
+	// RenderDynamite calls the getter
 	// Doesn't work
 	public void setRotationYaw(float yaw) {
 		this.rotationYaw = yaw;

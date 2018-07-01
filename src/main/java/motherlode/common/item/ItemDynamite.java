@@ -15,12 +15,12 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraft.item.Item;
 
-public class ItemBomb extends Item {
+public class ItemDynamite extends Item {
 	
 	public static final int FUSE_TICKS = 50;
 	public static final float EXPLOSION_STRENGTH = 1.5F;
 	
-	public ItemBomb() {
+	public ItemDynamite() {
 		this.setMaxStackSize(10);
 		this.setHasSubtypes(false);
 		this.setMaxDamage(FUSE_TICKS);
