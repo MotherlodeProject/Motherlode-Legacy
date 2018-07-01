@@ -1,0 +1,10 @@
+{
+  "parent": "item/generated",
+    "textures": {
+        "layer0": "motherlode:item/item_bomb_0"
+    },
+    "overrides": [
+    	{ "predicate": { "fuseState": 0 }, "model": "motherlode:models/item/item_bomb_0" },
+    	{ "predicate": { "fuseState": 1 }, "model": "motherlode:models/item/item_bomb_1" }
+    ]
+}
