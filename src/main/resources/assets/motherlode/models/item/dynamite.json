@@ -1,0 +1,10 @@
+{
+  "parent": "item/generated",
+    "textures": {
+        "layer0": "motherlode:item/dynamite_0"
+    },
+    "overrides": [
+    	{ "predicate": { "fuseState": 0.0 }, "model": "motherlode:item/dynamite_0" },
+    	{ "predicate": { "fuseState": 1.0 }, "model": "motherlode:item/dynamite_1" }
+    ]
+}

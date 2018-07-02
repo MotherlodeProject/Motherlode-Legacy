@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
     "textures": {
-        "layer0": "motherlode:item/item_dynamite_0"
+        "layer0": "motherlode:item/bomb_1"
     }
 }

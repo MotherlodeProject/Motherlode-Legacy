@@ -1,7 +1,7 @@
 package motherlode.client.render;
 
 import motherlode.client.model.ModelBomb;
-import motherlode.common.entity.EntityBomb;
+import motherlode.entity.EntityBomb;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;

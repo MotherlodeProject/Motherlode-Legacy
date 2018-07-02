@@ -1,2 +1,4 @@
-item.item_bomb_unlocalized.name=Bomb
-item.item_dynamite_unlocalized.name=Dynamite
+itemGroup.motherlode=Motherlode
+
+item.motherlode.bomb.name=Bomb
+item.motherlode.dynamite.name=Dynamite
