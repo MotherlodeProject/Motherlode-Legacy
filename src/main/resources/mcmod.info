@@ -1,14 +1,14 @@
 [
 {
-  "modid": "examplemod",
-  "name": "Example Mod",
-  "description": "Example placeholder mod.",
-  "version": "${version}",
+  "modid": "motherlode",
+  "name": "Motherlode",
+  "description": "Overhaul mod, currently overhauls nothing.",
+  "version": "$0.0",
   "mcversion": "${mcversion}",
   "url": "",
   "updateUrl": "",
-  "authorList": ["ExampleDude"],
-  "credits": "The Forge and FML guys, for making this example",
+  "authorList": ["Glow/Phail, Hufsa, some more people"],
+  "credits": "my parents",
   "logoFile": "",
   "screenshots": [],
   "dependencies": []

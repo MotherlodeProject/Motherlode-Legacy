@@ -1,7 +1,7 @@
 package motherlode.common.item;
 
 import motherlode.MotherlodeMod;
-import motherlode.common.entity.EntityBomb;
+import motherlode.common.entity.EntityDynamite;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -54,11 +54,10 @@ public class ItemDynamite extends Item {
     		stack.getTagCompound().setBoolean("isLit", false);
 
     		if (!worldIn.isRemote) {
-                EntityBomb entitybomb = new EntityBomb(worldIn, playerIn);
-                entitybomb.setRotationYaw(playerIn.rotationYaw);
-                entitybomb.setFuseTicksAlive(stack.getItemDamage());
-                entitybomb.shoot(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 0.3F, 1.0F);
-                worldIn.spawnEntity(entitybomb);
+                EntityDynamite entityDynamite = new EntityDynamite(worldIn, playerIn);
+                entityDynamite.setFuseTicksAlive(stack.getItemDamage());
+                entityDynamite.shoot(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 0.3F, 1.0F);
+                worldIn.spawnEntity(entityDynamite);
             }
     		stack.setItemDamage(0);
     		stack.shrink(1);
