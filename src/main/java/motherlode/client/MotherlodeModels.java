@@ -15,5 +15,6 @@ public class MotherlodeModels {
 	public static void registerModels(ModelRegistryEvent event) {
 		ModelLoader.setCustomModelResourceLocation(MotherlodeItems.BOMB, 0, new ModelResourceLocation("motherlode:BOMB", "inventory"));
 		ModelLoader.setCustomModelResourceLocation(MotherlodeItems.DYNAMITE, 0, new ModelResourceLocation("motherlode:DYNAMITE", "inventory"));
+		ModelLoader.setCustomModelResourceLocation(MotherlodeItems.BANDAGE, 0, new ModelResourceLocation("motherlode:BANDAGE", "inventory"));
 	}
 }
