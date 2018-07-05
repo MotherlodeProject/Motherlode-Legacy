@@ -15,7 +15,7 @@ import net.minecraft.world.World;
 
 public class ItemBomb extends Item {
 
-	public static final int FUSE_TICKS = 50; // Maximum fuse lifetime
+	public static final int FUSE_TICKS = 50;
 	public static final float EXPLOSION_STRENGTH = 1.5F;
 
 	public ItemBomb() {
