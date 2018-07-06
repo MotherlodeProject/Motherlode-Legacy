@@ -26,16 +26,14 @@ public class RenderBomb extends Render<EntityBomb> {
         GlStateManager.translate((float)x, (float)y, (float)z);
         GlStateManager.enableRescaleNormal();
         GlStateManager.rotate(entity.getRotationYaw(), 0F, 1F, 0F); // does not work?
-//        GlStateManager.rotate(-this.renderManager.playerViewY, 0.0F, 1.0F, 0.0F); // angle, vector (x,y,z)
-//        GlStateManager.rotate((float)(this.renderManager.options.thirdPersonView == 2 ? -1 : 1) * this.renderManager.playerViewX, 1.0F, 0.0F, 0.0F);
-//        GlStateManager.rotate(180.0F, 0.0F, 1.0F, 0.0F);
-//        this.bindTexture(new ResourceLocation("motherlode", "textures/items/item_bomb.png"));
+        GlStateManager.rotate(180.0F, 1.0F, 0.0F, 0.0F); // Model exported upside-down from Tabula
+        GlStateManager.translate(0F, -entity.getHeight()/2, 0F); // Model offset from hitbox
+        GlStateManager.scale(entity.getScale(), entity.getScale(), entity.getScale());
+        this.bindTexture(new ResourceLocation("motherlode", "textures/model/bomb.png"));
         GlStateManager.disableRescaleNormal();
         this.model.render(entity, 0F, 0F, 0F, 0F, 0F, 0.1F);
         GlStateManager.popMatrix();
-//        super.doRender(entity, x, y, z, entityYaw, partialTicks);
     }
-	
 
 	@Override
 	protected ResourceLocation getEntityTexture(EntityBomb entity) {

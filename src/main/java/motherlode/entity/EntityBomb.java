@@ -15,10 +15,11 @@ public class EntityBomb extends EntityThrowable {
 	private static final double FRICTION_COEFFICIENT = 0.6D;
 	private float rotationYaw;
 	private World world;
-	private float width = 0.5F;
-	private float height = 0.5F;
-	private int fuseStepTicks; // Number of ticks for each of the four BOMB update steps. Or an inverse speed of burning
-	private int fuseTicksAlive; // Total fuse lifetime
+	private float scale = 0.7F; // For both entity hitbox and render scale
+	private float width = 0.6F*scale;
+	private float height = 0.6F*scale;
+	private int maximumFuseLiftetime; // Number of ticks for each of the four BOMB update steps. Or an inverse speed of burning
+	private int fuseTicksAlive; // Number of ticks that bomb has been lit
 	private float explosionStrength;
 	
 	public EntityBomb(World worldIn) {
@@ -27,7 +28,7 @@ public class EntityBomb extends EntityThrowable {
 		this.setSize(this.width, this.height); //bounding box
 		this.rotationYaw = 0;
 		this.rotationPitch = 0;
-		this.setFuseStepTicks(ItemBomb.FUSE_TICKS);
+		this.setMaximumFuseLiftime(ItemBomb.FUSE_TICKS);
 		this.setFuseTicksAlive(0);
 		this.setExplosionStrength(ItemBomb.EXPLOSION_STRENGTH);
 	}
@@ -38,7 +39,7 @@ public class EntityBomb extends EntityThrowable {
 		this.setSize(this.width, this.height); //bounding box
 		this.rotationYaw = throwerIn.rotationYaw;
 		this.rotationPitch = throwerIn.rotationPitch;
-		this.setFuseStepTicks(ItemBomb.FUSE_TICKS);
+		this.setMaximumFuseLiftime(ItemBomb.FUSE_TICKS);
 		this.setFuseTicksAlive(0);
 		this.setExplosionStrength(ItemBomb.EXPLOSION_STRENGTH);
     }
@@ -49,7 +50,7 @@ public class EntityBomb extends EntityThrowable {
 		this.setSize(this.width, this.height); //bounding box
 		this.rotationYaw = 0;
 		this.rotationPitch = 0;
-		this.setFuseStepTicks(ItemBomb.FUSE_TICKS);
+		this.setMaximumFuseLiftime(ItemBomb.FUSE_TICKS);
 		this.setFuseTicksAlive(0);
 		this.setExplosionStrength(ItemBomb.EXPLOSION_STRENGTH);
     }
@@ -68,10 +69,10 @@ public class EntityBomb extends EntityThrowable {
             this.motionY *= -0.5D;
         }
 		
-//		if (this.fuseTicksAlive >= this.fuseStepTicks) {
-//			this.world.createExplosion(this, this.posX, this.posY, this.posZ, this.explosionStrength, true);
-//			this.setDead();
-//		}
+		if (this.fuseTicksAlive >= this.maximumFuseLiftetime) {
+			this.world.createExplosion(this, this.posX, this.posY, this.posZ, this.explosionStrength, true);
+			this.setDead();
+		}
 	}
 
 	@Override
@@ -106,8 +107,8 @@ public class EntityBomb extends EntityThrowable {
 		this.explosionStrength = strength;
 	}
 	
-	public void setFuseStepTicks(int ticks) {
-		this.fuseStepTicks = ticks;
+	public void setMaximumFuseLiftime(int ticks) {
+		this.maximumFuseLiftetime = ticks;
 	}
 	
 	public void setFuseTicksAlive(int ticks) {
@@ -137,5 +138,17 @@ public class EntityBomb extends EntityThrowable {
 	
 	public double getVelocitySquared() {
 		return this.motionX*this.motionX + this.motionY*this.motionY + this.motionZ*this.motionZ;
+	}
+	
+	public float getScale() {
+		return this.scale;
+	}
+	
+	public float getWidth() {
+		return this.width;
+	}
+	
+	public float getHeight() {
+		return this.height;
 	}
 }
