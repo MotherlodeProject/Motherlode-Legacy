@@ -1,0 +1,12 @@
+{
+    "parent": "block/cube",
+    "textures": {
+        "particle": "block/technical/redstone_transmitter",
+        "down": "block/technical/redstone_technical_base",
+        "up": "block/technical/redstone_technical_base",
+        "north": "block/technical/redstone_transmitter",
+        "east": "block/technical/redstone_transmitter",
+        "south": "block/technical/redstone_transmitter",
+        "west": "block/technical/redstone_transmitter"
+    }
+}

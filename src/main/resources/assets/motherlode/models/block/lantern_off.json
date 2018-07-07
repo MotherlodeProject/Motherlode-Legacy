@@ -1,6 +1,6 @@
 {
     "parent": "block/lantern",
     "textures": {
-        "lantern": "blocks/lantern_off"
+        "lantern": "block/lantern_off"
     }
 }
