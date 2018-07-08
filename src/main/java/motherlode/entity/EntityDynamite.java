@@ -9,6 +9,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.RayTraceResult.Type;
 import net.minecraft.world.World;
+import net.minecraftforge.common.DimensionManager;
 
 public class EntityDynamite extends EntityThrowable {
 	
@@ -17,7 +18,7 @@ public class EntityDynamite extends EntityThrowable {
 	private World world;
 	private float width = 0.5F;
 	private float height = 0.5F;
-	private int fuseStepTicks; // Number of ticks for each of the four Dynamite update steps. Or an inverse speed of burning
+	private int maximumFuseLifetime; // Number of ticks for each of the four Dynamite update steps. Or an inverse speed of burning
 	private int fuseTicksAlive; // Total fuse lifetime
 	private float explosionStrength;
 	
@@ -68,10 +69,11 @@ public class EntityDynamite extends EntityThrowable {
             this.motionY *= -0.5D;
         }
 		
-//		if (this.fuseTicksAlive >= this.fuseStepTicks) {
-//			this.world.createExplosion(this, this.posX, this.posY, this.posZ, this.explosionStrength, true);
-//			this.setDead();
-//		}
+		if (this.fuseTicksAlive >= this.maximumFuseLifetime) {
+		World worldServer = DimensionManager.getWorld(this.dimension);
+		worldServer.createExplosion(this, this.posX, this.posY, this.posZ, this.explosionStrength, true);
+		this.setDead();
+	}
 	}
 
 	@Override
@@ -107,7 +109,7 @@ public class EntityDynamite extends EntityThrowable {
 	}
 	
 	public void setFuseStepTicks(int ticks) {
-		this.fuseStepTicks = ticks;
+		this.maximumFuseLifetime = ticks;
 	}
 	
 	public void setFuseTicksAlive(int ticks) {

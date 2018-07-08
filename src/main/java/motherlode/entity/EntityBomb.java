@@ -9,6 +9,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.RayTraceResult.Type;
 import net.minecraft.world.World;
+import net.minecraftforge.common.DimensionManager;
 
 public class EntityBomb extends EntityThrowable {
 	
@@ -18,7 +19,7 @@ public class EntityBomb extends EntityThrowable {
 	private float scale = 0.7F; // For both entity hitbox and render scale
 	private float width = 0.6F*scale;
 	private float height = 0.6F*scale;
-	private int maximumFuseLiftetime; // Number of ticks for each of the four BOMB update steps. Or an inverse speed of burning
+	private int maximumFuseLifetime; // Number of ticks for each of the four BOMB update steps. Or an inverse speed of burning
 	private int fuseTicksAlive; // Number of ticks that bomb has been lit
 	private float explosionStrength;
 	
@@ -28,7 +29,7 @@ public class EntityBomb extends EntityThrowable {
 		this.setSize(this.width, this.height); //bounding box
 		this.rotationYaw = 0;
 		this.rotationPitch = 0;
-		this.setMaximumFuseLiftime(ItemBomb.FUSE_TICKS);
+		this.setMaximumFuseLifetime(ItemBomb.FUSE_TICKS);
 		this.setFuseTicksAlive(0);
 		this.setExplosionStrength(ItemBomb.EXPLOSION_STRENGTH);
 	}
@@ -39,7 +40,7 @@ public class EntityBomb extends EntityThrowable {
 		this.setSize(this.width, this.height); //bounding box
 		this.rotationYaw = throwerIn.rotationYaw;
 		this.rotationPitch = throwerIn.rotationPitch;
-		this.setMaximumFuseLiftime(ItemBomb.FUSE_TICKS);
+		this.setMaximumFuseLifetime(ItemBomb.FUSE_TICKS);
 		this.setFuseTicksAlive(0);
 		this.setExplosionStrength(ItemBomb.EXPLOSION_STRENGTH);
     }
@@ -50,7 +51,7 @@ public class EntityBomb extends EntityThrowable {
 		this.setSize(this.width, this.height); //bounding box
 		this.rotationYaw = 0;
 		this.rotationPitch = 0;
-		this.setMaximumFuseLiftime(ItemBomb.FUSE_TICKS);
+		this.setMaximumFuseLifetime(ItemBomb.FUSE_TICKS);
 		this.setFuseTicksAlive(0);
 		this.setExplosionStrength(ItemBomb.EXPLOSION_STRENGTH);
     }
@@ -69,8 +70,9 @@ public class EntityBomb extends EntityThrowable {
             this.motionY *= -0.5D;
         }
 		
-		if (this.fuseTicksAlive >= this.maximumFuseLiftetime) {
-			this.world.createExplosion(this, this.posX, this.posY, this.posZ, this.explosionStrength, true);
+		if (this.fuseTicksAlive >= this.maximumFuseLifetime) {
+			World worldServer = DimensionManager.getWorld(this.dimension);
+			worldServer.createExplosion(this, this.posX, this.posY, this.posZ, this.explosionStrength, true);
 			this.setDead();
 		}
 	}
@@ -107,8 +109,8 @@ public class EntityBomb extends EntityThrowable {
 		this.explosionStrength = strength;
 	}
 	
-	public void setMaximumFuseLiftime(int ticks) {
-		this.maximumFuseLiftetime = ticks;
+	public void setMaximumFuseLifetime(int ticks) {
+		this.maximumFuseLifetime = ticks;
 	}
 	
 	public void setFuseTicksAlive(int ticks) {
