@@ -1,0 +1,6 @@
+{
+    "parent": "block/pot_big",
+    "textures": {
+        "pattern": "block/pot_pattern_1",
+    }
+}
