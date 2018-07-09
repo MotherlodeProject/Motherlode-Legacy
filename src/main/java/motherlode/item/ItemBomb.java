@@ -10,6 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
+import net.minecraftforge.common.DimensionManager;
 
 public class ItemBomb extends ItemMotherlode {
 
@@ -72,7 +73,8 @@ public class ItemBomb extends ItemMotherlode {
 			} else {
 				stack.shrink(1);
 				stack.setItemDamage(0);
-				worldIn.createExplosion(entityIn, entityIn.posX, entityIn.posY, entityIn.posZ, EXPLOSION_STRENGTH, true);
+				World worldServer = DimensionManager.getWorld(entityIn.dimension);
+				worldServer.createExplosion(entityIn, entityIn.posX, entityIn.posY, entityIn.posZ, EXPLOSION_STRENGTH, true);
 				stack.getTagCompound().setBoolean("isLit", false);
 				entityIn.attackEntityFrom(DamageSource.GENERIC, 20);
 			}
