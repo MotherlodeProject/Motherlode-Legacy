@@ -1,0 +1,86 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "builtin/generated",
+    "transform": "forge:default-item"
+  },
+  "variants": {
+    "type": {
+      "amethyst": {
+        "textures": {
+          "layer0": "motherlode:item/material/amethyst"
+        }
+      },
+      "copper": {
+        "textures": {
+          "layer0": "motherlode:item/material/copper"
+        }
+      },
+      "etherium": {
+        "textures": {
+          "layer0": "motherlode:item/material/etherium"
+        }
+      },
+      "gold": {
+        "textures": {
+          "layer0": "motherlode:item/material/gold"
+        }
+      },
+      "iron": {
+        "textures": {
+          "layer0": "motherlode:item/material/iron"
+        }
+      },
+      "netherite": {
+        "textures": {
+          "layer0": "motherlode:item/material/netherite"
+        }
+      },
+      "plant_fibre": {
+        "textures": {
+          "layer0": "motherlode:item/material/plant_fibre"
+        }
+      },
+      "platinum": {
+        "textures": {
+          "layer0": "motherlode:item/material/platinum"
+        }
+      },
+      "ruby": {
+        "textures": {
+          "layer0": "minecraft:items/ruby"
+        }
+      },
+      "saltpeter": {
+        "textures": {
+          "layer0": "motherlode:item/material/saltpeter"
+        }
+      },
+      "sapphire": {
+        "textures": {
+          "layer0": "motherlode:item/material/sapphire"
+        }
+      },
+      "silver": {
+        "textures": {
+          "layer0": "motherlode:item/material/silver"
+        }
+      },
+      "sulphur": {
+        "textures": {
+          "layer0": "motherlode:item/material/sulphur"
+        }
+      },
+      "titanium": {
+        "textures": {
+          "layer0": "motherlode:item/material/titanium"
+        }
+      },
+      "topaz": {
+        "textures": {
+          "layer0": "motherlode:item/material/topaz"
+        }
+      }
+    }
+  }
+}

@@ -2,25 +2,22 @@ package motherlode.item;
 
 import motherlode.Motherlode;
 import motherlode.entity.EntityBomb;
-import motherlode.util.ItemUtil;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.IItemPropertyGetter;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
 
-public class ItemBomb extends Item {
+public class ItemBomb extends ItemMotherlode {
 
 	public static final int FUSE_TICKS = 50; // Maximum fuse lifetime
 	public static final float EXPLOSION_STRENGTH = 1.5F;
 
-	public ItemBomb() {
-		super();
-		ItemUtil.setupItem(this, "bomb");
+	public ItemBomb(String name) {
+		super(name);
 		this.setMaxStackSize(10);
 		this.setHasSubtypes(false);
 		this.setMaxDamage(FUSE_TICKS);

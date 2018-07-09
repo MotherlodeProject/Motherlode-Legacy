@@ -2,23 +2,20 @@ package motherlode.item;
 
 import motherlode.Motherlode;
 import motherlode.entity.EntityDynamite;
-import motherlode.util.ItemUtil;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
 
-public class ItemDynamite extends Item {
+public class ItemDynamite extends ItemMotherlode {
 
 	public static final int FUSE_TICKS = 50;
 	public static final float EXPLOSION_STRENGTH = 1.5F;
 
-	public ItemDynamite() {
-		super();
-		ItemUtil.setupItem(this, "dynamite");
+	public ItemDynamite(String name) {
+		super(name);
 
 		this.setMaxStackSize(10);
 		this.setHasSubtypes(false);

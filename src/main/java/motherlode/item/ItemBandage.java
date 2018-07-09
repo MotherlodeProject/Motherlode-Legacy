@@ -14,8 +14,8 @@ public class ItemBandage extends ItemMotherlode {
 	private float healAmount = 2F;
 	private int useTime = 20;
 	
-	public ItemBandage() {
-		super("bandage");
+	public ItemBandage(String name) {
+		super(name);
 	}
 	
 	// Placeholder animation

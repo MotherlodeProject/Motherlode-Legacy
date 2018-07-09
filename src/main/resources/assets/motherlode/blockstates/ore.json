@@ -1,0 +1,71 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "cube_all",
+    "transform": "forge:default-block"
+  },
+  "variants": {
+    "type": {
+      "amethyst": {
+        "textures": {
+          "all": "motherlode:block/ore/amethyst_ore"
+        }
+      },
+      "bone": {
+        "textures": {
+          "all": "motherlode:block/ore/bone_ore"
+        }
+      },
+      "copper": {
+        "textures": {
+          "all": "motherlode:block/ore/copper_ore"
+        }
+      },
+      "netherite": {
+        "textures": {
+          "all": "motherlode:block/ore/netherite_ore"
+        }
+      },
+      "platinum": {
+        "textures": {
+          "all": "motherlode:block/ore/platinum_ore"
+        }
+      },
+      "ruby": {
+        "textures": {
+          "all": "motherlode:block/ore/ruby_ore"
+        }
+      },
+      "saltpeter": {
+        "textures": {
+          "all": "motherlode:block/ore/saltpeter_ore"
+        }
+      },
+      "sapphire": {
+        "textures": {
+          "all": "motherlode:block/ore/sapphire_ore"
+        }
+      },
+      "silver": {
+        "textures": {
+          "all": "motherlode:block/ore/silver_ore"
+        }
+      },
+      "sulphur": {
+        "textures": {
+          "all": "motherlode:block/ore/sulphur_ore"
+        }
+      },
+      "titanium": {
+        "textures": {
+          "all": "motherlode:block/ore/titanium_ore"
+        }
+      },
+      "topaz": {
+        "textures": {
+          "all": "motherlode:block/ore/topaz_ore"
+        }
+      }
+    }
+  }
+}
