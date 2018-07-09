@@ -21,6 +21,6 @@ public class InitUtil {
 	}
 
 	public static void setModel(ModelCompound modelCompound) {
-		MotherlodeModels.modelList.add(modelCompound);
+		MotherlodeModels.MODELS.add(modelCompound);
 	}
 }

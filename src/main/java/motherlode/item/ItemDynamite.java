@@ -14,8 +14,8 @@ public class ItemDynamite extends ItemMotherlode {
 	public static final int FUSE_TICKS = 50;
 	public static final float EXPLOSION_STRENGTH = 1.5F;
 
-	public ItemDynamite(String name) {
-		super(name);
+	public ItemDynamite() {
+		super("dynamite");
 
 		this.setMaxStackSize(10);
 		this.setHasSubtypes(false);

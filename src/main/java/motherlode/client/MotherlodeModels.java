@@ -1,12 +1,9 @@
 package motherlode.client;
 
 import motherlode.Motherlode;
-import motherlode.item.MotherlodeItems;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.event.ModelRegistryEvent;
-import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
@@ -16,11 +13,11 @@ import java.util.List;
 @Mod.EventBusSubscriber(modid = Motherlode.MOD_ID)
 public class MotherlodeModels {
 
-	public static List<ModelCompound> modelList = new ArrayList<>();
+	public static final List<ModelCompound> MODELS = new ArrayList<>();
 
 	@SubscribeEvent
 	public static void registerModels(ModelRegistryEvent event) {
-		for (ModelCompound compound : modelList) {
+		for (ModelCompound compound : MODELS) {
 			if (compound.isBlock()) {
 				if (compound.getFileName().equals("shootingstar.undefinedfilename")) {
 					//Checks if block has an item

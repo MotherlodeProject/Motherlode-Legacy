@@ -1,6 +1,6 @@
 package motherlode;
 
-import motherlode.item.MotherlodeItems;
+import motherlode.registry.MotherlodeRegistry;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Mod;
@@ -10,6 +10,8 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
+import java.util.Random;
+
 @Mod(modid = Motherlode.MOD_ID, name = Motherlode.NAME, version = Motherlode.VERSION)
 public class Motherlode {
 	public static final String MOD_ID = "motherlode";
@@ -18,7 +20,7 @@ public class Motherlode {
 	public static final CreativeTabs TAB = new CreativeTabs("motherlode") {
 		@Override
 		public ItemStack getTabIconItem() {
-			return new ItemStack(MotherlodeItems.BOMB);
+			return new ItemStack(MotherlodeRegistry.ITEMS.get(new Random().nextInt(MotherlodeRegistry.ITEMS.size())));
 		}
 	};
 	@Mod.Instance(Motherlode.MOD_ID)

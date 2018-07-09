@@ -1,7 +1,6 @@
 package motherlode.block;
 
 import motherlode.client.ModelCompound;
-import motherlode.util.Getter;
 import motherlode.util.InitUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -20,11 +19,11 @@ public class BlockMotherlodeOre extends Block {
 	public int dropMax = 1;
 	public int expMin, expMax;
 	public boolean noFortune = false;
-	public Getter<Item> drop;
+	public Item drop;
 
-	public BlockMotherlodeOre(String name, Getter<Item> drop, float hardness, float resistence, int harvestLevel, int expMin, int expMax, MapColor mapColor) {
+	public BlockMotherlodeOre(String name, Item drop, float hardness, float resistence, int harvestLevel, int expMin, int expMax, MapColor mapColor) {
 		super(Material.ROCK, mapColor);
-		InitUtil.setup(this, name);
+		InitUtil.setup(this, name + "_ore");
 		this.drop = drop;
 		this.expMin = expMin;
 		this.expMax = expMax;
@@ -32,11 +31,10 @@ public class BlockMotherlodeOre extends Block {
 		setResistance(resistence);
 		setHarvestLevel("pickaxe", harvestLevel);
 		setSoundType(SoundType.STONE);
-		String type = name.split("_ore")[0];
-		InitUtil.setModel(new ModelCompound(this).setFileName("ore").setVariant("type=" + type).setInvVariant("type=" + type));
+		InitUtil.setModel(new ModelCompound(this).setFileName("ore").setVariant("type=" + name).setInvVariant("type=" + name));
 	}
 
-	public BlockMotherlodeOre(String name, Getter<Item> drop, float hardness, float resistence, int harvestLevel, int expMin, int expMax) {
+	public BlockMotherlodeOre(String name, Item drop, float hardness, float resistence, int harvestLevel, int expMin, int expMax) {
 		this(name, drop, hardness, resistence, harvestLevel, expMin, expMax, MapColor.STONE);
 	}
 
@@ -57,7 +55,7 @@ public class BlockMotherlodeOre extends Block {
 
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-		return drop.get();
+		return drop;
 	}
 
 	@Override

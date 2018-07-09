@@ -1,76 +1,36 @@
 package motherlode.item;
 
-import motherlode.Motherlode;
-import motherlode.block.MotherlodeBlocks;
-import net.minecraft.init.Items;
+import motherlode.registry.MotherlodeRegistry;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 
-@Mod.EventBusSubscriber(modid = Motherlode.MOD_ID)
-@GameRegistry.ObjectHolder(Motherlode.MOD_ID)
 public class MotherlodeItems {
 
-	//Util
-	private static final Item DUMMY = Items.AIR;
-	private static RegistryEvent.Register<Item> event;
 	private static final String MATERIAL = "material";
 
-	//Materials
-	public static final Item AMETHYST = DUMMY;
-	public static final Item COPPER = DUMMY;
-	public static final Item ETHERIUM = DUMMY;
-	public static final Item GOLD = DUMMY;
-	public static final Item IRON = DUMMY;
-	public static final Item NETHERITE = DUMMY;
-	public static final Item PLANT_FIBRE = DUMMY;
-	public static final Item PLATINUM = DUMMY;
-	public static final Item RUBY = DUMMY;
-	public static final Item SALTPETER = DUMMY;
-	public static final Item SAPPHIRE = DUMMY;
-	public static final Item SILVER = DUMMY;
-	public static final Item SULPHUR = DUMMY;
-	public static final Item TITANIUM = DUMMY;
-	public static final Item TOPAZ = DUMMY;
+	public static final Item AMETHYST = register(new ItemMotherlode("amethyst", MATERIAL));
+	public static final Item COPPER = register(new ItemMotherlode("copper", MATERIAL));
+	public static final Item ETHERIUM = register(new ItemMotherlode("etherium", MATERIAL));
+	public static final Item GOLD = register(new ItemMotherlode("gold", MATERIAL));
+	public static final Item IRON = register(new ItemMotherlode("iron", MATERIAL));
+	public static final Item NETHERITE = register(new ItemMotherlode("netherite", MATERIAL));
+	public static final Item PLANT_FIBRE = register(new ItemMotherlode("plant_fibre", MATERIAL));
+	public static final Item PLATINUM = register(new ItemMotherlode("platinum", MATERIAL));
+	public static final Item RUBY = register(new ItemMotherlode("ruby", MATERIAL));
+	public static final Item SALTPETER = register(new ItemMotherlode("saltpeter", MATERIAL));
+	public static final Item SAPPHIRE = register(new ItemMotherlode("sapphire", MATERIAL));
+	public static final Item SILVER = register(new ItemMotherlode("silver", MATERIAL));
+	public static final Item SULPHUR = register(new ItemMotherlode("sulphur", MATERIAL));
+	public static final Item TITANIUM = register(new ItemMotherlode("titanium", MATERIAL));
+	public static final Item TOPAZ = register(new ItemMotherlode("topaz", MATERIAL));
 
-	//Items
-	public static final Item BOMB = DUMMY;
-	public static final Item DYNAMITE = DUMMY;
-	public static final Item BANDAGE = DUMMY;
+	public static final Item BOMB = register(new ItemBomb());
+	public static final Item DYNAMITE = register(new ItemDynamite());
+	public static final Item BANDAGE = register(new ItemBandage());
 
-	@SubscribeEvent
-	public static void registerItems(RegistryEvent.Register<Item> e) {
-		event = e;
-
-		register(new ItemMotherlode("amethyst", MATERIAL));
-		register(new ItemMotherlode("copper", MATERIAL));
-		register(new ItemMotherlode("etherium", MATERIAL));
-		register(new ItemMotherlode("gold", MATERIAL));
-		register(new ItemMotherlode("iron", MATERIAL));
-		register(new ItemMotherlode("netherite", MATERIAL));
-		register(new ItemMotherlode("plant_fibre", MATERIAL));
-		register(new ItemMotherlode("platinum", MATERIAL));
-		register(new ItemMotherlode("ruby", MATERIAL));
-		register(new ItemMotherlode("saltpeter", MATERIAL));
-		register(new ItemMotherlode("sapphire", MATERIAL));
-		register(new ItemMotherlode("silver", MATERIAL));
-		register(new ItemMotherlode("sulphur", MATERIAL));
-		register(new ItemMotherlode("titanium", MATERIAL));
-		register(new ItemMotherlode("topaz", MATERIAL));
-
-		register(new ItemBomb("bomb"));
-		register(new ItemDynamite("dynamite"));
-		register(new ItemBandage("bandage"));
-
-		for (ItemBlock item : MotherlodeBlocks.getItemBlocks()) {
-			register(item);
-		}
+	private static Item register(Item item) {
+		MotherlodeRegistry.ITEMS.add(item);
+		return item;
 	}
 
-	private static void register(Item item) {
-		event.getRegistry().register(item);
-	}
+	public static void load() {}
 }

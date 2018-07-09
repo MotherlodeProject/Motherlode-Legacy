@@ -16,8 +16,8 @@ public class ItemBomb extends ItemMotherlode {
 	public static final int FUSE_TICKS = 50; // Maximum fuse lifetime
 	public static final float EXPLOSION_STRENGTH = 1.5F;
 
-	public ItemBomb(String name) {
-		super(name);
+	public ItemBomb() {
+		super("bomb");
 		this.setMaxStackSize(10);
 		this.setHasSubtypes(false);
 		this.setMaxDamage(FUSE_TICKS);
