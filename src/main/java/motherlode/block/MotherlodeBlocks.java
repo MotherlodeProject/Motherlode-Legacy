@@ -23,6 +23,8 @@ public class MotherlodeBlocks {
 	public static final Block TITANIUM_ORE = register(new BlockMotherlodeOre("titanium", MotherlodeItems.TITANIUM, 3F, 5F, 2, 1, 7));
 	public static final Block TOPAZ_ORE = register(new BlockMotherlodeOre("topaz", MotherlodeItems.TOPAZ, 3F, 5F, 2, 3, 7));
 
+	public static final Block POT = register(new BlockPot());
+
 	private static Block register(Block block) {
 		return register(block, true);
 	}
