@@ -30,6 +30,56 @@
         "textures": {
           "pattern": "motherlode:block/pot/pot_pattern_3"
         }
+      },
+      "4": {
+        "textures": {
+          "pattern": "motherlode:block/pot/pot_pattern_4"
+        }
+      },
+      "5": {
+        "textures": {
+          "pattern": "motherlode:block/pot/pot_pattern_5"
+        }
+      },
+      "6": {
+        "textures": {
+          "pattern": "motherlode:block/pot/pot_pattern_6"
+        }
+      },
+      "7": {
+        "textures": {
+          "pattern": "motherlode:block/pot/pot_pattern_7"
+        }
+      },
+      "8": {
+        "textures": {
+          "pattern": "motherlode:block/pot/pot_pattern_8"
+        }
+      },
+      "9": {
+        "textures": {
+          "pattern": "motherlode:block/pot/pot_pattern_9"
+        }
+      },
+      "10": {
+        "textures": {
+          "pattern": "motherlode:block/pot/pot_pattern_10"
+        }
+      },
+      "11": {
+        "textures": {
+          "pattern": "motherlode:block/pot/pot_pattern_11"
+        }
+      },
+      "12": {
+        "textures": {
+          "pattern": "motherlode:block/pot/pot_pattern_12"
+        }
+      },
+      "13": {
+        "textures": {
+          "pattern": "motherlode:block/pot/pot_pattern_13"
+        }
       }
     }
   }

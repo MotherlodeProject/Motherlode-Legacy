@@ -6,18 +6,24 @@ item.motherlode.bandage.name=Bandage
 
 item.motherlode.amethyst.name=Amethyst
 item.motherlode.copper.name=Copper
+item.motherlode.copper_copper.name=Copper Ingot
 item.motherlode.etherium.name=Etherium
+item.motherlode.etherium_ingot.name=Etherium Ingot
 item.motherlode.gold.name=Gold
 item.motherlode.iron.name=Iron
 item.motherlode.netherite.name=Netherite
+item.motherlode.netherite_ingot.name=Netherite Ingot
 item.motherlode.plant_fibre.name=Plant Fiber
 item.motherlode.platinum.name=Platinum
+item.motherlode.platinum_ingot.name=Platinum Ingot
 item.motherlode.ruby.name=Ruby
 item.motherlode.saltpeter.name=Saltpeter
 item.motherlode.sapphire.name=Sapphire
 item.motherlode.silver.name=Silver
+item.motherlode.silver_ingot.name=Silver Ingot
 item.motherlode.sulphur.name=Sulfur
 item.motherlode.titanium.name=Titanium
+item.motherlode.titanium_ingot.name=Titanium Ingot
 item.motherlode.topaz.name=Topaz
 
 tile.motherlode.amethyst_ore.name=Amethyst Ore

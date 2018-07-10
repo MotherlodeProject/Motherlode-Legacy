@@ -29,7 +29,7 @@ import java.util.List;
 
 public class BlockPot extends Block {
 
-	public static final PropertyInteger PATTERN = PropertyInteger.create("pattern", 0, 3);
+	public static final PropertyInteger PATTERN = PropertyInteger.create("pattern", 0, 13);
 
 	public BlockPot() {
 		super(Material.ROCK);
@@ -101,7 +101,7 @@ public class BlockPot extends Block {
 		} else {
 			((TileEntityPot) tileEntity).setColor(EnumDyeColor.byMetadata(MathHelper.getInt(worldIn.rand, 0, 15)));
 			((TileEntityPot) tileEntity).setPatternColor(EnumDyeColor.byMetadata(MathHelper.getInt(worldIn.rand, 0, 15)));
-			((TileEntityPot) tileEntity).setPattern(MathHelper.getInt(worldIn.rand, 0, 3));
+			((TileEntityPot) tileEntity).setPattern(MathHelper.getInt(worldIn.rand, 0, PATTERN.getAllowedValues().size() - 1));
 		}
 	}
 

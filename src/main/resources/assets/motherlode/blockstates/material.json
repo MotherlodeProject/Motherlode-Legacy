@@ -16,9 +16,19 @@
           "layer0": "motherlode:item/material/copper"
         }
       },
+      "copper_ingot": {
+        "textures": {
+          "layer0": "motherlode:item/material/copper_ingot"
+        }
+      },
       "etherium": {
         "textures": {
           "layer0": "motherlode:item/material/etherium"
+        }
+      },
+      "etherium_ingot": {
+        "textures": {
+          "layer0": "motherlode:item/material/etherium_ingot"
         }
       },
       "gold": {
@@ -36,6 +46,11 @@
           "layer0": "motherlode:item/material/netherite"
         }
       },
+      "netherite_ingot": {
+        "textures": {
+          "layer0": "motherlode:item/material/netherite_ingot"
+        }
+      },
       "plant_fibre": {
         "textures": {
           "layer0": "motherlode:item/material/plant_fibre"
@@ -44,6 +59,11 @@
       "platinum": {
         "textures": {
           "layer0": "motherlode:item/material/platinum"
+        }
+      },
+      "platinum_ingot": {
+        "textures": {
+          "layer0": "motherlode:item/material/platinum_ingot"
         }
       },
       "ruby": {
@@ -66,6 +86,11 @@
           "layer0": "motherlode:item/material/silver"
         }
       },
+      "silver_ingot": {
+        "textures": {
+          "layer0": "motherlode:item/material/silver_ingot"
+        }
+      },
       "sulphur": {
         "textures": {
           "layer0": "motherlode:item/material/sulphur"
@@ -74,6 +99,11 @@
       "titanium": {
         "textures": {
           "layer0": "motherlode:item/material/titanium"
+        }
+      },
+      "titanium_ingot": {
+        "textures": {
+          "layer0": "motherlode:item/material/titanium_ingot"
         }
       },
       "topaz": {

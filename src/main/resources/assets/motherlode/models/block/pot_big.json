@@ -9,6 +9,7 @@
 	},
 	"elements": [
 		{
+			"name": "base",
 			"from": [2, 0, 2],
 			"to": [14, 12, 14],
 			"faces": {
@@ -21,6 +22,7 @@
 			}
 		},
 		{
+			"name": "top",
 			"from": [3, 12, 3],
 			"to": [13, 16, 13],
 			"faces": {
@@ -33,7 +35,7 @@
 			}
 		},
 		{
-			"name": "overlay",
+			"name": "base_overlay",
 			"from": [2, 0, 2],
 			"to": [14, 12, 14],
 			"faces": {
@@ -41,6 +43,17 @@
 				"east": {"uv": [2, 4, 14, 16], "texture": "#1", "tintindex": 1},
 				"south": {"uv": [2, 4, 14, 16], "texture": "#1", "tintindex": 1},
 				"west": {"uv": [2, 4, 14, 16], "texture": "#1", "tintindex": 1}
+			}
+		},
+		{
+			"name": "top_overlay",
+			"from": [3, 12, 3],
+			"to": [13, 16, 13],
+			"faces": {
+				"north": {"uv": [3, 0, 13, 4], "texture": "#1", "tintindex": 1},
+				"east": {"uv": [3, 0, 13, 4], "texture": "#1", "tintindex": 1},
+				"south": {"uv": [3, 0, 13, 4], "texture": "#1", "tintindex": 1},
+				"west": {"uv": [3, 0, 13, 4], "texture": "#1", "tintindex": 1}
 			}
 		}
 	],
