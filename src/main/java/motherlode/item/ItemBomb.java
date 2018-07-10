@@ -22,11 +22,7 @@ public class ItemBomb extends ItemMotherlode {
 		this.setMaxStackSize(10);
 		this.setHasSubtypes(false);
 		this.setMaxDamage(FUSE_TICKS);
-
-		// Add override to change texture depending on fuseState, see json
-		if (!Motherlode.proxy.isDedicatedServer()) {
-			this.addPropertyOverride(new ResourceLocation("fuseState"), new ItemBombAnimation());
-		}
+		this.addPropertyOverride(new ResourceLocation(Motherlode.MOD_ID, "fuse_state"), new ItemBombAnimation());
 	}
 
 	@Override

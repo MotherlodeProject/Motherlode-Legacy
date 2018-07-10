@@ -1,0 +1,39 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "builtin/generated",
+    "transform": "forge:default-item",
+    "textures": {
+      "layer0": "motherlode:item/pot_base"
+    }
+  },
+  "variants": {
+    "pattern": {
+      "0": {
+        "textures": {
+          "layer1": "motherlode:item/pot_0"
+        }
+      },
+      "1": {
+        "textures": {
+          "layer1": "motherlode:item/pot_1"
+        }
+      },
+      "2": {
+        "textures": {
+          "layer1": "motherlode:item/pot_2"
+        }
+      },
+      "3": {
+        "textures": {
+          "layer1": "motherlode:item/pot_3"
+        }
+      },
+      "random": {
+        "textures": {
+          "layer0": "motherlode:item/pot_random"
+        }
+      }
+    }
+  }
+}

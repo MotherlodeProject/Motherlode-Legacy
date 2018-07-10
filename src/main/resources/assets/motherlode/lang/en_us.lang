@@ -32,3 +32,5 @@ tile.motherlode.silver_ore.name=Silver Ore
 tile.motherlode.sulpher_ore.name=Sulfur Ore
 tile.motherlode.titanium_ore.name=Titanium Ore
 tile.motherlode.topaz_ore.name=Topaz Ore
+
+tile.motherlode.pot.name=Pot

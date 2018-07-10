@@ -13,6 +13,7 @@ public class ModelCompound {
 	private Block block = null;
 	private Item item = null;
 	private int meta;
+	private boolean shouldRegisterItemModel = true;
 
 	public ModelCompound(Block block, int meta, String blockstatePath, IProperty... ignoreProperties) {
 		this.block = block;
@@ -114,5 +115,14 @@ public class ModelCompound {
 	public ModelCompound setVariant(String variant) {
 		this.variant = variant;
 		return this;
+	}
+
+	public ModelCompound doNotRegisterItemModel() {
+		this.shouldRegisterItemModel = false;
+		return this;
+	}
+
+	public boolean shouldRegisterItemModel() {
+		return shouldRegisterItemModel;
 	}
 }

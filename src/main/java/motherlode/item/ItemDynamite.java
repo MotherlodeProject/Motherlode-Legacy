@@ -17,15 +17,10 @@ public class ItemDynamite extends ItemMotherlode {
 
 	public ItemDynamite() {
 		super("dynamite");
-
 		this.setMaxStackSize(10);
 		this.setHasSubtypes(false);
 		this.setMaxDamage(FUSE_TICKS);
-
-		// Add override to change texture depending on fuseState, see json
-		if (!Motherlode.proxy.isDedicatedServer()) {
-			this.addPropertyOverride(new ResourceLocation("fuseState"), new ItemBomb.ItemBombAnimation());
-		}
+		this.addPropertyOverride(new ResourceLocation(Motherlode.MOD_ID, "fuse_state"), new ItemBomb.ItemBombAnimation());
 	}
 
 	@Override

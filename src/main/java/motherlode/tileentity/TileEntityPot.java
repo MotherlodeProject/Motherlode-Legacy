@@ -5,7 +5,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.math.MathHelper;
 
 import java.util.Random;
 
@@ -16,19 +15,7 @@ public class TileEntityPot extends TileEntity {
 	Random random = new Random();
 
 	public TileEntityPot() {
-		color = EnumDyeColor.WHITE;
-		patternColor = EnumDyeColor.WHITE;
-		pattern = 0;
-	}
 
-	public void randomizePot() {
-		if (!world.isRemote) {
-			color = EnumDyeColor.byMetadata(MathHelper.getInt(random, 0, 15));
-			patternColor = EnumDyeColor.byMetadata(MathHelper.getInt(random, 0, 15));
-			pattern = MathHelper.getInt(random, 0, 3);
-			world.notifyBlockUpdate(pos, world.getBlockState(pos), world.getBlockState(pos), 3);
-			markDirty();
-		}
 	}
 
 	@Override
@@ -63,6 +50,27 @@ public class TileEntityPot extends TileEntity {
 	@Override
 	public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity packet) {
 		this.readFromNBT(packet.getNbtCompound());
+		world.markBlockRangeForRenderUpdate(pos, pos);
+	}
+
+	public void setColor(EnumDyeColor color) {
+		this.color = color;
+		notifyUpdate();
+	}
+
+	public void setPatternColor(EnumDyeColor patternColor) {
+		this.patternColor = patternColor;
+		notifyUpdate();
+	}
+
+	public void setPattern(int pattern) {
+		this.pattern = pattern;
+		notifyUpdate();
+	}
+
+	public void notifyUpdate() {
+		world.notifyBlockUpdate(pos, world.getBlockState(pos), world.getBlockState(pos), 3);
+		markDirty();
 	}
 
 	public EnumDyeColor getColor() {

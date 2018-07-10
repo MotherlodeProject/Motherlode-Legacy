@@ -1,5 +1,6 @@
 package motherlode.block;
 
+import motherlode.item.ItemBlockPot;
 import motherlode.item.MotherlodeItems;
 import motherlode.registry.MotherlodeRegistry;
 import net.minecraft.block.Block;
@@ -23,7 +24,12 @@ public class MotherlodeBlocks {
 	public static final Block TITANIUM_ORE = register(new BlockMotherlodeOre("titanium", MotherlodeItems.TITANIUM, 3F, 5F, 2, 1, 7));
 	public static final Block TOPAZ_ORE = register(new BlockMotherlodeOre("topaz", MotherlodeItems.TOPAZ, 3F, 5F, 2, 3, 7));
 
-	public static final Block POT = register(new BlockPot());
+	public static final Block POT;
+
+	static {
+		POT = new BlockPot();
+		register(POT, new ItemBlockPot(POT));
+	}
 
 	private static Block register(Block block) {
 		return register(block, true);
@@ -41,6 +47,7 @@ public class MotherlodeBlocks {
 
 	private static Block register(Block block, ItemBlock itemBlock) {
 		MotherlodeRegistry.BLOCKS.add(block);
+		itemBlock.setRegistryName(Objects.requireNonNull(block.getRegistryName()));
 		MotherlodeRegistry.ITEMS.add(itemBlock);
 		return block;
 	}
