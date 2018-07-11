@@ -4,6 +4,7 @@ import motherlode.item.ItemBlockPot;
 import motherlode.item.MotherlodeItems;
 import motherlode.registry.MotherlodeRegistry;
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemBlock;
 
@@ -25,6 +26,9 @@ public class MotherlodeBlocks {
 	public static final Block TOPAZ_ORE = register(new BlockMotherlodeOre("topaz", MotherlodeItems.TOPAZ, 3F, 5F, 2, 3, 7));
 
 	public static final Block POT;
+
+	public static final Block CAVE_VINE = register(new BlockHangingClimbable("cave_vine", Material.VINE));
+	public static final Block ROPE = register(new BlockHangingClimbable("rope", Material.CLOTH));
 
 	static {
 		POT = new BlockPot();
