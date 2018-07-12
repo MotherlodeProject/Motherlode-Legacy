@@ -1,7 +1,6 @@
 package motherlode.util;
 
 import motherlode.Motherlode;
-import motherlode.client.ModelCompound;
 import motherlode.client.MotherlodeModels;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;

@@ -3,6 +3,7 @@ package motherlode.client;
 import motherlode.Motherlode;
 import motherlode.block.BlockPot;
 import motherlode.block.MotherlodeBlocks;
+import motherlode.util.ModelCompound;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;

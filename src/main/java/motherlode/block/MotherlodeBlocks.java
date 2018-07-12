@@ -28,7 +28,7 @@ public class MotherlodeBlocks {
 	public static final Block POT;
 
 	public static final Block CAVE_VINE = register(new BlockHangingClimbable("cave_vine", Material.VINE));
-	public static final Block ROPE = register(new BlockHangingClimbable("rope", Material.CLOTH));
+	public static final Block ROPE = register(new BlockHangingClimbable("rope", Material.CARPET));
 
 	static {
 		POT = new BlockPot();

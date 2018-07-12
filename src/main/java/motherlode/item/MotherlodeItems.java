@@ -16,7 +16,7 @@ public class MotherlodeItems {
 	public static final Item IRON = register(new ItemMotherlode("iron", MATERIAL));
 	public static final Item NETHERITE = register(new ItemMotherlode("netherite", MATERIAL));
 	public static final Item NETHERITE_INGOT = register(new ItemMotherlode("netherite_ingot", MATERIAL));
-	public static final Item PLANT_FIBRE = register(new ItemMotherlode("plant_fibre", MATERIAL));
+	public static final Item PLANT_FIBER = register(new ItemMotherlode("plant_fiber", MATERIAL));
 	public static final Item PLATINUM = register(new ItemMotherlode("platinum", MATERIAL));
 	public static final Item PLATINUM_INGOT = register(new ItemMotherlode("platinum_ingot", MATERIAL));
 	public static final Item RUBY = register(new ItemMotherlode("ruby", MATERIAL));
@@ -32,6 +32,8 @@ public class MotherlodeItems {
 	public static final Item BOMB = register(new ItemBomb());
 	public static final Item DYNAMITE = register(new ItemDynamite());
 	public static final Item BANDAGE = register(new ItemBandage());
+
+	public static final Item WITHER_SWORD = register(new ItemWitherSword());
 
 	private static Item register(Item item) {
 		MotherlodeRegistry.ITEMS.add(item);

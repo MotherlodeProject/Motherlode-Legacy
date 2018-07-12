@@ -1,6 +1,6 @@
 package motherlode.block;
 
-import motherlode.client.ModelCompound;
+import motherlode.util.ModelCompound;
 import motherlode.util.InitUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;

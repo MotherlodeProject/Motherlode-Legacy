@@ -4,6 +4,8 @@ item.motherlode.bomb.name=Bomb
 item.motherlode.dynamite.name=Dynamite
 item.motherlode.bandage.name=Bandage
 
+item.motherlode.wither_sword.name=Wither Sword
+
 item.motherlode.amethyst.name=Amethyst
 item.motherlode.copper.name=Copper
 item.motherlode.copper_copper.name=Copper Ingot
@@ -13,7 +15,7 @@ item.motherlode.gold.name=Gold
 item.motherlode.iron.name=Iron
 item.motherlode.netherite.name=Netherite
 item.motherlode.netherite_ingot.name=Netherite Ingot
-item.motherlode.plant_fibre.name=Plant Fiber
+item.motherlode.plant_fiber.name=Plant Fiber
 item.motherlode.platinum.name=Platinum
 item.motherlode.platinum_ingot.name=Platinum Ingot
 item.motherlode.ruby.name=Ruby
@@ -40,3 +42,5 @@ tile.motherlode.titanium_ore.name=Titanium Ore
 tile.motherlode.topaz_ore.name=Topaz Ore
 
 tile.motherlode.pot.name=Pot
+tile.motherlode.rope.name=Rope
+tile.motherlode.cave_vine.name=Cave Vine

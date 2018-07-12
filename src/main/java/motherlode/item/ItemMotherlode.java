@@ -1,6 +1,6 @@
 package motherlode.item;
 
-import motherlode.client.ModelCompound;
+import motherlode.util.ModelCompound;
 import motherlode.util.InitUtil;
 import net.minecraft.item.Item;
 

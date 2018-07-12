@@ -51,9 +51,9 @@
           "layer0": "motherlode:item/material/netherite_ingot"
         }
       },
-      "plant_fibre": {
+      "plant_fiber": {
         "textures": {
-          "layer0": "motherlode:item/material/plant_fibre"
+          "layer0": "motherlode:item/material/plant_fiber"
         }
       },
       "platinum": {

@@ -1,0 +1,16 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "builtin/generated",
+    "transform": "forge:default-tool"
+  },
+  "variants": {
+    "type": {
+      "wither_sword": {
+        "textures": {
+          "layer0": "motherlode:item/tool/wither_sword"
+        }
+      }
+    }
+  }
+}

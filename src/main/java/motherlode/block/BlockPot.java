@@ -1,8 +1,8 @@
 package motherlode.block;
 
-import motherlode.client.ModelCompound;
 import motherlode.tileentity.TileEntityPot;
 import motherlode.util.InitUtil;
+import motherlode.util.ModelCompound;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyInteger;
@@ -124,7 +124,6 @@ public class BlockPot extends Block {
 	public void addInformation(ItemStack stack,
 	                           @Nullable
 		                           World player, List<String> tooltip, ITooltipFlag advanced) {
-		super.addInformation(stack, player, tooltip, advanced);
 		if (stack.hasTagCompound() && stack.getTagCompound().hasKey("PatternColor")) {
 			tooltip.add(TextFormatting.GRAY + I18n.translateToLocal("item.fireworksCharge." + EnumDyeColor.byMetadata(stack.getTagCompound().getInteger("PatternColor")).getUnlocalizedName()) + " Pattern");
 			tooltip.add(TextFormatting.GRAY + "Pattern #" + stack.getTagCompound().getInteger("Pattern"));
