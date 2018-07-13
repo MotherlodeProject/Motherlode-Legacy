@@ -1,24 +1,24 @@
 package motherlode.item;
 
-import motherlode.Motherlode;
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.monster.EntityWitherSkeleton;
-import net.minecraft.init.Items;
-import net.minecraft.init.MobEffects;
-import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.translation.I18n;
-import net.minecraft.world.World;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+	import motherlode.Motherlode;
+	import net.minecraft.client.util.ITooltipFlag;
+	import net.minecraft.entity.EntityLivingBase;
+	import net.minecraft.entity.monster.EntityWitherSkeleton;
+	import net.minecraft.init.Items;
+	import net.minecraft.init.MobEffects;
+	import net.minecraft.item.ItemStack;
+	import net.minecraft.potion.Potion;
+	import net.minecraft.potion.PotionEffect;
+	import net.minecraft.util.EnumHand;
+	import net.minecraft.util.text.TextFormatting;
+	import net.minecraft.util.text.translation.I18n;
+	import net.minecraft.world.World;
+	import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+	import net.minecraftforge.fml.common.Mod;
+	import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-import javax.annotation.Nullable;
-import java.util.List;
+	import javax.annotation.Nullable;
+	import java.util.List;
 
 @Mod.EventBusSubscriber(modid = Motherlode.MOD_ID)
 public class ItemWitherSword extends ItemMotherlodeSword {

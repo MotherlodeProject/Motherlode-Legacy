@@ -2,11 +2,11 @@ package motherlode.item;
 
 import motherlode.util.InitUtil;
 import motherlode.util.ModelCompound;
-import net.minecraft.item.ItemSword;
+import net.minecraft.item.ItemPickaxe;
 
-public class ItemMotherlodeSword extends ItemSword {
+public class ItemMotherlodePickaxe extends ItemPickaxe {
 
-	public ItemMotherlodeSword(String name, ToolMaterial material) {
+	public ItemMotherlodePickaxe(String name, ToolMaterial material) {
 		super(material);
 		InitUtil.setup(this, name, new ModelCompound(this).setFileName("tool").setInvVariant("type=" + name));
 	}

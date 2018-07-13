@@ -33,8 +33,7 @@ public class BlockPot extends Block {
 
 	public BlockPot() {
 		super(Material.ROCK);
-		InitUtil.setup(this, "pot");
-		InitUtil.setModel(new ModelCompound(this).doNotRegisterItemModel());
+		InitUtil.setup(this, "pot", new ModelCompound(this).doNotRegisterItemModel());
 		setHardness(2F);
 		setResistance(5F);
 	}

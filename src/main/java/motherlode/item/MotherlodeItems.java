@@ -6,6 +6,7 @@ import net.minecraft.item.Item;
 public class MotherlodeItems {
 
 	private static final String MATERIAL = "material";
+	private static final String TOOL = "tool";
 
 	public static final Item AMETHYST = register(new ItemMotherlode("amethyst", MATERIAL));
 	public static final Item COPPER = register(new ItemMotherlode("copper", MATERIAL));

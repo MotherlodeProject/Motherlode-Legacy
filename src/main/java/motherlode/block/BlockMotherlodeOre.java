@@ -1,7 +1,7 @@
 package motherlode.block;
 
-import motherlode.util.ModelCompound;
 import motherlode.util.InitUtil;
+import motherlode.util.ModelCompound;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.MapColor;
@@ -23,8 +23,7 @@ public class BlockMotherlodeOre extends Block {
 
 	public BlockMotherlodeOre(String name, Item drop, float hardness, float resistence, int harvestLevel, int expMin, int expMax, MapColor mapColor) {
 		super(Material.ROCK, mapColor);
-		InitUtil.setup(this, name + "_ore");
-		InitUtil.setModel(new ModelCompound(this).setFileName("ore").setVariant("type=" + name).setInvVariant("type=" + name));
+		InitUtil.setup(this, name + "_ore", new ModelCompound(this).setFileName("ore").setVariant("type=" + name).setInvVariant("type=" + name));
 		this.drop = drop;
 		this.expMin = expMin;
 		this.expMax = expMax;

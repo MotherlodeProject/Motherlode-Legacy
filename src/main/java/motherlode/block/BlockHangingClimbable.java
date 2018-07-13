@@ -5,6 +5,7 @@ import motherlode.util.AABBUtil;
 import motherlode.util.MotherlodeCache;
 import motherlode.util.RandomUtil;
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -30,6 +31,7 @@ public class BlockHangingClimbable extends BlockMotherlode implements IClimbable
 
 	public BlockHangingClimbable(String name, Material material) {
 		super(name, material);
+		setSoundType(material == Material.PLANTS || material == Material.VINE ? SoundType.PLANT : SoundType.CLOTH);
 	}
 
 	@Override
@@ -126,7 +128,11 @@ public class BlockHangingClimbable extends BlockMotherlode implements IClimbable
 		boolean flag = entity.isSneaking() && entity instanceof EntityPlayer;
 
 		if (flag && entity.motionY < 0.0D) {
-			entity.motionY = 0.0D;
+			entity.motionY = 0;
+		}
+		double d = entity.motionY;
+		if (true) {
+
 		}
 	}
 
