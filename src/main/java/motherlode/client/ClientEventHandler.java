@@ -16,7 +16,6 @@ import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-@SideOnly(Side.CLIENT)
 @Mod.EventBusSubscriber(modid = Motherlode.MOD_ID)
 public class ClientEventHandler {
 
@@ -24,6 +23,7 @@ public class ClientEventHandler {
 	public static final ResourceLocation MOTHERLODE_LOGO = new ResourceLocation("motherlode:textures/gui/logo.png");
 	public static boolean lastJumping = false;
 
+	@SideOnly(Side.CLIENT)
 	@SubscribeEvent(priority = EventPriority.NORMAL, receiveCanceled = true)
 	public static void onEvent(InputEvent.KeyInputEvent event) {
 		if (Minecraft.getMinecraft().gameSettings.keyBindJump.isKeyDown()) {
@@ -39,6 +39,7 @@ public class ClientEventHandler {
 		}
 	}
 
+	@SideOnly(Side.CLIENT)
 	@SubscribeEvent
 	public static void onGuiDraw(GuiScreenEvent.DrawScreenEvent event) {
 		if (event.getGui() instanceof GuiMainMenu) {
@@ -47,7 +48,7 @@ public class ClientEventHandler {
 			gui.mc.getTextureManager().bindTexture(MOTHERLODE_LOGO);
 			GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 			int j = gui.width / 2 - 256 / 2;
-			gui.drawTexturedModalRect(j, 17, 0, 0, 256, 100);
+			gui.drawTexturedModalRect(j, 9, 0, 0, 256, 100);
 		}
 	}
 }

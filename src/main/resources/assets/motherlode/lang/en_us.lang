@@ -42,5 +42,23 @@ tile.motherlode.titanium_ore.name=Titanium Ore
 tile.motherlode.topaz_ore.name=Topaz Ore
 
 tile.motherlode.pot.name=Pot
+
+tile.motherlode.thick_vine.name=Thick Vine
+tile.motherlode.flowered_thick_vine.red_dark.name=Red/Dark Flowered Thick Vine
+tile.motherlode.flowered_thick_vine.red_light.name=Red/Light Flowered Thick Vine
+tile.motherlode.flowered_thick_vine.orange_light.name=Orange/Light Flowered Thick Vine
+tile.motherlode.flowered_thick_vine.yellow_dark.name=Yellow/Dark Flowered Thick Vine
+tile.motherlode.flowered_thick_vine.yellow_light.name=Yellow/Light Flowered Thick Vine
+tile.motherlode.flowered_thick_vine.mix_red_yellow.name=Red and Yellow Flowered Thick Vine
+tile.motherlode.flowered_thick_vine.green_dark.name=Green/Dark Flowered Thick Vine
+tile.motherlode.flowered_thick_vine.blue_dark.name=Blue/Dark Flowered Thick Vine
+tile.motherlode.flowered_thick_vine.light_blue_dark.name=Light Blue/Dark Flowered Thick Vine
+tile.motherlode.flowered_thick_vine.light_blue_light.name=Light Blue/Light Flowered Thick Vine
+tile.motherlode.flowered_thick_vine.pink_dark.name=Pink/Dark Flowered Thick Vine
+tile.motherlode.flowered_thick_vine.pink_light.name=Pink/Light Flowered Thick Vine
+tile.motherlode.flowered_thick_vine.mix.name=Multi-colored Flowered Thick Vine
+tile.motherlode.flowered_thick_vine.black_light.name=Black/Light Flowered Thick Vine
+tile.motherlode.flowered_thick_vine.white_dark.name=White/Dark Flowered Thick Vine
+tile.motherlode.flowered_thick_vine.white_light.name=White/Light Flowered Thick Vine
+tile.motherlode.flowered_thick_vine.mix_black_white.name=Black and White Flowered Thick Vine
 tile.motherlode.rope.name=Rope
-tile.motherlode.cave_vine.name=Cave Vine

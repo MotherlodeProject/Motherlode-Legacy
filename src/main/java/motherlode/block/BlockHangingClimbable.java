@@ -1,32 +1,30 @@
 package motherlode.block;
 
-import motherlode.item.MotherlodeItems;
 import motherlode.util.AABBUtil;
 import motherlode.util.MotherlodeCache;
-import motherlode.util.RandomUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.*;
+import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.common.IShearable;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.List;
 
-public class BlockHangingClimbable extends BlockMotherlode implements IClimbable, IShearable {
+public class BlockHangingClimbable extends BlockMotherlode implements IClimbable {
 	public static final AxisAlignedBB AABB = AABBUtil.makeAABB(5, 0, 5, 16 - 5, 16, 16 - 5);
 
 	public BlockHangingClimbable(String name, Material material) {
@@ -63,7 +61,7 @@ public class BlockHangingClimbable extends BlockMotherlode implements IClimbable
 	public boolean isSuitablePos(IBlockAccess worldIn, BlockPos pos) {
 		BlockPos posUp = pos.up();
 		IBlockState stateUp = worldIn.getBlockState(posUp);
-		return stateUp.isSideSolid(worldIn, posUp, EnumFacing.DOWN) || stateUp.getBlock().equals(this);
+		return stateUp.getBlockFaceShape(worldIn, posUp, EnumFacing.DOWN) == BlockFaceShape.SOLID || stateUp.getBlock().equals(this);
 	}
 
 	@Override
@@ -112,54 +110,23 @@ public class BlockHangingClimbable extends BlockMotherlode implements IClimbable
 		}
 	}
 
-	public static void climb(boolean isClimbing, World world, BlockPos pos, IBlockState state, Entity entity) {
+	public void climb(boolean isClimbing, World world, BlockPos pos, IBlockState state, Entity entity) {
 		float speed = 0.2F;
 		if (isClimbing) {
 			entity.motionY = speed;
-			entity.motionX = MathHelper.clamp(entity.motionX, -0.15000000596046448D, 0.15000000596046448D);
-			entity.motionZ = MathHelper.clamp(entity.motionZ, -0.15000000596046448D, 0.15000000596046448D);
+			entity.motionX = MathHelper.clamp(entity.motionX, -0.15D, 0.15D);
+			entity.motionZ = MathHelper.clamp(entity.motionZ, -0.15D, 0.15D);
 		}
 		entity.fallDistance = 0.0F;
-
-		if (entity.motionY < -0.15D) {
-			entity.motionY = -0.15D;
-		}
-
-		boolean flag = entity.isSneaking() && entity instanceof EntityPlayer;
-
-		if (flag && entity.motionY < 0.0D) {
-			entity.motionY = 0;
-		}
-		double d = entity.motionY;
-		if (true) {
-
-		}
-	}
-
-	@Override
-	public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
-		if (blockMaterial == Material.VINE || blockMaterial == Material.PLANTS) {
-			drops.clear();
-			if (RandomUtil.chance(1, 5)) {
-				drops.add(new ItemStack(MotherlodeItems.PLANT_FIBER));
-			}
+		if (entity.rotationPitch > 80) {
+			entity.motionY = Math.max(entity.motionY, -1D);
 		} else {
-			super.getDrops(drops, world, pos, state, fortune);
+			entity.motionY = Math.max(entity.motionY, -0.15D);
 		}
-	}
-
-	@Override
-	public boolean isShearable(
-		@Nonnull
-			ItemStack item, IBlockAccess world, BlockPos pos) {
-		return blockMaterial == Material.VINE || blockMaterial == Material.PLANTS;
-	}
-
-	@Nonnull
-	@Override
-	public List<ItemStack> onSheared(
-		@Nonnull
-			ItemStack item, IBlockAccess world, BlockPos pos, int fortune) {
-		return NonNullList.withSize(1, new ItemStack(this));
+		if (entity.isSneaking()) {
+			entity.motionY = Math.max(entity.motionY, 0.08D);
+		} else {
+			entity.playSound(this.blockSoundType.getStepSound(), this.blockSoundType.pitch, this.blockSoundType.volume);
+		}
 	}
 }

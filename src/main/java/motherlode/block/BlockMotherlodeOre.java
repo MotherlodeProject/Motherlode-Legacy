@@ -1,7 +1,9 @@
 package motherlode.block;
 
+import motherlode.client.model.BlockModelDefinition;
+import motherlode.client.model.ItemBlockModelDefinition;
+import motherlode.client.model.ItemModelDefinition;
 import motherlode.util.InitUtil;
-import motherlode.util.ModelCompound;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.MapColor;
@@ -11,10 +13,13 @@ import net.minecraft.item.Item;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Random;
 
-public class BlockMotherlodeOre extends Block {
+public class BlockMotherlodeOre extends Block implements IModeledBlock {
+	public final String name;
 	public int dropMin = 1;
 	public int dropMax = 1;
 	public int expMin, expMax;
@@ -23,10 +28,11 @@ public class BlockMotherlodeOre extends Block {
 
 	public BlockMotherlodeOre(String name, Item drop, float hardness, float resistence, int harvestLevel, int expMin, int expMax, MapColor mapColor) {
 		super(Material.ROCK, mapColor);
-		InitUtil.setup(this, name + "_ore", new ModelCompound(this).setFileName("ore").setVariant("type=" + name).setInvVariant("type=" + name));
+		this.name = name;
 		this.drop = drop;
 		this.expMin = expMin;
 		this.expMax = expMax;
+		InitUtil.setup(this, name + "_ore");
 		setHardness(hardness);
 		setResistance(resistence);
 		setHarvestLevel("pickaxe", harvestLevel);
@@ -84,5 +90,17 @@ public class BlockMotherlodeOre extends Block {
 			return MathHelper.getInt(rand, expMin, expMax);
 		}
 		return 0;
+	}
+
+	@SideOnly(Side.CLIENT)
+	@Override
+	public BlockModelDefinition getBlockModelDefinition() {
+		return new BlockModelDefinition(this, "ore").setVariant("type=" + name);
+	}
+
+	@SideOnly(Side.CLIENT)
+	@Override
+	public ItemModelDefinition getItemModelDefinition() {
+		return new ItemBlockModelDefinition(this, "ore").setVariant("type=" + name);
 	}
 }

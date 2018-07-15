@@ -7,6 +7,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemColored;
 
 import java.util.Objects;
 
@@ -27,12 +28,16 @@ public class MotherlodeBlocks {
 
 	public static final Block POT;
 
-	public static final Block CAVE_VINE = register(new BlockHangingClimbable("cave_vine", Material.VINE));
+	public static final Block THICK_VINE = register(new BlockThickVine(false));
+	public static final Block FLOWERED_THICK_VINE;
 	public static final Block ROPE = register(new BlockHangingClimbable("rope", Material.CARPET));
 
 	static {
 		POT = new BlockPot();
 		register(POT, new ItemBlockPot(POT));
+
+		FLOWERED_THICK_VINE = new BlockThickVine(true);
+		register(FLOWERED_THICK_VINE, new ItemColored(FLOWERED_THICK_VINE, true).setSubtypeNames(BlockThickVine.EnumFlower.getAllNames()));
 	}
 
 	private static Block register(Block block) {
@@ -46,6 +51,9 @@ public class MotherlodeBlocks {
 			item.setRegistryName(Objects.requireNonNull(block.getRegistryName()));
 			MotherlodeRegistry.ITEMS.add(item);
 		}
+		if (block instanceof IModeledBlock) {
+			MotherlodeRegistry.BLOCKS_MARKED_FOR_MODELS.add((IModeledBlock) block);
+		}
 		return block;
 	}
 
@@ -53,6 +61,9 @@ public class MotherlodeBlocks {
 		MotherlodeRegistry.BLOCKS.add(block);
 		itemBlock.setRegistryName(Objects.requireNonNull(block.getRegistryName()));
 		MotherlodeRegistry.ITEMS.add(itemBlock);
+		if (block instanceof IModeledBlock) {
+			MotherlodeRegistry.BLOCKS_MARKED_FOR_MODELS.add((IModeledBlock) block);
+		}
 		return block;
 	}
 

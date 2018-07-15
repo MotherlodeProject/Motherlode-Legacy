@@ -1,13 +1,16 @@
 package motherlode.block;
 
+import motherlode.Motherlode;
+import motherlode.client.model.BlockModelDefinition;
+import motherlode.client.model.ItemBlockModelDefinition;
+import motherlode.client.model.ItemModelDefinition;
 import motherlode.tileentity.TileEntityPot;
-import motherlode.util.InitUtil;
-import motherlode.util.ModelCompound;
-import net.minecraft.block.Block;
+import motherlode.util.ColorUtil;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -23,19 +26,20 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class BlockPot extends Block {
+public class BlockPot extends BlockMotherlode {
 
 	public static final PropertyInteger PATTERN = PropertyInteger.create("pattern", 0, 13);
 
 	public BlockPot() {
-		super(Material.ROCK);
-		InitUtil.setup(this, "pot", new ModelCompound(this).doNotRegisterItemModel());
-		setHardness(2F);
+		super("pot", Material.ROCK);
 		setResistance(5F);
+		setHardness(2F);
 	}
 
 	@Override
@@ -127,5 +131,64 @@ public class BlockPot extends Block {
 			tooltip.add(TextFormatting.GRAY + I18n.translateToLocal("item.fireworksCharge." + EnumDyeColor.byMetadata(stack.getTagCompound().getInteger("PatternColor")).getUnlocalizedName()) + " Pattern");
 			tooltip.add(TextFormatting.GRAY + "Pattern #" + stack.getTagCompound().getInteger("Pattern"));
 		}
+	}
+
+	@SideOnly(Side.CLIENT)
+	@Override
+	public BlockModelDefinition getBlockModelDefinition() {
+		return new BlockModelDefinition(this)
+			// IBlockColor
+			.setIBlockColor((state, worldIn, pos, tintIndex) -> {
+				if (worldIn != null && pos != null) {
+					if (tintIndex == 0) {
+						TileEntity entity = worldIn.getTileEntity(pos);
+						if (entity instanceof TileEntityPot) {
+							return ColorUtil.desaturate(((TileEntityPot) entity).getColor().getColorValue(), 0.2F);
+						}
+					}
+					if (tintIndex == 1) {
+						TileEntity entity = worldIn.getTileEntity(pos);
+						if (entity instanceof TileEntityPot) {
+							return ColorUtil.desaturate(((TileEntityPot) entity).getPatternColor().getColorValue(), 0.5F);
+						}
+					}
+				}
+				return 0xFFFFFFF;
+			});
+	}
+
+	@SideOnly(Side.CLIENT)
+	@Override
+	public ItemModelDefinition getItemModelDefinition() {
+		return new ItemBlockModelDefinition(this)
+			// Mesh Definition
+			.setMeshDefinition(
+				stack -> {
+					if (stack.hasTagCompound() && stack.getTagCompound().hasKey("Pattern")) {
+						return new ModelResourceLocation(Motherlode.MOD_ID + ":pot_item", "pattern=" + stack.getTagCompound().getInteger("Pattern"));
+					}
+					return new ModelResourceLocation(Motherlode.MOD_ID + ":pot_item", "pattern=random");
+				},
+				// Get Item Variants
+				list -> {
+					for (Integer i : BlockPot.PATTERN.getAllowedValues()) {
+						list.add(new ModelResourceLocation(Motherlode.MOD_ID + ":pot_item", "pattern=" + i));
+					}
+					list.add(new ModelResourceLocation(Motherlode.MOD_ID + ":pot_item", "pattern=random"));
+					return list;
+				})
+			// IItemColor
+			.setIItemColor(
+				(stack, tintIndex) -> {
+					if (stack.hasTagCompound() && stack.getTagCompound().hasKey("Color")) {
+						if (tintIndex == 0) {
+							return ColorUtil.desaturate((EnumDyeColor.byMetadata(stack.getTagCompound().getInteger("Color")).getColorValue()), 0.2F);
+						}
+						if (tintIndex == 1) {
+							return ColorUtil.desaturate((EnumDyeColor.byMetadata(stack.getTagCompound().getInteger("PatternColor")).getColorValue()), 0.5F);
+						}
+					}
+					return 0xFFFFFF;
+				});
 	}
 }

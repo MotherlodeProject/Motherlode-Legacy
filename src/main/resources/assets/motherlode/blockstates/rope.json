@@ -1,7 +1,7 @@
 {
   "forge_marker": 1,
   "defaults": {
-    "model": "cross",
+    "model": "motherlode:tinted_cross",
     "transform": "forge:default-block"
   },
   "variants": {
@@ -15,7 +15,7 @@
     "normal": [
       {
         "textures": {
-          "cross": "motherlode:block/rope"
+          "texture": "motherlode:block/rope"
         }
       }
     ]

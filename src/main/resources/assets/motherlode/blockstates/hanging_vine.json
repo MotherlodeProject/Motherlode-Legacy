@@ -1,0 +1,21 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "motherlode:thick_vine",
+    "transform": "forge:default-item",
+    "textures": {
+      "texture": "motherlode:block/plant/thick_vine",
+      "top": "motherlode:block/plant/thick_vine_top"
+    }
+  },
+  "variants": {
+    "inventory": {
+      "model": "motherlode:item",
+      "transform": "forge:default-item"
+    },
+    "normal": [
+      {
+      }
+    ]
+  }
+}

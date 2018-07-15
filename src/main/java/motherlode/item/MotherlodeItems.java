@@ -38,6 +38,9 @@ public class MotherlodeItems {
 
 	private static Item register(Item item) {
 		MotherlodeRegistry.ITEMS.add(item);
+		if (item instanceof IModeledItem) {
+			MotherlodeRegistry.ITEMS_MARKED_FOR_MODELS.add((IModeledItem) item);
+		}
 		return item;
 	}
 

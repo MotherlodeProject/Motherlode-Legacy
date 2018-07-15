@@ -1,0 +1,114 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "motherlode:layered_cross",
+    "transform": "forge:default-item",
+    "textures": {
+      "layer0": "motherlode:block/plant/thick_vine"
+    }
+  },
+  "variants": {
+    "inventory": {
+      "true": {
+        "model": "builtin/generated",
+        "transform": "forge:default-item"
+      },
+      "false": {
+      }
+    },
+    "normal": [
+      {
+        "textures": {
+          "layer1": "motherlode:block/plant/vine_flower_none"
+        }
+      }
+    ],
+    "flowers": {
+      "none": {
+        "textures": {
+          "layer1": "motherlode:block/plant/vine_flower_none"
+        }
+      },
+      "black_light": {
+        "textures": {
+          "layer1": "motherlode:block/plant/vine_flower_black_light"
+        }
+      },
+      "blue_dark": {
+        "textures": {
+          "layer1": "motherlode:block/plant/vine_flower_blue_dark"
+        }
+      },
+      "green_dark": {
+        "textures": {
+          "layer1": "motherlode:block/plant/vine_flower_green_dark"
+        }
+      },
+      "light_blue_dark": {
+        "textures": {
+          "layer1": "motherlode:block/plant/vine_flower_light_blue_dark"
+        }
+      },
+      "light_blue_light": {
+        "textures": {
+          "layer1": "motherlode:block/plant/vine_flower_light_blue_light"
+        }
+      },
+      "mix": {
+        "textures": {
+          "layer1": "motherlode:block/plant/vine_flower_mix"
+        }
+      },
+      "mix_black_white": {
+        "textures": {
+          "layer1": "motherlode:block/plant/vine_flower_mix_black_white"
+        }
+      },
+      "mix_red_yellow": {
+        "textures": {
+          "layer1": "motherlode:block/plant/vine_flower_mix_red_yellow"
+        }
+      },
+      "orange_light": {
+        "textures": {
+          "layer1": "motherlode:block/plant/vine_flower_orange_light"
+        }
+      },
+      "pink_dark": {
+        "textures": {
+          "layer1": "motherlode:block/plant/vine_flower_pink_dark"
+        }
+      },
+      "pink_light": {
+        "textures": {
+          "layer1": "motherlode:block/plant/vine_flower_pink_light"
+        }
+      },
+      "red_dark": {
+        "textures": {
+          "layer1": "motherlode:block/plant/vine_flower_red_dark"
+        }
+      },
+      "red_light": {
+        "textures": {
+          "layer1": "motherlode:block/plant/vine_flower_red_light"
+        }
+      },
+      "white_dark": {
+        "textures": {
+          "layer1": "motherlode:block/plant/vine_flower_white_dark"
+        }
+      },
+      "yellow_dark": {
+        "textures": {
+          "layer1": "motherlode:block/plant/vine_flower_yellow_dark"
+        }
+      },
+      "yellow_light": {
+        "textures": {
+          "layer1": "motherlode:block/plant/vine_flower_yellow_light"
+        }
+      }
+    }
+  }
+}
