@@ -1,0 +1,33 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "block/cube",
+	"textures": {
+		"overlay": "block/technical/redstone_function_block_overlay",
+		"item": "#itemfunction",
+		"particle": "block/technical/redstone_function_block_top",
+        "down": "block/technical/redstone_technical_base",
+        "up": "block/technical/redstone_function_block_top",
+        "north": "block/technical/redstone_function_block_side",
+        "east": "block/technical/redstone_technical_base",
+        "south": "block/technical/redstone_function_block_side",
+        "west": "block/technical/redstone_technical_base"
+	},
+	"elements": [
+		{
+			"name": "overlay",
+			"from": [0, 16, 0],
+			"to": [16, 16, 16],
+			"faces": {
+				"up": {"uv": [0, 0, 16, 16], "texture": "#overlay"}
+			}
+		},
+		{
+			"name": "item",
+			"from": [0, 16, 0],
+			"to": [16, 16, 16],
+			"faces": {
+				"up": {"uv": [0, 0, 16, 16], "texture": "#item"}
+			}
+		}
+	]
+}

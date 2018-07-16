@@ -1,0 +1,6 @@
+{
+    "parent": "block/lantern_wall",
+    "textures": {
+        "lantern": "block/lantern_on"
+    }
+}
