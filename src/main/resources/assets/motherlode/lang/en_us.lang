@@ -42,6 +42,7 @@ tile.motherlode.titanium_ore.name=Titanium Ore
 tile.motherlode.topaz_ore.name=Topaz Ore
 
 tile.motherlode.pot.name=Pot
+tile.motherlode.lantern.name=Lantern
 
 tile.motherlode.thick_vine.name=Thick Vine
 tile.motherlode.flowered_thick_vine.red_dark.name=Red/Dark Flowered Thick Vine
@@ -62,3 +63,28 @@ tile.motherlode.flowered_thick_vine.white_dark.name=White/Dark Flowered Thick Vi
 tile.motherlode.flowered_thick_vine.white_light.name=White/Light Flowered Thick Vine
 tile.motherlode.flowered_thick_vine.mix_black_white.name=Black and White Flowered Thick Vine
 tile.motherlode.rope.name=Rope
+
+tile.motherlode.polished_granite_slab.name=Polished Granite Slab
+tile.motherlode.polished_diorite_slab.name=Polished Diorite Slab
+tile.motherlode.polished_andesite_slab.name=Polished Andesite Slab
+tile.motherlode.mossy_cobblestone_slab.name=Moss Stone Slab
+tile.motherlode.mossy_stone_bricks_slab.name=Mossy Stone Bricks Slab
+tile.motherlode.cracked_stone_bricks_slab.name=Cracked Stone Bricks Slab
+
+tile.motherlode.polished_stone.name=Polished Stone
+tile.motherlode.polished_stone_slab.name=Polished Stone Slab
+tile.motherlode.chiseled_stone_face.name=Chiseled Stone
+tile.motherlode.chiseled_stone_wither.name=Chiseled Stone
+tile.motherlode.stone_tiles.name=Stone Tiles
+tile.motherlode.stone_tiles_slab.name=Stone Tiles Slab
+tile.motherlode.small_stone_tiles.name=Small Stone Tiles
+tile.motherlode.small_stone_tiles_slab.name=Small Stone Tiles Slab
+tile.motherlode.small_stone_bricks.name=Small Stone Bricks
+tile.motherlode.small_stone_bricks_slab.name=Small Stone Bricks Slab
+tile.motherlode.mossy_small_stone_bricks.name=Mossy Small Stone Bricks
+tile.motherlode.mossy_small_stone_bricks_slab.name=Mossy Small Stone Bricks Slab
+tile.motherlode.granite_bricks.name=Granite Bricks
+tile.motherlode.granite_bricks_slab.name=Granite Bricks Slab
+tile.motherlode.granite_cobblestone.name=Granite Cobblestone
+tile.motherlode.granite_cobblestone_slab.name=Granite Cobblestone Slab
+

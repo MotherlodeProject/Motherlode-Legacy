@@ -1,0 +1,31 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "motherlode:lantern",
+    "textures": {
+      "lantern": "motherlode:block/lantern_on"
+    }
+  },
+  "variants": {
+    "inventory": {
+      "true": {
+        "textures": {
+        }
+      },
+      "false": {
+      }
+    },
+    "lit": {
+      "true": {
+        "textures": {
+          "lantern": "motherlode:block/lantern_on"
+        }
+      },
+      "false": {
+        "textures": {
+          "lantern": "motherlode:block/lantern_off"
+        }
+      }
+    }
+  }
+}

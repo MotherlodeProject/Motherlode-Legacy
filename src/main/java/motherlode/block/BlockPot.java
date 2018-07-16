@@ -1,16 +1,15 @@
 package motherlode.block;
 
-import motherlode.Motherlode;
 import motherlode.client.model.BlockModelDefinition;
 import motherlode.client.model.ItemBlockModelDefinition;
 import motherlode.client.model.ItemModelDefinition;
+import motherlode.client.model.MRLBuilder;
 import motherlode.tileentity.TileEntityPot;
 import motherlode.util.ColorUtil;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -165,17 +164,16 @@ public class BlockPot extends BlockMotherlode {
 			.setMeshDefinition(
 				stack -> {
 					if (stack.hasTagCompound() && stack.getTagCompound().hasKey("Pattern")) {
-						return new ModelResourceLocation(Motherlode.MOD_ID + ":pot_item", "pattern=" + stack.getTagCompound().getInteger("Pattern"));
+						return new MRLBuilder("pot_item").setVariant("pattern=" + stack.getTagCompound().getInteger("Pattern")).build();
 					}
-					return new ModelResourceLocation(Motherlode.MOD_ID + ":pot_item", "pattern=random");
+					return new MRLBuilder("pot_item").setVariant("pattern=random").build();
 				},
 				// Get Item Variants
 				list -> {
 					for (Integer i : BlockPot.PATTERN.getAllowedValues()) {
-						list.add(new ModelResourceLocation(Motherlode.MOD_ID + ":pot_item", "pattern=" + i));
+						list.add(new MRLBuilder("pot_item").setVariant("pattern=" + i).build());
 					}
-					list.add(new ModelResourceLocation(Motherlode.MOD_ID + ":pot_item", "pattern=random"));
-					return list;
+					list.add(new MRLBuilder("pot_item").setVariant("pattern=random").build());
 				})
 			// IItemColor
 			.setIItemColor(

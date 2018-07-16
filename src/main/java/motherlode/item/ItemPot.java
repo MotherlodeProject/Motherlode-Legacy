@@ -6,8 +6,8 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.translation.I18n;
 
-public class ItemBlockPot extends ItemBlock {
-	public ItemBlockPot(Block block) {
+public class ItemPot extends ItemBlock {
+	public ItemPot(Block block) {
 		super(block);
 	}
 

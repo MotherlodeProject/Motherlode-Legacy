@@ -1,0 +1,151 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "cube_all",
+    "transform": "forge:default-block",
+    "textures": {
+      "top": "#all",
+      "bottom": "#top",
+      "side": "#all",
+      "end": "#top"
+    },
+    "uvlock": true
+  },
+  "variants": {
+    "horiz_facing": {
+      "east": {
+        "y": 0
+      },
+      "west": {
+        "y": 180
+      },
+      "south": {
+        "y": 90
+      },
+      "north": {
+        "y": 270
+      },
+      "ignore": {
+      }
+    },
+    "stairs_half": {
+      "top": {
+        "x": 180
+      },
+      "bottom": {
+        "x": 180
+      },
+      "ignore": {
+      }
+    },
+    "stairs_shape": {
+      "straight": {
+        "model": "minecraft:stairs"
+      },
+      "outer_right": {
+        "model": "minecraft:outer_stairs"
+      },
+      "outer_left": {
+        "model": "motherlode:outer_stairs_90"
+      },
+      "inner_right": {
+        "model": "minecraft:inner_stairs"
+      },
+      "inner_left": {
+        "model": "motherlode:inner_stairs_90"
+      },
+      "ignore": {
+      }
+    },
+    "slab_half": {
+      "top": {
+        "model": "upper_slab"
+      },
+      "bottom": {
+        "model": "half_slab"
+      },
+      "double": {
+        "model": "cube_column"
+      },
+      "ignore": {}
+    },
+    "type": {
+      "polished_granite": {
+        "textures": {
+          "all": "minecraft:blocks/stone_granite_smooth"
+        }
+      },
+      "polished_diorite": {
+        "textures": {
+          "all": "minecraft:blocks/stone_diorite_smooth"
+        }
+      },
+      "polished_andesite": {
+        "textures": {
+          "all": "minecraft:blocks/stone_andesite_smooth"
+        }
+      },
+      "mossy_cobblestone": {
+        "textures": {
+          "all": "minecraft:blocks/cobblestone_mossy"
+        }
+      },
+      "mossy_stone_bricks": {
+        "textures": {
+          "all": "minecraft:blocks/stonebrick_mossy"
+        }
+      },
+      "cracked_stone_bricks": {
+        "textures": {
+          "all": "minecraft:blocks/stonebrick_cracked"
+        }
+      },
+      "polished_stone": {
+        "textures": {
+          "all": "motherlode:block/stone/polished_stone",
+          "side": "motherlode:block/stone/polished_stone_slab_side"
+        }
+      },
+      "chiseled_stone_face": {
+        "textures": {
+          "all": "motherlode:block/stone/chiseled_stone_face"
+        }
+      },
+      "chiseled_stone_wither": {
+        "textures": {
+          "all": "motherlode:block/stone/chiseled_stone_wither"
+        }
+      },
+      "stone_tiles": {
+        "textures": {
+          "all": "motherlode:block/stone/stone_tiles"
+        }
+      },
+      "small_stone_tiles": {
+        "textures": {
+          "all": "motherlode:block/stone/small_stone_tiles"
+        }
+      },
+      "small_stone_bricks": {
+        "textures": {
+          "all": "motherlode:block/stone/small_stone_bricks"
+        }
+      },
+      "mossy_small_stone_bricks": {
+        "textures": {
+          "all": "motherlode:block/stone/mossy_small_stone_bricks"
+        }
+      },
+      "granite_bricks": {
+        "textures": {
+          "all": "motherlode:block/stone/granite_bricks"
+        }
+      },
+      "granite_cobblestone": {
+        "textures": {
+          "all": "motherlode:block/stone/granite_cobblestone"
+        }
+      }
+    }
+  }
+}

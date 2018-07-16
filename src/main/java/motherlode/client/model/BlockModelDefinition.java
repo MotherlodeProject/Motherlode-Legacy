@@ -2,7 +2,6 @@ package motherlode.client.model;
 
 import com.google.common.collect.Maps;
 import motherlode.Motherlode;
-import motherlode.util.ModelUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.IBlockState;
@@ -105,6 +104,6 @@ public class BlockModelDefinition extends StateMapperBase {
 
 	@Override
 	protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
-		return new ModelResourceLocation(fileLocation, ModelUtil.addPrependsAndAppends(getVariantForState(state), prepends, appends));
+		return new MRLBuilder(fileLocation).setPrepends(prepends).setAppends(appends).setVariant(getVariantForState(state)).build();
 	}
 }

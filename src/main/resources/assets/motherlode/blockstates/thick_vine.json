@@ -16,13 +16,6 @@
       "false": {
       }
     },
-    "normal": [
-      {
-        "textures": {
-          "layer1": "motherlode:block/plant/vine_flower_none"
-        }
-      }
-    ],
     "flowers": {
       "none": {
         "textures": {
