@@ -40,6 +40,8 @@ public class MotherlodeBlocks {
 	public static final Block THICK_VINE = register(new BlockThickVine(false));
 	public static final Block FLOWERED_THICK_VINE;
 	public static final Block ROPE = register(new BlockHangingClimbable("rope", Material.CARPET));
+	public static final Block OAK_WOOD_PLATFORM = register(new BlockPlatform("oak_wood"));
+	public static final Block OAK_WOOD_PLATFORM_STEP = register(new BlockPlatformStep("oak_wood"));
 
 	public static final Block POLISHED_GRANITE_SLAB = registerSlab(Blocks.STONE, "polished_granite", STONE);
 	public static final Block POLISHED_GRANITE_STAIRS = registerStairs("polished_granite", Blocks.STONE.getDefaultState().withProperty(BlockStone.VARIANT, BlockStone.EnumType.GRANITE_SMOOTH), STONE);

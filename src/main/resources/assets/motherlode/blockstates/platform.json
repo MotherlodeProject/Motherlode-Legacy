@@ -1,0 +1,49 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "motherlode:platform",
+    "transform": "forge:default-block",
+    "uvlock": true
+  },
+  "variants": {
+    "inventory": {
+      "true": {
+        "model": "builtin/generated",
+        "transform": "forge:default-item",
+        "textures": {
+          "layer0": "#side"
+        }
+      },
+      "false": {
+      }
+    },
+    "horiz_facing": {
+      "east": {
+        "model": "motherlode:platform_step",
+        "y": 0
+      },
+      "west": {
+        "model": "motherlode:platform_step",
+        "y": 180
+      },
+      "south": {
+        "model": "motherlode:platform_step",
+        "y": 90
+      },
+      "north": {
+        "model": "motherlode:platform_step",
+        "y": 270
+      },
+      "ignore": {
+      }
+    },
+    "type": {
+      "oak_wood": {
+        "textures": {
+          "side": "motherlode:block/platform_oak",
+          "top": "minecraft:blocks/planks_oak"
+        }
+      }
+    }
+  }
+}
