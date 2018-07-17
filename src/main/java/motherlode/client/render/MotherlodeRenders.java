@@ -1,7 +1,7 @@
 package motherlode.client.render;
 
-import motherlode.entity.EntityBomb;
-import motherlode.entity.EntityDynamite;
+import motherlode.entity.item.EntityBomb;
+import motherlode.entity.item.EntityDynamite;
 import motherlode.entity.passive.EntityFirefly;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 

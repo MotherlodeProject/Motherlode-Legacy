@@ -1,9 +1,9 @@
 package motherlode.client.render;
 
 import motherlode.Motherlode;
-import motherlode.client.model.ModelFirefly;
+import motherlode.client.model.entity.ModelFirefly;
+import motherlode.client.render.layer.LayerFireflyGlow;
 import motherlode.entity.passive.EntityFirefly;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.entity.Render;
@@ -24,6 +24,7 @@ public class RenderFirefly extends RenderLiving<EntityFirefly>
     public RenderFirefly(RenderManager renderManagerIn) {
         super(renderManagerIn, new ModelFirefly(), 0F);
         this.model = new ModelFirefly();
+        this.addLayer(new LayerFireflyGlow(this));
     }
 
     protected ResourceLocation getEntityTexture(EntityFirefly entity) {
@@ -39,10 +40,10 @@ public class RenderFirefly extends RenderLiving<EntityFirefly>
         bindTexture(FIREFLY_TEXTURE);
         
         GlStateManager.disableLighting();
-        int i = 15728880; // Brightness, sort of. Code borrowed from spiders/endermen	
-        int j = i % 65536;
-        int k = i / 65536;
-        OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float)j, (float)k);
+        int combinedBrightness = firefly.getBrightnessForRender(); // Brightness, sort of. Code borrowed from spiders/endermen	
+        int skyLightTimes16 = combinedBrightness % 65536;
+        int blockLightTimes16 = combinedBrightness / 65536;
+        OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float)skyLightTimes16, (float)blockLightTimes16);
         GlStateManager.enableLighting();
 //        Minecraft.getMinecraft().entityRenderer.setupFogColor(true);
         model.render(firefly, 0F, 0F, 0F, 0F, 0F, 0.1F);
@@ -51,6 +52,8 @@ public class RenderFirefly extends RenderLiving<EntityFirefly>
         GlStateManager.enableAlpha();
         
         GlStateManager.popMatrix();
+        
+        this.layerRenderers.get(0).doRenderLayer(firefly, 0F, 0F, partialTicks, firefly.ticksExisted, 0F, 0F, 1F);
     }
 
     public static class Factory implements IRenderFactory<EntityFirefly> {

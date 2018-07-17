@@ -4,8 +4,10 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
+import motherlode.client.particle.ParticleFireflyTail;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityFlying;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.ai.EntityAIBase;
@@ -68,10 +70,15 @@ public class EntityFirefly extends EntityFlying {
     public void readEntityFromNBT(NBTTagCompound compound) {
     	super.readEntityFromNBT(compound);
     	if (compound.hasKey("spawnPos") && compound.getTag("spawnPos") != null) {
-			NBTTagList tag = (NBTTagList)compound.getTag("spawnpos");
+			NBTTagList tag = (NBTTagList)compound.getTag("spawnPos");
 			this.spawnPos = new Vec3d(tag.getDoubleAt(0), tag.getDoubleAt(1), tag.getDoubleAt(2));
 		}
     }
+	
+	@Override
+    public int getBrightnessForRender() {
+		return 15728880;
+	}
 	
 	public void moveInDirection(Vec3d v) {
 		motionX = v.x;
@@ -85,8 +92,13 @@ public class EntityFirefly extends EntityFlying {
 	
 	@Override
     public void onLivingUpdate() {
-		if (this.getRNG().nextFloat() < 0.1) {
-			// TODO - Spawn particle tail
+		if (!this.world.isRemote) {
+			
+			if (this.ticksExisted % 5 == 0) {
+				ParticleFireflyTail tailParticle = new ParticleFireflyTail(
+						this.world, this.prevPosX, this.prevPosY, this.prevPosZ, 0, 0, 0);
+				Minecraft.getMinecraft().effectRenderer.addEffect(tailParticle);
+			}
 		}
 		
 		super.onLivingUpdate();

@@ -1,7 +1,7 @@
 package motherlode.client.render;
 
 import motherlode.client.model.entity.ModelDynamite;
-import motherlode.entity.EntityDynamite;
+import motherlode.entity.item.EntityDynamite;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;

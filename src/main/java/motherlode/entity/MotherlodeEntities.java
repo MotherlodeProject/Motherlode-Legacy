@@ -1,6 +1,8 @@
 package motherlode.entity;
 
 import motherlode.Motherlode;
+import motherlode.entity.item.EntityBomb;
+import motherlode.entity.item.EntityDynamite;
 import motherlode.entity.passive.EntityFirefly;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.util.ResourceLocation;

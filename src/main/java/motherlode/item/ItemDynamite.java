@@ -1,7 +1,7 @@
 package motherlode.item;
 
 import motherlode.Motherlode;
-import motherlode.entity.EntityDynamite;
+import motherlode.entity.item.EntityDynamite;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;

@@ -1,6 +1,7 @@
 package motherlode.client;
 
 import motherlode.Motherlode;
+import motherlode.client.particle.ParticleFireflyTail;
 import motherlode.network.MotherlodeNetwork;
 import motherlode.network.packet.PacketClientJump;
 import motherlode.network.packet.PacketInventoryOpen;
@@ -11,6 +12,7 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.client.event.GuiScreenEvent;
+import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -65,5 +67,11 @@ public class ClientEventHandler {
 				MotherlodeNetwork.networkWrapper.sendToServer(packet);
 			}
 		}
+	}
+	
+	@SideOnly(Side.CLIENT)
+	@SubscribeEvent
+	public static void onTextureStitching(TextureStitchEvent.Pre event) {
+		event.getMap().registerSprite(ParticleFireflyTail.getTexture());
 	}
 }
