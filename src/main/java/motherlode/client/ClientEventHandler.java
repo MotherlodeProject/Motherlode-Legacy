@@ -3,10 +3,13 @@ package motherlode.client;
 import motherlode.Motherlode;
 import motherlode.network.MotherlodeNetwork;
 import motherlode.network.packet.PacketClientJump;
+import motherlode.network.packet.PacketInventoryOpen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiMainMenu;
+import net.minecraft.client.gui.inventory.GuiInventory;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
@@ -49,6 +52,18 @@ public class ClientEventHandler {
 			GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 			int j = gui.width / 2 - 256 / 2;
 			gui.drawTexturedModalRect(j, 9, 0, 0, 256, 100);
+		}
+	}
+
+	@SubscribeEvent
+	@SideOnly(Side.CLIENT)
+	public static void onInventoryOpen(GuiOpenEvent event) {
+		if (false) {
+			if (event.getGui() instanceof GuiInventory && !Minecraft.getMinecraft().player.isSneaking() /*&& !Minecraft.getMinecraft().player.isCreative()*/) {
+				event.setCanceled(true);
+				PacketInventoryOpen packet = new PacketInventoryOpen();
+				MotherlodeNetwork.networkWrapper.sendToServer(packet);
+			}
 		}
 	}
 }

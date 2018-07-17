@@ -160,8 +160,8 @@ public abstract class BlockMotherlodeSlab extends BlockSlab implements IModeledB
 			return null;
 		}
 		if (blockstate.isEmpty()) {
-			return new ItemBlockModelDefinition(this).setVariant("horiz_facing=ignore,slab_half=bottom,stairs_half=ignore,stairs_shape=ignore");
+			return new ItemBlockModelDefinition(this).setVariant("slab_half=bottom");
 		}
-		return new ItemBlockModelDefinition(this, blockstate).append("type=" + name).setVariant("horiz_facing=ignore,slab_half=bottom,stairs_half=ignore,stairs_shape=ignore");
+		return new ItemBlockModelDefinition(this, blockstate).append("type=" + name).setVariant("slab_half=bottom,stair=ignore");
 	}
 }

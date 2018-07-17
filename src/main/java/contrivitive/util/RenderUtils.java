@@ -162,7 +162,15 @@ public class RenderUtils {
 		return gui.getStartingX() + x;
 	}
 
+	public static float adjustX(IContrivitiveGui gui, float x) {
+		return gui.getStartingX() + x;
+	}
+
 	public static int adjustY(IContrivitiveGui gui, int y) {
+		return gui.getStartingY() + y;
+	}
+
+	public static float adjustY(IContrivitiveGui gui, float y) {
 		return gui.getStartingY() + y;
 	}
 
@@ -170,6 +178,26 @@ public class RenderUtils {
 		x = adjustX(gui, x);
 		y = adjustY(gui, y);
 		gui.getGui().mc.fontRenderer.drawString(string, x, y, color);
+	}
+
+	public static void drawString(IContrivitiveGui gui, String string, float x, float y, int color) {
+		x = adjustX(gui, x);
+		y = adjustY(gui, y);
+		gui.getGui().mc.fontRenderer.drawString(string, x, y, color, false);
+	}
+
+	public static void drawString(IContrivitiveGui gui, String string, float x, float y, float scale, int color) {
+		x = adjustX(gui, x);
+		y = adjustY(gui, y);
+		GlStateManager.pushMatrix();
+		GlStateManager.scale(scale, scale, 1);
+		gui.getGui().mc.fontRenderer.drawString(string, x / scale, y / scale, color, false);
+		GlStateManager.popMatrix();
+
+	}
+
+	public static void drawString(IContrivitiveGui gui, String string, float x, float y, float scale) {
+		drawString(gui, string, x, y, scale, 16777215);
 	}
 
 	public static void drawString(IContrivitiveGui gui, String string, int x, int y) {

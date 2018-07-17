@@ -28,12 +28,12 @@ public class BlockMotherlodeSimple extends BlockMotherlode implements IModeledBl
 	@SideOnly(Side.CLIENT)
 	@Override
 	public BlockModelDefinition getBlockModelDefinition() {
-		return new BlockModelDefinition(this, blockstate).prepend("horiz_facing=ignore,slab_half=ignore,stairs_half=ignore,stairs_shape=ignore").setVariant("type=" + name);
+		return new BlockModelDefinition(this, blockstate).prepend("slab_half=ignore,stair=ignore").setVariant("type=" + name);
 	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
 	public ItemModelDefinition getItemModelDefinition() {
-		return new ItemBlockModelDefinition(this, blockstate).prepend("horiz_facing=ignore,slab_half=ignore,stairs_half=ignore,stairs_shape=ignore").setVariant("type=" + name);
+		return new ItemBlockModelDefinition(this, blockstate).prepend("slab_half=ignore,stair=ignore").setVariant("type=" + name);
 	}
 }

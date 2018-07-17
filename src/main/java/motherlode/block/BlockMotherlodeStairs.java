@@ -28,12 +28,12 @@ public class BlockMotherlodeStairs extends BlockStairs implements IModeledBlock 
 	@SideOnly(Side.CLIENT)
 	@Override
 	public BlockModelDefinition getBlockModelDefinition() {
-		return new BlockModelDefinition(this, blockstate).setVariant(state -> "horiz_facing=" + state.getValue(FACING).getName() + ",slab_half=ignore,stairs_half=" + state.getValue(HALF).getName() + ",stairs_shape=" + state.getValue(SHAPE).getName()).append("type=" + name);
+		return new BlockModelDefinition(this, blockstate).setVariant(state -> "slab_half=ignore,stair=facing_" + state.getValue(FACING).getName() + "/half_" + state.getValue(HALF).getName() + "/shape_" + state.getValue(SHAPE).getName()).append("type=" + name);
 	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
 	public ItemModelDefinition getItemModelDefinition() {
-		return new ItemBlockModelDefinition(this, blockstate).prepend("horiz_facing=east,slab_half=ignore,stairs_half=bottom,stairs_shape=straight").setVariant("type=" + name);
+		return new ItemBlockModelDefinition(this, blockstate).prepend("slab_half=ignore,stair=facing_south/half_bottom/shape_straight").setVariant("type=" + name);
 	}
 }

@@ -2,20 +2,17 @@ package contrivitive.gui;
 
 import contrivitive.gui.element.Coordinate;
 import contrivitive.gui.element.Element;
+import contrivitive.gui.element.PlayerSpecificElements;
 import contrivitive.gui.element.PositionedElement;
 import contrivitive.gui.element.background.DefaultBackgroundElement;
-import contrivitive.util.Pair;
+import org.apache.commons.lang3.tuple.Pair;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.function.IntConsumer;
 import java.util.function.IntSupplier;
 
 public class GuiBlueprint {
-	public final List<Pair<IntSupplier, IntConsumer>> shortSyncables = new ArrayList<>();
-	public final List<Pair<IntSupplier, IntConsumer>> intSyncables = new ArrayList<>();
 	public final int width;
 	public final int height;
 	public final Page allPages;
@@ -44,6 +41,17 @@ public class GuiBlueprint {
 		return this;
 	}
 
+	public GuiBlueprint setPlayerSpecificElements(String page, PlayerSpecificElements playerSpecificElements) {
+		if (page.equals("all")) {
+			allPages.playerSpecificElements = playerSpecificElements;
+		}
+		if (!pages.containsKey(page)) {
+			page(page);
+		}
+		this.pages.get(page).playerSpecificElements = playerSpecificElements;
+		return this;
+	}
+
 	public GuiBlueprint at(int x, int y, Element element) {
 		return at("main", x, y, element);
 	}
@@ -58,5 +66,25 @@ public class GuiBlueprint {
 		}
 		this.pages.get(page).elements.add(new PositionedElement(element, new Coordinate(x, y)));
 		return this;
+	}
+
+	public GuiBlueprint syncIntegerValue(String page, final IntSupplier supplier, final IntConsumer setter) {
+		getPage(page).intSyncables.add(Pair.of(supplier, setter));
+		return this;
+	}
+
+	public GuiBlueprint syncShortValue(String page, final IntSupplier supplier, final IntConsumer setter) {
+		getPage(page).shortSyncables.add(Pair.of(supplier, setter));
+		return this;
+	}
+
+	public Page getPage(String page) {
+		if (page.equals("all")) {
+			return allPages;
+		}
+		if (!pages.containsKey(page)) {
+			page(page);
+		}
+		return this.pages.get(page);
 	}
 }

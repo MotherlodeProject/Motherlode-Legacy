@@ -5,7 +5,7 @@ import contrivitive.gui.element.Element;
 import contrivitive.util.ContrivitiveSlot;
 
 public class SlotElement<B extends GuiBlueprint> extends Element {
-	protected ContrivitiveSlot.SlotFilter filter = null;
+	public ContrivitiveSlot.SlotFilter filter = (slot, stack) -> true;
 	protected String slotTexture = null;
 	protected int stackSize = 64;
 	protected SlotType type;

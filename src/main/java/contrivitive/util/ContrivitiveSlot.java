@@ -1,6 +1,9 @@
 package contrivitive.util;
 
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
@@ -15,6 +18,12 @@ public class ContrivitiveSlot extends SlotItemHandler {
 
 	public ContrivitiveSlot setFilter(SlotFilter filter) {
 		this.filter = filter;
+		return this;
+	}
+
+	@SideOnly(Side.CLIENT)
+	public ContrivitiveSlot setSprite(ResourceLocation backgroundLocation) {
+		this.setBackgroundLocation(backgroundLocation);
 		return this;
 	}
 

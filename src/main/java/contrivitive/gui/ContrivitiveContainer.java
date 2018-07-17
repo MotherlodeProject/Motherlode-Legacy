@@ -1,7 +1,7 @@
 package contrivitive.gui;
 
+import contrivitive.util.ContrivitivePlayerSlot;
 import contrivitive.util.ContrivitiveSlot;
-import contrivitive.util.Pair;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IContainerListener;
@@ -10,6 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.commons.lang3.tuple.MutableTriple;
+import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.ArrayList;
 import java.util.function.IntConsumer;
@@ -18,19 +19,21 @@ import java.util.function.IntSupplier;
 public class ContrivitiveContainer extends Container {
 	public final GuiContainerBlueprint blueprint;
 	public final EntityPlayer player;
+	public final Page page;
 	public final ArrayList<MutableTriple<IntSupplier, IntConsumer, Integer>> integerValues = new ArrayList<>();
 	public final ArrayList<MutableTriple<IntSupplier, IntConsumer, Short>> shortValues = new ArrayList<>();
 	private Integer[] integerParts;
 
-	public ContrivitiveContainer(GuiContainerBlueprint blueprint, EntityPlayer player) {
+	public ContrivitiveContainer(GuiContainerBlueprint blueprint, String page, EntityPlayer player) {
 		this.blueprint = blueprint;
+		this.page = blueprint.pages.get(page);
 		this.player = player;
-		for (Pair<IntSupplier, IntConsumer> syncable : blueprint.shortSyncables)
-			this.shortValues.add(MutableTriple.of(syncable.getA(), syncable.getB(), (short) 0));
+		for (Pair<IntSupplier, IntConsumer> syncable : this.page.shortSyncables)
+			this.shortValues.add(MutableTriple.of(syncable.getLeft(), syncable.getRight(), (short) 0));
 		this.shortValues.trimToSize();
 
-		for (Pair<IntSupplier, IntConsumer> syncable : blueprint.intSyncables) {
-			this.integerValues.add(MutableTriple.of(syncable.getA(), syncable.getB(), 0));
+		for (Pair<IntSupplier, IntConsumer> syncable : this.page.intSyncables) {
+			this.integerValues.add(MutableTriple.of(syncable.getLeft(), syncable.getRight(), 0));
 		}
 		this.integerValues.trimToSize();
 
@@ -40,16 +43,16 @@ public class ContrivitiveContainer extends Container {
 	}
 
 	private void addSlots() {
-		for (int index : blueprint.slots.keySet()) {
+		for (int index : page.slots.keySet()) {
 			if (index >= 0) {
-				addSlotToContainer(new ContrivitiveSlot(blueprint.slots.get(index).getInventory(), index, blueprint.slots.get(index).getElement().getSlotX(), blueprint.slots.get(index).getElement().getSlotY()).setFilter(blueprint.slots.get(index).getElement().getFilter()));
+				addSlotToContainer(new ContrivitiveSlot(page.slots.get(index).getInventory(), index, page.slots.get(index).getElement().getSlotX(), page.slots.get(index).getElement().getSlotY()).setFilter(page.slots.get(index).getElement().getFilter()));
 			}
 		}
 	}
 
 	private void addPlayerSlots() {
-		for (int index : blueprint.playerSlots.keySet()) {
-			addSlotToContainer(new Slot(player.inventory, index, blueprint.playerSlots.get(index).getX(), blueprint.playerSlots.get(index).getY()));
+		for (int index : page.playerSlots.keySet()) {
+			addSlotToContainer(new ContrivitivePlayerSlot(player.inventory, index, page.playerSlots.get(index).getX(), page.playerSlots.get(index).getY()).setFilter(page.playerSlots.get(index).getFilter()));
 		}
 	}
 
@@ -62,11 +65,11 @@ public class ContrivitiveContainer extends Container {
 			ItemStack itemstack1 = slot.getStack();
 			itemstack = itemstack1.copy();
 
-			if (index < blueprint.slots.size()) {
-				if (!this.mergeItemStack(itemstack1, blueprint.slots.size(), this.inventorySlots.size(), true)) {
+			if (index < page.slots.size()) {
+				if (!this.mergeItemStack(itemstack1, page.slots.size(), this.inventorySlots.size(), true)) {
 					return ItemStack.EMPTY;
 				}
-			} else if (!this.mergeItemStack(itemstack1, 0, blueprint.slots.size(), false)) {
+			} else if (!this.mergeItemStack(itemstack1, 0, page.slots.size(), false)) {
 				return ItemStack.EMPTY;
 			}
 
@@ -120,7 +123,7 @@ public class ContrivitiveContainer extends Container {
 
 	@Override
 	public void addListener(final IContainerListener listener) {
-		if (!blueprint.justPlayerInv) {
+		if (!page.justPlayerInv) {
 			super.addListener(listener);
 		}
 
