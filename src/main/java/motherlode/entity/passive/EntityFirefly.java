@@ -27,11 +27,26 @@ public class EntityFirefly extends EntityFlying {
 	private float height = 0.2F * scale;
 	private double speed = 0.07D;
 	private Vec3d spawnPos = Vec3d.ZERO;
+	private float red;
+	private float green;
+	private float blue;
 	
 	public EntityFirefly(World worldIn) {
 		super(worldIn);
 		this.setSize(this.width, this.height);
 		this.setupAI();
+	}
+	
+	public void setColor(String colorHex) {
+		String sRed = colorHex.substring(0, 2);
+		String sGreen = colorHex.substring(2, 4);
+		String sBlue = colorHex.substring(4, 6);
+		
+		float fRed = (float)Integer.parseInt(sRed, 16) / 255F;
+		float fGreen = (float)Integer.parseInt(sGreen, 16) / 255F;
+		float fBlue = (float)Integer.parseInt(sBlue, 16) / 255F;
+		
+		this.setRGB(fRed, fGreen, fBlue);
 	}
 	
 	@Override
@@ -63,7 +78,7 @@ public class EntityFirefly extends EntityFlying {
 	@Override
     public void writeEntityToNBT(NBTTagCompound compound) {
     	super.writeEntityToNBT(compound);
-    	compound.setTag("spawnPos", this.newDoubleNBTList(spawnPos.x, spawnPos.y, spawnPos.z));
+    	compound.setTag("spawnPos", this.newDoubleNBTList(this.spawnPos.x, this.spawnPos.y, this.spawnPos.z));
     }
     
 	@Override
@@ -72,12 +87,30 @@ public class EntityFirefly extends EntityFlying {
     	if (compound.hasKey("spawnPos") && compound.getTag("spawnPos") != null) {
 			NBTTagList tag = (NBTTagList)compound.getTag("spawnPos");
 			this.spawnPos = new Vec3d(tag.getDoubleAt(0), tag.getDoubleAt(1), tag.getDoubleAt(2));
-		}
+    	}
     }
 	
 	@Override
     public int getBrightnessForRender() {
 		return 15728880;
+	}
+	
+	public float getRed() {
+		return this.red;
+	}
+	
+	public float getGreen() {
+		return this.green;
+	}
+	
+	public float getBlue() {
+		return this.blue;
+	}
+	
+	public void setRGB(float red, float green, float blue) {
+		this.red = red;
+		this.green = green;
+		this.blue = blue;
 	}
 	
 	public void moveInDirection(Vec3d v) {
@@ -97,6 +130,7 @@ public class EntityFirefly extends EntityFlying {
 			if (this.ticksExisted % 5 == 0) {
 				ParticleFireflyTail tailParticle = new ParticleFireflyTail(
 						this.world, this.prevPosX, this.prevPosY, this.prevPosZ, 0, 0, 0);
+				tailParticle.setRBGColorF(this.red, this.green, this.blue);
 				Minecraft.getMinecraft().effectRenderer.addEffect(tailParticle);
 			}
 		}
@@ -111,6 +145,17 @@ public class EntityFirefly extends EntityFlying {
 		tasks.addTask(0, new AIFlyToGroundAndDespawn(this));
 	}
 	
+	// Default AI. Can be seen as repeating a flight cycle, with exceptions.
+	// One flight cycle lasts for newDirectionTimer amount of ticks. At start of cycle,
+	// a random vector, targetDirection, is generated, representing the direction in which
+	// it will fly for the duration of the cycle. baseVec1 and baseVec2 are perpendicular
+	// to each other and both are perpendicular to targetDirection; targetDirection is a
+	// normal vector to the plane spanned by baseVec1 and baseVec2.
+	// Exceptions:
+	// If firefly is too far up, shouldFlyDown() is true and it flies down.
+	// If firefly is sitting on a block, shouldFlyUp() is true, and it flies up.
+	// If firefly collides with a block, flight is cancelled and it sits in place for 
+	// a while.
 	static class AIFlyRandomly extends EntityAIBase {
 		
 		private EntityFirefly firefly;
@@ -250,6 +295,9 @@ public class EntityFirefly extends EntityFlying {
 		
 	}
 
+	// Has priority over any other AI task. Causes the firefly to fly downwards and despawn
+	// when it hits a block whenever the sun goes up. Uses same type of movement as 
+	// AIFlyRandomly
 	static class AIFlyToGroundAndDespawn extends EntityAIBase {
 
 		private EntityFirefly firefly;

@@ -38,6 +38,7 @@ public class RenderFirefly extends RenderLiving<EntityFirefly>
         GlStateManager.rotate(firefly.renderYawOffset, 0F, 1F, 0F);
         GlStateManager.scale(firefly.getScale(), firefly.getScale(), firefly.getScale());
         bindTexture(FIREFLY_TEXTURE);
+        GlStateManager.color(firefly.getRed(), firefly.getGreen(), firefly.getBlue(), 1.0F);
         
         GlStateManager.disableLighting();
         int combinedBrightness = firefly.getBrightnessForRender(); // Brightness, sort of. Code borrowed from spiders/endermen	

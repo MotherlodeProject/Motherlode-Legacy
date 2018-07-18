@@ -19,23 +19,17 @@ public class LayerFireflyGlow implements LayerRenderer<EntityFirefly> {
 	
 	private static final ResourceLocation GLOW_TEXTURE = new ResourceLocation(Motherlode.MOD_ID, "textures/particle/particle_glow.png");
 	private final RenderFirefly fireflyRenderer;
-	private float red;
-	private float green;
-	private float blue;
 	private float alpha;
 	private float scale;
 	
 	public LayerFireflyGlow(RenderFirefly fireflyRenderer) {
 		this.fireflyRenderer = fireflyRenderer;
-		this.red = 1.0F;
-		this.green = 1.0F;
-		this.blue = 0.0F;
 		this.alpha = 1.0F;
 		this.scale = 0.25F;
 	}
 
 	@Override
-	public void doRenderLayer(EntityFirefly entityIn, float limbSwing, float limbSwingAmount,
+	public void doRenderLayer(EntityFirefly firefly, float limbSwing, float limbSwingAmount,
 			float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
 
 		float rotationX = ActiveRenderInfo.getRotationX();
@@ -50,11 +44,11 @@ public class LayerFireflyGlow implements LayerRenderer<EntityFirefly> {
         double interpPosY = player.lastTickPosY + (player.posY - player.lastTickPosY) * (double)partialTicks;
         double interpPosZ = player.lastTickPosZ + (player.posZ - player.lastTickPosZ) * (double)partialTicks;
         
-        double x = entityIn.prevPosX + (entityIn.posX - entityIn.prevPosX) * (double)partialTicks - interpPosX;
-        double y = entityIn.prevPosY + (entityIn.posY - entityIn.prevPosY) * (double)partialTicks - interpPosY;
-        double z = entityIn.prevPosZ + (entityIn.posZ - entityIn.prevPosZ) * (double)partialTicks - interpPosZ;
+        double x = firefly.prevPosX + (firefly.posX - firefly.prevPosX) * (double)partialTicks - interpPosX;
+        double y = firefly.prevPosY + (firefly.posY - firefly.prevPosY) * (double)partialTicks - interpPosY;
+        double z = firefly.prevPosZ + (firefly.posZ - firefly.prevPosZ) * (double)partialTicks - interpPosZ;
     	
-    	int combinedBrightness = entityIn.getBrightnessForRender() / 3;
+    	int combinedBrightness = firefly.getBrightnessForRender();
         int skyLightTimes16 = combinedBrightness >> 16 & 65535;
         int blockLightTimes16 = combinedBrightness & 65535;
     	
@@ -78,25 +72,29 @@ public class LayerFireflyGlow implements LayerRenderer<EntityFirefly> {
     	buffer.pos(x - rotationX * this.scale - rotationYZ * this.scale,
     			y - rotationXZ * this.scale,
     			z - rotationZ * this.scale - rotationXY * this.scale)
-    		.tex(maxU, maxV).color(this.red, this.green, this.blue, this.alpha)
+    		.tex(maxU, maxV)
+			.color(firefly.getRed(), firefly.getGreen(), firefly.getBlue(), this.alpha)
     		.lightmap(skyLightTimes16, blockLightTimes16).endVertex();
     
     	buffer.pos(x - rotationX * this.scale + rotationYZ * this.scale,
     			y + rotationXZ * this.scale,
     			z - rotationZ * this.scale + rotationXY * this.scale)
-    		.tex(maxU, minV).color(this.red, this.green, this.blue, this.alpha)
+    		.tex(maxU, minV)
+    		.color(firefly.getRed(), firefly.getGreen(), firefly.getBlue(), this.alpha)
     		.lightmap(skyLightTimes16, blockLightTimes16).endVertex();
     
 	    buffer.pos(x + rotationX * this.scale + rotationYZ * this.scale,
 	    		y + rotationXZ * this.scale,
 	    		z + rotationZ * this.scale + rotationXY * this.scale)
-	    	.tex(minU, minV).color(this.red, this.green, this.blue, this.alpha)
+	    	.tex(minU, minV)
+	    	.color(firefly.getRed(), firefly.getGreen(), firefly.getBlue(), this.alpha)
 	    	.lightmap(skyLightTimes16, blockLightTimes16).endVertex();
     
 	    buffer.pos(x + rotationX * this.scale - rotationYZ * this.scale,
 	    		y - rotationXZ * this.scale,
 	    		z + rotationZ * this.scale - rotationXY * this.scale)
-	    	.tex(minU, maxV).color(this.red, this.green, this.blue, this.alpha)
+	    	.tex(minU, maxV)
+	    	.color(firefly.getRed(), firefly.getGreen(), firefly.getBlue(), this.alpha)
 	    	.lightmap(skyLightTimes16, blockLightTimes16).endVertex();
         	
     	tessellator.draw();
