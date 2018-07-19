@@ -64,20 +64,20 @@ public class GuiContainerBlueprint extends GuiBlueprint {
 		return addSlot(inventory, SlotType.NORMAL, x, y);
 	}
 
-	public GuiBlueprint addSlot(IItemHandler inventory, SlotType type, int x, int y, ContrivitiveSlot.SlotFilter filter) {
+	public GuiContainerBlueprint addSlot(IItemHandler inventory, SlotType type, int x, int y, ContrivitiveSlot.SlotFilter filter) {
 		addSlot(new SlotElement(x + type.getSlotOffsetX(), y + type.getSlotOffsetY(), type).setFilter(filter), inventory);
 		return this;
 	}
 
-	public GuiBlueprint addSlot(IItemHandler inventory, int x, int y, ContrivitiveSlot.SlotFilter filter) {
+	public GuiContainerBlueprint addSlot(IItemHandler inventory, int x, int y, ContrivitiveSlot.SlotFilter filter) {
 		return addSlot(inventory, SlotType.NORMAL, x, y, filter);
 	}
 
-	public GuiBlueprint addPlayerInventory(String page, int x, int y) {
+	public GuiContainerBlueprint addPlayerInventory(String page, int x, int y) {
 		return addPlayerInventory(page, x, y, 0, true);
 	}
 
-	public GuiBlueprint addPlayerInventory(String page, int x, int y, int hotbarOffset, boolean draw) {
+	public GuiContainerBlueprint addPlayerInventory(String page, int x, int y, int hotbarOffset, boolean draw) {
 		this.getPage(page).playerInvX = x;
 		this.getPage(page).playerInvY = y;
 		if (x > -1 && y > -1) {
@@ -98,12 +98,30 @@ public class GuiContainerBlueprint extends GuiBlueprint {
 		return this;
 	}
 
-	public GuiBlueprint addPlayerInventory(int x, int y) {
+	public GuiContainerBlueprint addPlayerInventory(int x, int y) {
 		return addPlayerInventory(x, y, 0, true);
 	}
 
-	public GuiBlueprint addPlayerInventory(int x, int y, int hotbarOffset, boolean draw) {
+	public GuiContainerBlueprint addPlayerInventory(int x, int y, int hotbarOffset, boolean draw) {
 		return addPlayerInventory("main", x, y, hotbarOffset, draw);
+	}
+
+	public GuiContainerBlueprint setGuiLeft(GetGuiInt guiLeft) {
+		return setGuiLeft("main", guiLeft);
+	}
+
+	public GuiContainerBlueprint setGuiLeft(String page, GetGuiInt guiLeft) {
+		this.getPage(page).guiLeft = guiLeft;
+		return this;
+	}
+
+	public GuiContainerBlueprint setGuiTop(GetGuiInt guiTop) {
+		return setGuiLeft("main", guiTop);
+	}
+
+	public GuiContainerBlueprint setGuiTop(String page, GetGuiInt guiTop) {
+		this.getPage(page).guiTop = guiTop;
+		return this;
 	}
 
 	public class SlotEntry {

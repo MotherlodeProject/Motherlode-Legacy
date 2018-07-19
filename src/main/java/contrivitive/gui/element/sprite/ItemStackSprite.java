@@ -1,6 +1,7 @@
 package contrivitive.gui.element.sprite;
 
 import contrivitive.gui.IContrivitiveGui;
+import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -16,6 +17,6 @@ public class ItemStackSprite extends Sprite {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void draw(IContrivitiveGui gui, int x, int y, float elapsedTicks) {
-
+		Minecraft.getMinecraft().getRenderItem().renderItemAndEffectIntoGUI(itemStack, x, y);
 	}
 }

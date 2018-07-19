@@ -26,6 +26,8 @@ public class Page {
 	public HashMap<Integer, GuiContainerBlueprint.SlotEntry> slots = new HashMap<>();
 	public HashMap<Integer, PlayerSlotElement> playerSlots = new HashMap<>();
 	public boolean justPlayerInv = true;
+	public GetGuiInt guiLeft = (width1, height1, xSize, ySize, screenWidth, screenHeight) -> (width1 - xSize) / 2;
+	public GetGuiInt guiTop = (width1, height1, xSize, ySize, screenWidth, screenHeight) -> (height1 - ySize) / 2;
 
 	public Page(String name, int width, int height) {
 		this(name, width, height, player -> new ArrayList<>());

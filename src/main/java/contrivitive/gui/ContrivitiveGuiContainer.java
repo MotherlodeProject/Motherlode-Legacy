@@ -33,11 +33,16 @@ public class ContrivitiveGuiContainer extends GuiContainer implements IContrivit
 		elements = new ArrayList<>();
 		elements.addAll(blueprint.allPages.elements);
 		elements.addAll(this.page.elements);
+		for (PositionedElement element : elements) {
+			element.element.initClient();
+		}
 	}
 
 	@Override
 	public void initGui() {
 		super.initGui();
+		this.guiTop = page.guiTop.get(width, height, xSize, ySize, Minecraft.getMinecraft().displayWidth, Minecraft.getMinecraft().displayHeight);
+		this.guiLeft = page.guiLeft.get(width, height, xSize, ySize, Minecraft.getMinecraft().displayWidth, Minecraft.getMinecraft().displayHeight);
 	}
 
 	@Override

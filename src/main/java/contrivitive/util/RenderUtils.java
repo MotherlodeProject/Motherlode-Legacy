@@ -187,13 +187,16 @@ public class RenderUtils {
 	}
 
 	public static void drawString(IContrivitiveGui gui, String string, float x, float y, float scale, int color) {
+		drawString(gui, string, x, y, scale, color, false);
+	}
+
+	public static void drawString(IContrivitiveGui gui, String string, float x, float y, float scale, int color, boolean shadow) {
 		x = adjustX(gui, x);
 		y = adjustY(gui, y);
 		GlStateManager.pushMatrix();
 		GlStateManager.scale(scale, scale, 1);
-		gui.getGui().mc.fontRenderer.drawString(string, x / scale, y / scale, color, false);
+		gui.getGui().mc.fontRenderer.drawString(string, x / scale, y / scale, color, shadow);
 		GlStateManager.popMatrix();
-
 	}
 
 	public static void drawString(IContrivitiveGui gui, String string, float x, float y, float scale) {

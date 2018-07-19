@@ -64,6 +64,11 @@ public class Element {
 	}
 
 	@SideOnly(Side.CLIENT)
+	public void initClient() {
+
+	}
+
+	@SideOnly(Side.CLIENT)
 	public void renderUpdate(GuiScreen gui) {
 		isHoveringLast = isHovering;
 		isPressingLast = isPressing;
@@ -73,12 +78,12 @@ public class Element {
 
 	@SideOnly(Side.CLIENT)
 	public interface InteractionAction {
-		void execute(Element element, GuiScreen gui, int mouseX, int mouseY);
+		void execute(Element element, IContrivitiveGui gui, int mouseX, int mouseY);
 	}
 
 	@SideOnly(Side.CLIENT)
 	public interface UpdateAction {
-		void update(Element element, GuiScreen gui);
+		void update(Element element, IContrivitiveGui gui);
 	}
 
 	public class RelativeSprite {

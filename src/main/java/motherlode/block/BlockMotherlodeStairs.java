@@ -34,6 +34,6 @@ public class BlockMotherlodeStairs extends BlockStairs implements IModeledBlock 
 	@SideOnly(Side.CLIENT)
 	@Override
 	public ItemModelDefinition getItemModelDefinition() {
-		return new ItemBlockModelDefinition(this, blockstate).prepend("slab_half=ignore,stair=facing_south/half_bottom/shape_straight").setVariant("type=" + name);
+		return new ItemBlockModelDefinition(this, blockstate).prepend("slab_half=ignore,stair=facing_west/half_bottom/shape_straight").setVariant("type=" + name);
 	}
 }
