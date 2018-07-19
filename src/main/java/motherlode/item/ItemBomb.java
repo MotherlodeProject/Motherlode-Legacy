@@ -1,7 +1,7 @@
 package motherlode.item;
 
 import motherlode.Motherlode;
-import motherlode.entity.EntityBomb;
+import motherlode.entity.item.EntityBomb;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
