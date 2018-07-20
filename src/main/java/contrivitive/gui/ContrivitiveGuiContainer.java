@@ -2,11 +2,12 @@ package contrivitive.gui;
 
 import contrivitive.gui.element.Element;
 import contrivitive.gui.element.PositionedElement;
-import contrivitive.util.RenderUtils;
+import contrivitive.util.RenderUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 
@@ -75,7 +76,7 @@ public class ContrivitiveGuiContainer extends GuiContainer implements IContrivit
 
 		for (int i = elements.size() - 1; i >= 0; i--) {
 			PositionedElement element = elements.get(i);
-			if (RenderUtils.isInRect(this, element.coordinate.x, element.coordinate.y, element.element.width, element.element.height, mouseX, mouseY)) {
+			if (RenderUtil.isInRect(this, element.coordinate.x, element.coordinate.y, element.element.width, element.element.height, mouseX, mouseY)) {
 				element.element.isHovering = true;
 				for (Element.InteractionAction hoverAction : element.element.hoverActions) {
 					hoverAction.execute(element.element, this, mouseX, mouseY);
@@ -100,7 +101,7 @@ public class ContrivitiveGuiContainer extends GuiContainer implements IContrivit
 		offsetFactorY = guiTop;
 		for (int i = elements.size() - 1; i >= 0; i--) {
 			PositionedElement element = elements.get(i);
-			if (RenderUtils.isInRect(this, element.coordinate.x, element.coordinate.y, element.element.width, element.element.height, mouseX, mouseY)) {
+			if (RenderUtil.isInRect(this, element.coordinate.x, element.coordinate.y, element.element.width, element.element.height, mouseX, mouseY)) {
 				element.element.drawTooltip.execute(element.element, this, mouseX, mouseY);
 				break;
 			}
@@ -122,7 +123,7 @@ public class ContrivitiveGuiContainer extends GuiContainer implements IContrivit
 		if (mouseButton == 0) {
 			for (int i = elements.size() - 1; i >= 0; i--) {
 				PositionedElement element = elements.get(i);
-				if (RenderUtils.isInRect(this, element.coordinate.x, element.coordinate.y, element.element.width, element.element.height, mouseX, mouseY)) {
+				if (RenderUtil.isInRect(this, element.coordinate.x, element.coordinate.y, element.element.width, element.element.height, mouseX, mouseY)) {
 					element.element.isPressing = true;
 					for (Element.InteractionAction startPressAction : element.element.startPressActions) {
 						startPressAction.execute(element.element, this, mouseX, mouseY);
@@ -148,7 +149,7 @@ public class ContrivitiveGuiContainer extends GuiContainer implements IContrivit
 		if (mouseButton == 0) {
 			for (int i = elements.size() - 1; i >= 0; i--) {
 				PositionedElement element = elements.get(i);
-				if (RenderUtils.isInRect(this, element.coordinate.x, element.coordinate.y, element.element.width, element.element.height, mouseX, mouseY)) {
+				if (RenderUtil.isInRect(this, element.coordinate.x, element.coordinate.y, element.element.width, element.element.height, mouseX, mouseY)) {
 					element.element.isDragging = true;
 					for (Element.InteractionAction dragAction : element.element.dragActions) {
 						dragAction.execute(element.element, this, mouseX, mouseY);
@@ -174,7 +175,7 @@ public class ContrivitiveGuiContainer extends GuiContainer implements IContrivit
 		if (mouseButton == 0) {
 			for (int i = elements.size() - 1; i >= 0; i--) {
 				PositionedElement element = elements.get(i);
-				if (RenderUtils.isInRect(this, element.coordinate.x, element.coordinate.y, element.element.width, element.element.height, mouseX, mouseY)) {
+				if (RenderUtil.isInRect(this, element.coordinate.x, element.coordinate.y, element.element.width, element.element.height, mouseX, mouseY)) {
 					element.element.isReleasing = true;
 					for (Element.InteractionAction releaseAction : element.element.releaseActions) {
 						releaseAction.execute(element.element, this, mouseX, mouseY);
@@ -228,5 +229,10 @@ public class ContrivitiveGuiContainer extends GuiContainer implements IContrivit
 	@Override
 	public int getStartingY() {
 		return offsetFactorY;
+	}
+
+	@Override
+	public RenderItem getRenderItem() {
+		return itemRender;
 	}
 }

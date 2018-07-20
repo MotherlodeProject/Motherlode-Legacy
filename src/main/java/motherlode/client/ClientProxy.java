@@ -5,7 +5,7 @@ import motherlode.client.model.MotherlodeModels;
 import motherlode.client.render.MotherlodeRenders;
 import net.minecraftforge.common.MinecraftForge;
 
-@SuppressWarnings("MethodCallSideOnly")
+@SuppressWarnings({ "VariableUseSideOnly", "MethodCallSideOnly", "NewExpressionSideOnly" })
 public class ClientProxy extends CommonProxy {
 
 	public void preInit() {

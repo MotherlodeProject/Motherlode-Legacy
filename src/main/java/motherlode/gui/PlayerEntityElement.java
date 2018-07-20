@@ -2,7 +2,7 @@ package motherlode.gui;
 
 import contrivitive.gui.IContrivitiveGui;
 import contrivitive.gui.element.Element;
-import contrivitive.util.RenderUtils;
+import contrivitive.util.RenderUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -19,6 +19,6 @@ public class PlayerEntityElement extends Element {
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void draw(IContrivitiveGui gui, int x, int y, int mouseX, int mouseY, float elapsedTicks) {
-		RenderUtils.drawEntityFacingMouse(gui, x, y, scale, mouseX, mouseY, Minecraft.getMinecraft().player, 0);
+		RenderUtil.drawEntityFacingMouse(gui, x, y, scale, mouseX, mouseY, Minecraft.getMinecraft().player, 0);
 	}
 }

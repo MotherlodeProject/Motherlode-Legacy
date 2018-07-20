@@ -16,7 +16,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @SideOnly(Side.CLIENT)
-public class RenderUtils {
+public class RenderUtil {
 
 	public static void setTextureSheet(ResourceLocation textureLocation) {
 		Minecraft.getMinecraft().getTextureManager().bindTexture(textureLocation);
@@ -89,8 +89,8 @@ public class RenderUtils {
 		entity.rotationPitch = f2;
 		entity.prevRotationYawHead = f3;
 		entity.rotationYawHead = f4;
-		GlStateManager.popMatrix();
 		RenderHelper.disableStandardItemLighting();
+		GlStateManager.popMatrix();
 		GlStateManager.disableRescaleNormal();
 		GlStateManager.setActiveTexture(OpenGlHelper.lightmapTexUnit);
 		GlStateManager.disableTexture2D();
@@ -195,6 +195,7 @@ public class RenderUtils {
 		y = adjustY(gui, y);
 		GlStateManager.pushMatrix();
 		GlStateManager.scale(scale, scale, 1);
+		GlStateManager.translate(0  , 0, 1000);
 		gui.getGui().mc.fontRenderer.drawString(string, x / scale, y / scale, color, shadow);
 		GlStateManager.popMatrix();
 	}

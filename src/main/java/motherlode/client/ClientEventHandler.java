@@ -68,7 +68,7 @@ public class ClientEventHandler {
 			}
 		}
 	}
-	
+
 	@SideOnly(Side.CLIENT)
 	@SubscribeEvent
 	public static void onTextureStitching(TextureStitchEvent.Pre event) {

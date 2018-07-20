@@ -1,6 +1,7 @@
 package contrivitive.gui;
 
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.renderer.RenderItem;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -26,4 +27,7 @@ public interface IContrivitiveGui<G extends GuiScreen, B extends GuiBlueprint> {
 	public default boolean disableAnimations() {
 		return false;
 	}
+
+	@SideOnly(Side.CLIENT)
+	public RenderItem getRenderItem();
 }

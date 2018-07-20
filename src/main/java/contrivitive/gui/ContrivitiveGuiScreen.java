@@ -2,11 +2,12 @@ package contrivitive.gui;
 
 import contrivitive.gui.element.Element;
 import contrivitive.gui.element.PositionedElement;
-import contrivitive.util.RenderUtils;
+import contrivitive.util.RenderUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.init.SoundEvents;
 
 import java.io.IOException;
@@ -73,7 +74,7 @@ public class ContrivitiveGuiScreen extends GuiScreen implements IContrivitiveGui
 
 		for (int i = elements.size() - 1; i >= 0; i--) {
 			PositionedElement element = elements.get(i);
-			if (RenderUtils.isInRect(this, element.coordinate.x, element.coordinate.y, element.element.width, element.element.height, mouseX, mouseY)) {
+			if (RenderUtil.isInRect(this, element.coordinate.x, element.coordinate.y, element.element.width, element.element.height, mouseX, mouseY)) {
 				element.element.isHovering = true;
 				for (Element.InteractionAction hoverAction : element.element.hoverActions) {
 					hoverAction.execute(element.element, this, mouseX, mouseY);
@@ -92,7 +93,7 @@ public class ContrivitiveGuiScreen extends GuiScreen implements IContrivitiveGui
 
 		for (int i = elements.size() - 1; i >= 0; i--) {
 			PositionedElement element = elements.get(i);
-			if (RenderUtils.isInRect(this, element.coordinate.x, element.coordinate.y, element.element.width, element.element.height, mouseX, mouseY)) {
+			if (RenderUtil.isInRect(this, element.coordinate.x, element.coordinate.y, element.element.width, element.element.height, mouseX, mouseY)) {
 				element.element.drawTooltip.execute(element.element, this, mouseX, mouseY);
 				break;
 			}
@@ -105,7 +106,7 @@ public class ContrivitiveGuiScreen extends GuiScreen implements IContrivitiveGui
 		if (mouseButton == 0) {
 			for (int i = elements.size() - 1; i >= 0; i--) {
 				PositionedElement element = elements.get(i);
-				if (RenderUtils.isInRect(this, element.coordinate.x, element.coordinate.y, element.element.width, element.element.height, mouseX, mouseY)) {
+				if (RenderUtil.isInRect(this, element.coordinate.x, element.coordinate.y, element.element.width, element.element.height, mouseX, mouseY)) {
 					element.element.isPressing = true;
 					for (Element.InteractionAction startPressAction : element.element.startPressActions) {
 						startPressAction.execute(element.element, this, mouseX, mouseY);
@@ -129,7 +130,7 @@ public class ContrivitiveGuiScreen extends GuiScreen implements IContrivitiveGui
 		if (mouseButton == 0) {
 			for (int i = elements.size() - 1; i >= 0; i--) {
 				PositionedElement element = elements.get(i);
-				if (RenderUtils.isInRect(this, element.coordinate.x, element.coordinate.y, element.element.width, element.element.height, mouseX, mouseY)) {
+				if (RenderUtil.isInRect(this, element.coordinate.x, element.coordinate.y, element.element.width, element.element.height, mouseX, mouseY)) {
 					element.element.isDragging = true;
 					for (Element.InteractionAction dragAction : element.element.dragActions) {
 						dragAction.execute(element.element, this, mouseX, mouseY);
@@ -153,7 +154,7 @@ public class ContrivitiveGuiScreen extends GuiScreen implements IContrivitiveGui
 		if (mouseButton == 0) {
 			for (int i = elements.size() - 1; i >= 0; i--) {
 				PositionedElement element = elements.get(i);
-				if (RenderUtils.isInRect(this, element.coordinate.x, element.coordinate.y, element.element.width, element.element.height, mouseX, mouseY)) {
+				if (RenderUtil.isInRect(this, element.coordinate.x, element.coordinate.y, element.element.width, element.element.height, mouseX, mouseY)) {
 					element.element.isReleasing = true;
 					for (Element.InteractionAction releaseAction : element.element.releaseActions) {
 						releaseAction.execute(element.element, this, mouseX, mouseY);
@@ -202,5 +203,10 @@ public class ContrivitiveGuiScreen extends GuiScreen implements IContrivitiveGui
 	@Override
 	public int getStartingY() {
 		return startY;
+	}
+
+	@Override
+	public RenderItem getRenderItem() {
+		return itemRender;
 	}
 }

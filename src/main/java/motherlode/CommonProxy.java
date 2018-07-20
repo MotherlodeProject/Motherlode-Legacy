@@ -4,6 +4,7 @@ import motherlode.block.MotherlodeBlocks;
 import motherlode.gui.MotherlodeGuiHandler;
 import motherlode.item.MotherlodeItems;
 import motherlode.network.MotherlodeNetwork;
+import motherlode.recipe.MotherlodeRecipes;
 import motherlode.tileentity.TileEntityPot;
 import motherlode.world.biome.MotherlodeBiomes;
 import net.minecraft.util.ResourceLocation;
@@ -20,6 +21,7 @@ public abstract class CommonProxy {
 		MotherlodeBiomes.load();
 		MotherlodeNetwork.registerMessages(Motherlode.MOD_ID);
 		GameRegistry.registerTileEntity(TileEntityPot.class, new ResourceLocation(Motherlode.MOD_ID, "pot"));
+		MotherlodeRecipes.addRecipes();
 	}
 
 	public void init() {
