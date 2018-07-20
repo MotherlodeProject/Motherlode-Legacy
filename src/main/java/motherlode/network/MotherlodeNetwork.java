@@ -1,7 +1,9 @@
 package motherlode.network;
 
 import motherlode.network.packet.PacketClientJump;
+import motherlode.network.packet.PacketEntityFlyingInsectUpdate;
 import motherlode.network.packet.PacketInventoryOpen;
+import motherlode.network.packet.PacketTryCraft;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
