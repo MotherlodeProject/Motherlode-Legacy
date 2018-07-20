@@ -2,6 +2,7 @@ package motherlode.client.render;
 
 import motherlode.entity.item.EntityBomb;
 import motherlode.entity.item.EntityDynamite;
+import motherlode.entity.passive.EntityButterfly;
 import motherlode.entity.passive.EntityFirefly;
 import motherlode.entity.passive.EntityFireflyBlue;
 import motherlode.entity.passive.EntityFireflyGreen;
@@ -20,5 +21,6 @@ public class MotherlodeRenders {
 		RenderingRegistry.registerEntityRenderingHandler(EntityFireflyGreen.class, RenderFirefly.Factory.INSTANCE);
 		RenderingRegistry.registerEntityRenderingHandler(EntityFireflyYellow.class, RenderFirefly.Factory.INSTANCE);
 		RenderingRegistry.registerEntityRenderingHandler(EntityFireflyNether.class, RenderFirefly.Factory.INSTANCE);
+		RenderingRegistry.registerEntityRenderingHandler(EntityButterfly.class, RenderButterfly.Factory.INSTANCE);
 	}
 }

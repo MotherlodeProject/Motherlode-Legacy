@@ -3,6 +3,7 @@ package motherlode.entity;
 import motherlode.Motherlode;
 import motherlode.entity.item.EntityBomb;
 import motherlode.entity.item.EntityDynamite;
+import motherlode.entity.passive.EntityButterfly;
 import motherlode.entity.passive.EntityFireflyBlue;
 import motherlode.entity.passive.EntityFireflyGreen;
 import motherlode.entity.passive.EntityFireflyNether;
@@ -84,5 +85,15 @@ public class MotherlodeEntities {
 				.spawn(EnumCreatureType.AMBIENT, 2, 10, 30, BiomeDictionary.getBiomes(Type.NETHER))
 				.build();
 		event.getRegistry().register(entityFireflyNether);
+		
+		EntityEntry entityButterfly = EntityEntryBuilder.create()
+				.entity(EntityButterfly.class)
+				.id(new ResourceLocation(Motherlode.MOD_ID, "butterfly"), ID++)
+				.name("butterfly")
+				.tracker(64, 20, true)
+				.egg(0x202020, 0xf000f0)
+				.spawn(EnumCreatureType.AMBIENT, 5, 2, 10, BiomeDictionary.getBiomes(Type.FOREST))
+				.build();
+		event.getRegistry().register(entityButterfly);
 	}
 }
