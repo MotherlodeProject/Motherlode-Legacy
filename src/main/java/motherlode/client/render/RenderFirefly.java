@@ -27,6 +27,7 @@ public class RenderFirefly extends RenderLiving<EntityFirefly>
         this.addLayer(new LayerFireflyGlow(this));
     }
 
+    @Override
     protected ResourceLocation getEntityTexture(EntityFirefly entity) {
     	return FIREFLY_TEXTURE;
     }

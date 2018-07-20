@@ -1,6 +1,7 @@
 package motherlode.network;
 
 import motherlode.network.packet.PacketClientJump;
+import motherlode.network.packet.PacketEntityFlyingInsectUpdate;
 import motherlode.network.packet.PacketInventoryOpen;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
@@ -28,5 +29,6 @@ public class MotherlodeNetwork {
 	public static void registerMessages() {
 		networkWrapper.registerMessage(PacketClientJump.Handler.class, PacketClientJump.class, nextId(), Side.SERVER);
 		networkWrapper.registerMessage(PacketInventoryOpen.Handler.class, PacketInventoryOpen.class, nextId(), Side.SERVER);
+		networkWrapper.registerMessage(PacketEntityFlyingInsectUpdate.Handler.class, PacketEntityFlyingInsectUpdate.class, nextId(), Side.CLIENT);
 	}
 }
