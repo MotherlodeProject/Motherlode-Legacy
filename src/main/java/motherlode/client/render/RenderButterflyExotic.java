@@ -2,7 +2,7 @@ package motherlode.client.render;
 
 import motherlode.Motherlode;
 import motherlode.client.model.entity.ModelButterfly;
-import motherlode.entity.passive.EntityButterfly;
+import motherlode.entity.passive.EntityButterflyExotic;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLiving;
@@ -13,22 +13,23 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class RenderButterfly extends RenderLiving<EntityButterfly> {
+public class RenderButterflyExotic extends RenderLiving<EntityButterflyExotic> {
 	
 	private static ResourceLocation[] TEXTURES = {
-			new ResourceLocation(Motherlode.MOD_ID, "textures/entity/butterfly_0.png"),
-			new ResourceLocation(Motherlode.MOD_ID, "textures/entity/butterfly_1.png")
+			new ResourceLocation(Motherlode.MOD_ID, "textures/entity/butterfly_exotic_0.png"),
+			new ResourceLocation(Motherlode.MOD_ID, "textures/entity/Butterfly_exotic_1.png"),
+			new ResourceLocation(Motherlode.MOD_ID, "textures/entity/Butterfly_exotic_2.png")
 	};
 	
 	public ModelButterfly model;
 	
-	public RenderButterfly(RenderManager rendermanagerIn) {
+	public RenderButterflyExotic(RenderManager rendermanagerIn) {
 		super(rendermanagerIn, new ModelButterfly(), 0.0F);
 		this.model = new ModelButterfly();
 	}
 	
 	@Override
-	public void doRender(EntityButterfly butterfly, double x, double y, double z, float entityYaw, float partialTicks) {
+	public void doRender(EntityButterflyExotic butterfly, double x, double y, double z, float entityYaw, float partialTicks) {
 		this.bindTexture(this.getEntityTexture(butterfly));
 		GlStateManager.pushMatrix();
         GlStateManager.translate((float)x, (float)y, (float)z);
@@ -71,17 +72,17 @@ public class RenderButterfly extends RenderLiving<EntityButterfly> {
 	}
 
 	@Override
-	protected ResourceLocation getEntityTexture(EntityButterfly entity) {
+	protected ResourceLocation getEntityTexture(EntityButterflyExotic entity) {
 		return TEXTURES[entity.getTextureIndex()];
 	}
 	
-	public static class Factory implements IRenderFactory<EntityButterfly> {
+	public static class Factory implements IRenderFactory<EntityButterflyExotic> {
 		
 		public static final Factory INSTANCE = new Factory();
 
 		@Override
-		public Render<? super EntityButterfly> createRenderFor(RenderManager manager) {
-			return new RenderButterfly(manager);
+		public Render<? super EntityButterflyExotic> createRenderFor(RenderManager manager) {
+			return new RenderButterflyExotic(manager);
 		}
 	}
 

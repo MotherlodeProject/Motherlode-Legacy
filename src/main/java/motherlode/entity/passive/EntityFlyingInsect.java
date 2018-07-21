@@ -32,6 +32,7 @@ public class EntityFlyingInsect extends EntityFlying {
 		this.isSitting = false;
 		this.facing = EnumFacing.UP;
 		this.setupAI();
+		this.setSpawnPos(Vec3d.ZERO);
 		this.renderDistance = 2000;
 	}
 	

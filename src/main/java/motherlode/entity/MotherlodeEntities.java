@@ -4,10 +4,12 @@ import motherlode.Motherlode;
 import motherlode.entity.item.EntityBomb;
 import motherlode.entity.item.EntityDynamite;
 import motherlode.entity.passive.EntityButterfly;
+import motherlode.entity.passive.EntityButterflyExotic;
 import motherlode.entity.passive.EntityFireflyBlue;
 import motherlode.entity.passive.EntityFireflyGreen;
 import motherlode.entity.passive.EntityFireflyNether;
 import motherlode.entity.passive.EntityFireflyYellow;
+import motherlode.entity.passive.EntityMoth;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.BiomeDictionary;
@@ -26,7 +28,11 @@ public class MotherlodeEntities {
 	@SubscribeEvent
 	public static void registerEntities(RegistryEvent.Register<EntityEntry> event) {
 		
-		// ITEM
+		registerItemEntities(event);
+		registerPassiveEntities(event);
+	}
+	
+	private static void registerItemEntities(RegistryEvent.Register<EntityEntry> event) {
 		
 		EntityEntry entityBomb = EntityEntryBuilder.create()
 				.entity(EntityBomb.class)
@@ -44,7 +50,9 @@ public class MotherlodeEntities {
 				.build();
 		event.getRegistry().register(entityDynamite);
 		
-		// PASSIVE
+	}
+	
+	private static void registerPassiveEntities(RegistryEvent.Register<EntityEntry> event) {
 		
 		EntityEntry entityFireflyBlue = EntityEntryBuilder.create()
 				.entity(EntityFireflyBlue.class)
@@ -92,8 +100,29 @@ public class MotherlodeEntities {
 				.name("butterfly")
 				.tracker(64, 20, true)
 				.egg(0x202020, 0xf000f0)
-				.spawn(EnumCreatureType.AMBIENT, 5, 2, 10, BiomeDictionary.getBiomes(Type.FOREST))
+				.spawn(EnumCreatureType.AMBIENT, 5, 5, 15, BiomeDictionary.getBiomes(Type.FOREST))
 				.build();
 		event.getRegistry().register(entityButterfly);
+		
+		EntityEntry entityButterflyExotic = EntityEntryBuilder.create()
+				.entity(EntityButterflyExotic.class)
+				.id(new ResourceLocation(Motherlode.MOD_ID, "butterflyexotic"), ID++)
+				.name("butterflyexotic")
+				.tracker(64, 20, true)
+				.egg(0x404040, 0x10f050)
+				.spawn(EnumCreatureType.AMBIENT, 5, 5, 15, BiomeDictionary.getBiomes(Type.JUNGLE))
+				.build();
+		event.getRegistry().register(entityButterflyExotic);
+		
+		EntityEntry entityMoth = EntityEntryBuilder.create()
+				.entity(EntityMoth.class)
+				.id(new ResourceLocation(Motherlode.MOD_ID, "moth"), ID++)
+				.name("moth")
+				.tracker(64, 20, true)
+				.egg(0x202020, 0x808010)
+				.spawn(EnumCreatureType.AMBIENT, 5, 5, 15, BiomeDictionary.getBiomes(Type.PLAINS))
+				.build();
+		event.getRegistry().register(entityMoth);
+		
 	}
 }

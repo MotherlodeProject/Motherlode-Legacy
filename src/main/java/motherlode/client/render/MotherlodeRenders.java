@@ -3,11 +3,13 @@ package motherlode.client.render;
 import motherlode.entity.item.EntityBomb;
 import motherlode.entity.item.EntityDynamite;
 import motherlode.entity.passive.EntityButterfly;
+import motherlode.entity.passive.EntityButterflyExotic;
 import motherlode.entity.passive.EntityFirefly;
 import motherlode.entity.passive.EntityFireflyBlue;
 import motherlode.entity.passive.EntityFireflyGreen;
 import motherlode.entity.passive.EntityFireflyNether;
 import motherlode.entity.passive.EntityFireflyYellow;
+import motherlode.entity.passive.EntityMoth;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 
 public class MotherlodeRenders {
@@ -21,6 +23,9 @@ public class MotherlodeRenders {
 		RenderingRegistry.registerEntityRenderingHandler(EntityFireflyGreen.class, RenderFirefly.Factory.INSTANCE);
 		RenderingRegistry.registerEntityRenderingHandler(EntityFireflyYellow.class, RenderFirefly.Factory.INSTANCE);
 		RenderingRegistry.registerEntityRenderingHandler(EntityFireflyNether.class, RenderFirefly.Factory.INSTANCE);
+		
 		RenderingRegistry.registerEntityRenderingHandler(EntityButterfly.class, RenderButterfly.Factory.INSTANCE);
+		RenderingRegistry.registerEntityRenderingHandler(EntityButterflyExotic.class, RenderButterflyExotic.Factory.INSTANCE);
+		RenderingRegistry.registerEntityRenderingHandler(EntityMoth.class, RenderMoth.Factory.INSTANCE);
 	}
 }
