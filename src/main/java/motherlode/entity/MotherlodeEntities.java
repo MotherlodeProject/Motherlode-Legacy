@@ -5,6 +5,7 @@ import motherlode.entity.item.EntityBomb;
 import motherlode.entity.item.EntityDynamite;
 import motherlode.entity.passive.EntityButterfly;
 import motherlode.entity.passive.EntityButterflyExotic;
+//import motherlode.entity.passive.EntityButterflyExotic;
 import motherlode.entity.passive.EntityFireflyBlue;
 import motherlode.entity.passive.EntityFireflyGreen;
 import motherlode.entity.passive.EntityFireflyNether;
@@ -90,7 +91,7 @@ public class MotherlodeEntities {
 				.name("fireflynether")
 				.tracker(64, 20, true)
 				.egg(0x101050, 0xff0000)
-				.spawn(EnumCreatureType.AMBIENT, 2, 10, 30, BiomeDictionary.getBiomes(Type.NETHER))
+				.spawn(EnumCreatureType.MONSTER, 50, 1, 5, BiomeDictionary.getBiomes(Type.NETHER))
 				.build();
 		event.getRegistry().register(entityFireflyNether);
 		

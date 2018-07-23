@@ -7,6 +7,7 @@ import motherlode.network.MotherlodeNetwork;
 import motherlode.recipe.MotherlodeRecipes;
 import motherlode.tileentity.TileEntityPot;
 import motherlode.world.biome.MotherlodeBiomes;
+import motherlode.world.gen.MotherlodeWorldGenerators;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -26,6 +27,7 @@ public abstract class CommonProxy {
 
 	public void init() {
 		NetworkRegistry.INSTANCE.registerGuiHandler(instance, new MotherlodeGuiHandler());
+		MotherlodeWorldGenerators.registerWorldGens();
 	}
 
 	public void postInit() {
