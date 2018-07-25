@@ -19,7 +19,7 @@ public class EntityBomb extends EntityThrowable {
 	private float scale = 0.7F; // For both entity hitbox and render scale
 	private float width = 0.6F*scale;
 	private float height = 0.6F*scale;
-	private int maximumFuseLifetime; // Number of ticks for each of the four BOMB update steps. Or an inverse speed of burning
+	private int maximumFuseLifetime; // Number of ticks for each of the four BOMB update steps. Or an inverse SPEED of burning
 	private int fuseTicksAlive; // Number of ticks that bomb has been lit
 	private float explosionStrength;
 	

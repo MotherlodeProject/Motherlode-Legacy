@@ -35,7 +35,7 @@ public class MotherlodeItems {
 	public static final Item BANDAGE = register(new ItemBandage());
 
 	public static final Item WITHER_SWORD = register(new ItemWitherSword());
-	
+
 	private static Item register(Item item) {
 		MotherlodeRegistry.ITEMS.add(item);
 		if (item instanceof IModeledItem) {

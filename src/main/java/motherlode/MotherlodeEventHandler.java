@@ -30,10 +30,10 @@ public class MotherlodeEventHandler {
 		}
 		
 		// Placeholder code to test the WorldSavedData
-//		if (event.getPlacedBlock().getBlock() instanceof BlockDirt) {
+//		if (event.getPlacedBlock().getBlocks() instanceof BlockDirt) {
 //			data.setNetherAccess(false);
 //			System.out.println("no access");
-//		} else if (event.getPlacedBlock().getBlock() instanceof BlockStone) {
+//		} else if (event.getPlacedBlock().getBlocks() instanceof BlockStone) {
 //			data.setNetherAccess(true);
 //			System.out.println("yes access");
 //		}

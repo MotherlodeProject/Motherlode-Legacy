@@ -142,14 +142,14 @@ public abstract class BlockMotherlodeSlab extends BlockSlab implements IModeledB
 	public BlockModelDefinition getBlockModelDefinition() {
 		if (isDouble()) {
 			if (blockstate.isEmpty()) {
-				return new BlockModelDefinition(this, VARIANT).prepend("horiz_facing=ignore").append("stairs_half=ignore,stairs_shape=ignore").setVariant("slab_half=double");
+				return new BlockModelDefinition(this, VARIANT).append("stair=ignore").setVariant("slab_half=double");
 			}
-			return new BlockModelDefinition(this, blockstate, VARIANT).prepend("horiz_facing=ignore").append("stairs_half=ignore,stairs_shape=ignore").setVariant("slab_half=double").append("type=" + name);
+			return new BlockModelDefinition(this, blockstate, VARIANT).append("stair=ignore").append("type=" + name).setVariant("slab_half=double");
 		} else {
 			if (blockstate.isEmpty()) {
-				return new BlockModelDefinition(this, VARIANT).prepend("horiz_facing=ignore").append("stairs_half=ignore,stairs_shape=ignore").setVariant(state -> "slab_half=" + state.getValue(HALF).getName());
+				return new BlockModelDefinition(this, VARIANT).append("stair=ignore").setVariant(state -> "slab_half=" + state.getValue(HALF).getName());
 			}
-			return new BlockModelDefinition(this, blockstate, VARIANT).prepend("horiz_facing=ignore").append("stairs_half=ignore,stairs_shape=ignore").append("type=" + name).setVariant(state -> "slab_half=" + state.getValue(HALF).getName());
+			return new BlockModelDefinition(this, blockstate, VARIANT).append("stair=ignore").append("type=" + name).setVariant(state -> "slab_half=" + state.getValue(HALF).getName());
 		}
 	}
 

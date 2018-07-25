@@ -18,7 +18,7 @@ public class EntityDynamite extends EntityThrowable {
 	private World world;
 	private float width = 0.5F;
 	private float height = 0.5F;
-	private int maximumFuseLifetime; // Number of ticks for each of the four Dynamite update steps. Or an inverse speed of burning
+	private int maximumFuseLifetime; // Number of ticks for each of the four Dynamite update steps. Or an inverse SPEED of burning
 	private int fuseTicksAlive; // Total fuse lifetime
 	private float explosionStrength;
 	

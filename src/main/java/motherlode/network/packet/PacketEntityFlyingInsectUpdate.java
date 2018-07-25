@@ -9,14 +9,14 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
 public class PacketEntityFlyingInsectUpdate implements IMessage {
-	
+
 	private boolean isSitting;
 	private int facing;
 	private int entityId;
-	
+
 	public PacketEntityFlyingInsectUpdate() {
 	}
-	
+
 	public PacketEntityFlyingInsectUpdate(boolean isSitting, int facing, int entityId) {
 		this.isSitting = isSitting;
 		this.facing = facing;
@@ -36,7 +36,7 @@ public class PacketEntityFlyingInsectUpdate implements IMessage {
 		buf.writeInt(this.facing);
 		buf.writeInt(this.entityId);
 	}
-	
+
 	public static class Handler implements IMessageHandler<PacketEntityFlyingInsectUpdate, IMessage> {
 		@Override
 		public IMessage onMessage(PacketEntityFlyingInsectUpdate message, MessageContext ctx) {
@@ -45,13 +45,13 @@ public class PacketEntityFlyingInsectUpdate implements IMessage {
 		}
 
 		private void handle(PacketEntityFlyingInsectUpdate message, MessageContext context) {
-			
+
 			boolean b = message.isSitting;
 			int f = message.facing;
 			int id = message.entityId;
-			
+
 			if (Minecraft.getMinecraft().world.getEntityByID(id) instanceof EntityFlyingInsect) {
-				EntityFlyingInsect insect = (EntityFlyingInsect)Minecraft.getMinecraft().world.getEntityByID(id);
+				EntityFlyingInsect insect = (EntityFlyingInsect) Minecraft.getMinecraft().world.getEntityByID(id);
 				insect.setIsSitting(b);
 				insect.setFacing(f);
 			}

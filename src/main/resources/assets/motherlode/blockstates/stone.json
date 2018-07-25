@@ -14,209 +14,179 @@
   "variants": {
     "stair": {
       "facing_east/half_bottom/shape_straight": {
-        "model": "minecraft:stairs"
+        "model": "minecraft:stairs",
+        "y": 0
       },
       "facing_west/half_bottom/shape_straight": {
         "model": "minecraft:stairs",
-        "y": 180,
-        "uvlock": true
+        "y": 180
       },
       "facing_south/half_bottom/shape_straight": {
         "model": "minecraft:stairs",
-        "y": 90,
-        "uvlock": true
+        "y": 90
       },
       "facing_north/half_bottom/shape_straight": {
         "model": "minecraft:stairs",
-        "y": 270,
-        "uvlock": true
+        "y": 270
       },
       "facing_east/half_bottom/shape_outer_right": {
-        "model": "minecraft:outer_stairs"
+        "model": "minecraft:outer_stairs",
+        "y": 0
       },
       "facing_west/half_bottom/shape_outer_right": {
         "model": "minecraft:outer_stairs",
-        "y": 180,
-        "uvlock": true
+        "y": 180
       },
       "facing_south/half_bottom/shape_outer_right": {
         "model": "minecraft:outer_stairs",
-        "y": 90,
-        "uvlock": true
+        "y": 90
       },
       "facing_north/half_bottom/shape_outer_right": {
         "model": "minecraft:outer_stairs",
-        "y": 270,
-        "uvlock": true
+        "y": 270
       },
       "facing_east/half_bottom/shape_outer_left": {
         "model": "minecraft:outer_stairs",
-        "y": 270,
-        "uvlock": true
+        "y": 270
       },
       "facing_west/half_bottom/shape_outer_left": {
         "model": "minecraft:outer_stairs",
-        "y": 90,
-        "uvlock": true
+        "y": 90
       },
       "facing_south/half_bottom/shape_outer_left": {
-        "model": "minecraft:outer_stairs"
+        "model": "minecraft:outer_stairs",
+        "y": 0
       },
       "facing_north/half_bottom/shape_outer_left": {
         "model": "minecraft:outer_stairs",
-        "y": 180,
-        "uvlock": true
+        "y": 180
       },
       "facing_east/half_bottom/shape_inner_right": {
-        "model": "minecraft:inner_stairs"
+        "model": "minecraft:inner_stairs",
+        "y": 0
       },
       "facing_west/half_bottom/shape_inner_right": {
         "model": "minecraft:inner_stairs",
-        "y": 180,
-        "uvlock": true
+        "y": 180
       },
       "facing_south/half_bottom/shape_inner_right": {
         "model": "minecraft:inner_stairs",
-        "y": 90,
-        "uvlock": true
+        "y": 90
       },
       "facing_north/half_bottom/shape_inner_right": {
         "model": "minecraft:inner_stairs",
-        "y": 270,
-        "uvlock": true
+        "y": 270
       },
       "facing_east/half_bottom/shape_inner_left": {
         "model": "minecraft:inner_stairs",
-        "y": 270,
-        "uvlock": true
+        "y": 270
       },
       "facing_west/half_bottom/shape_inner_left": {
         "model": "minecraft:inner_stairs",
-        "y": 90,
-        "uvlock": true
+        "y": 90
       },
       "facing_south/half_bottom/shape_inner_left": {
-        "model": "minecraft:inner_stairs"
+        "model": "minecraft:inner_stairs",
+        "y": 0
       },
       "facing_north/half_bottom/shape_inner_left": {
         "model": "minecraft:inner_stairs",
-        "y": 180,
-        "uvlock": true
+        "y": 180
       },
       "facing_east/half_top/shape_straight": {
         "model": "minecraft:stairs",
-        "x": 180,
-        "uvlock": true
+        "x": 180
       },
       "facing_west/half_top/shape_straight": {
         "model": "minecraft:stairs",
         "x": 180,
-        "y": 180,
-        "uvlock": true
+        "y": 180
       },
       "facing_south/half_top/shape_straight": {
         "model": "minecraft:stairs",
         "x": 180,
-        "y": 90,
-        "uvlock": true
+        "y": 90
       },
       "facing_north/half_top/shape_straight": {
         "model": "minecraft:stairs",
         "x": 180,
-        "y": 270,
-        "uvlock": true
+        "y": 270
       },
       "facing_east/half_top/shape_outer_right": {
         "model": "minecraft:outer_stairs",
         "x": 180,
-        "y": 90,
-        "uvlock": true
+        "y": 90
       },
       "facing_west/half_top/shape_outer_right": {
         "model": "minecraft:outer_stairs",
         "x": 180,
-        "y": 270,
-        "uvlock": true
+        "y": 270
       },
       "facing_south/half_top/shape_outer_right": {
         "model": "minecraft:outer_stairs",
         "x": 180,
-        "y": 180,
-        "uvlock": true
+        "y": 180
       },
       "facing_north/half_top/shape_outer_right": {
         "model": "minecraft:outer_stairs",
-        "x": 180,
-        "uvlock": true
+        "x": 180
       },
       "facing_east/half_top/shape_outer_left": {
         "model": "minecraft:outer_stairs",
-        "x": 180,
-        "uvlock": true
+        "x": 180
       },
       "facing_west/half_top/shape_outer_left": {
         "model": "minecraft:outer_stairs",
         "x": 180,
-        "y": 180,
-        "uvlock": true
+        "y": 180
       },
       "facing_south/half_top/shape_outer_left": {
         "model": "minecraft:outer_stairs",
         "x": 180,
-        "y": 90,
-        "uvlock": true
+        "y": 90
       },
       "facing_north/half_top/shape_outer_left": {
         "model": "minecraft:outer_stairs",
         "x": 180,
-        "y": 270,
-        "uvlock": true
+        "y": 270
       },
       "facing_east/half_top/shape_inner_right": {
         "model": "minecraft:inner_stairs",
         "x": 180,
-        "y": 90,
-        "uvlock": true
+        "y": 90
       },
       "facing_west/half_top/shape_inner_right": {
         "model": "minecraft:inner_stairs",
         "x": 180,
-        "y": 270,
-        "uvlock": true
+        "y": 270
       },
       "facing_south/half_top/shape_inner_right": {
         "model": "minecraft:inner_stairs",
         "x": 180,
-        "y": 180,
-        "uvlock": true
+        "y": 180
       },
       "facing_north/half_top/shape_inner_right": {
         "model": "minecraft:inner_stairs",
-        "x": 180,
-        "uvlock": true
+        "x": 180
       },
       "facing_east/half_top/shape_inner_left": {
         "model": "minecraft:inner_stairs",
-        "x": 180,
-        "uvlock": true
+        "x": 180
       },
       "facing_west/half_top/shape_inner_left": {
         "model": "minecraft:inner_stairs",
         "x": 180,
-        "y": 180,
-        "uvlock": true
+        "y": 180
       },
       "facing_south/half_top/shape_inner_left": {
         "model": "minecraft:inner_stairs",
         "x": 180,
-        "y": 90,
-        "uvlock": true
+        "y": 90
       },
       "facing_north/half_top/shape_inner_left": {
         "model": "minecraft:inner_stairs",
         "x": 180,
-        "y": 270,
-        "uvlock": true
+        "y": 270
       },
       "ignore": {
       }
