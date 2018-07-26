@@ -41,7 +41,8 @@
       "oak_wood": {
         "textures": {
           "side": "motherlode:block/platform_oak",
-          "top": "minecraft:blocks/planks_oak"
+          "top": "minecraft:blocks/planks_oak",
+		  "particle": "#top"
         }
       }
     }
