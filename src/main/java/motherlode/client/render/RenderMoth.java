@@ -2,7 +2,7 @@ package motherlode.client.render;
 
 import motherlode.Motherlode;
 import motherlode.client.model.entity.ModelButterfly;
-import motherlode.entity.passive.EntityButterfly;
+import motherlode.entity.passive.EntityMoth;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLiving;
@@ -13,38 +13,37 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class RenderButterfly extends RenderLiving<EntityButterfly> {
+public class RenderMoth extends RenderLiving<EntityMoth> {
 	
 	private static ResourceLocation[] TEXTURES = {
-			new ResourceLocation(Motherlode.MOD_ID, "textures/entity/butterfly_0.png"),
-			new ResourceLocation(Motherlode.MOD_ID, "textures/entity/butterfly_1.png")
+			new ResourceLocation(Motherlode.MOD_ID, "textures/entity/butterfly_moth.png"),
 	};
 	
 	public ModelButterfly model;
 	
-	public RenderButterfly(RenderManager rendermanagerIn) {
+	public RenderMoth(RenderManager rendermanagerIn) {
 		super(rendermanagerIn, new ModelButterfly(), 0.0F);
 		this.model = new ModelButterfly();
 	}
 	
 	@Override
-	public void doRender(EntityButterfly butterfly, double x, double y, double z, float entityYaw, float partialTicks) {
-		this.bindTexture(this.getEntityTexture(butterfly));
+	public void doRender(EntityMoth moth, double x, double y, double z, float entityYaw, float partialTicks) {
+		this.bindTexture(this.getEntityTexture(moth));
 		GlStateManager.pushMatrix();
         GlStateManager.translate((float)x, (float)y, (float)z);
         GlStateManager.enableRescaleNormal();
-        GlStateManager.translate(0F, -0.1F + butterfly.getHeight() / 2.0F, 0F); // Model offset from hitbox
+        GlStateManager.translate(0F, -0.1F + moth.getHeight() / 2.0F, 0F); // Model offset from hitbox
         
         // east = (1, 0, 0)
         // up = (0, 1, 0)
 		// south = (0, 0, 1)
-        if (butterfly.getIsSitting()) {
-	        switch (butterfly.getFacing()) {
+        if (moth.getIsSitting()) {
+	        switch (moth.getFacing()) {
 	        case UP:
-	        	GlStateManager.rotate(butterfly.renderYawOffset, 0.0F, 1.0F, 0.0F);
+	        	GlStateManager.rotate(moth.renderYawOffset, 0.0F, 1.0F, 0.0F);
 	        	break;
 	        case DOWN:
-	        	GlStateManager.rotate(butterfly.renderYawOffset, 0.0F, 1.0F, 0.0F);
+	        	GlStateManager.rotate(moth.renderYawOffset, 0.0F, 1.0F, 0.0F);
 	        	GlStateManager.rotate(180.0F, 1.0F, 0.0F, 0.0F);
 	        	break;
 	        case NORTH:
@@ -61,27 +60,27 @@ public class RenderButterfly extends RenderLiving<EntityButterfly> {
 	        	break;
 	        }
         } else {
-        	GlStateManager.rotate(butterfly.renderYawOffset, 0.0F, 1.0F, 0.0F);
+        	GlStateManager.rotate(moth.renderYawOffset, 0.0F, 1.0F, 0.0F);
         }
         
-        GlStateManager.scale(butterfly.getScale(), butterfly.getScale(), butterfly.getScale());
+        GlStateManager.scale(moth.getScale(), moth.getScale(), moth.getScale());
         GlStateManager.disableRescaleNormal();
-        this.model.render(butterfly, 0F, 0F, 0F, 0F, 0F, 0.1F);
+        this.model.render(moth, 0F, 0F, 0F, 0F, 0F, 0.1F);
         GlStateManager.popMatrix();
 	}
 
 	@Override
-	protected ResourceLocation getEntityTexture(EntityButterfly entity) {
+	protected ResourceLocation getEntityTexture(EntityMoth entity) {
 		return TEXTURES[entity.getTextureIndex()];
 	}
 	
-	public static class Factory implements IRenderFactory<EntityButterfly> {
+	public static class Factory implements IRenderFactory<EntityMoth> {
 		
 		public static final Factory INSTANCE = new Factory();
 
 		@Override
-		public Render<? super EntityButterfly> createRenderFor(RenderManager manager) {
-			return new RenderButterfly(manager);
+		public Render<? super EntityMoth> createRenderFor(RenderManager manager) {
+			return new RenderMoth(manager);
 		}
 	}
 
