@@ -2,9 +2,9 @@ package motherlode.entity.passive;
 
 import net.minecraft.world.World;
 
-public class EntityFireflyNether extends EntityFirefly {
+public class EntityFireflyInferno extends EntityFirefly {
 
-	public EntityFireflyNether(World worldIn) {
+	public EntityFireflyInferno(World worldIn) {
 		super(worldIn);
 		this.setColor("f75531");
 		this.isImmuneToFire = true;
