@@ -7,9 +7,11 @@ import java.util.Map;
 
 import javax.annotation.Nullable;
 
+import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableList;
 
 import motherlode.recipe.ingredient.IIngredient;
+import motherlode.recipe.table.IRecipeTable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
@@ -19,7 +21,7 @@ import net.minecraftforge.registries.IForgeRegistryEntry;
  * The default implementation of a recipe.  All recipes in Motherlode are shapeless by nature.
  * @author Shadows
  */
-public class DefaultRecipe extends IForgeRegistryEntry.Impl<IMotherlodeRecipe> implements IMotherlodeRecipe {
+public class MotherlodeRecipe extends IForgeRegistryEntry.Impl<IMotherlodeRecipe> implements IMotherlodeRecipe {
 
 	ItemStack output;
 	IRecipeTable table;
@@ -33,7 +35,9 @@ public class DefaultRecipe extends IForgeRegistryEntry.Impl<IMotherlodeRecipe> i
 	 * @param table The required table, or null, if no table is required.
 	 * @param inputs The ingredients.
 	 */
-	public DefaultRecipe(ItemStack output, @Nullable IRecipeTable table, IIngredient... inputs) {
+	public MotherlodeRecipe(ItemStack output, @Nullable IRecipeTable table, IIngredient... inputs) {
+		Preconditions.checkArgument(!output.isEmpty() && output.getCount() <= 64, "Cannot create a MotherlodeRecipe with an empty stack or stack larger than 64 items!");
+		Preconditions.checkArgument(inputs.length > 0, "Cannot create a MotherlodeRecipe with no inputs!");
 		this.output = output;
 		this.table = table;
 		this.inputs = ImmutableList.<IIngredient>builder().add(inputs).build();

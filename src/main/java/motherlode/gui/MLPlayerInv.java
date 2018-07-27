@@ -4,6 +4,7 @@ import contrivitive.gui.GuiContainerBlueprint;
 import contrivitive.gui.element.Element;
 
 public class MLPlayerInv {
+
 	public static GuiContainerBlueprint getCTInventoryBlueprint() {
 		int inventoryWidth = 176;
 		int inventoryHeight = 187;

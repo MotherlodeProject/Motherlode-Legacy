@@ -23,19 +23,27 @@ public class NBTIngredient extends SimpleIngredient {
 	boolean exactMatch;
 
 	public NBTIngredient(Block block, NBTTagCompound tag, boolean exactMatch) {
-		this(block, 0, tag, exactMatch);
+		this(block, 1, tag, exactMatch);
+	}
+
+	public NBTIngredient(Block block, int amount, NBTTagCompound tag, boolean exactMatch) {
+		this(block, amount, 0, tag, exactMatch);
+	}
+
+	public NBTIngredient(Block block, int amount, int meta, NBTTagCompound tag, boolean exactMatch) {
+		this(Item.getItemFromBlock(block), amount, meta, tag, exactMatch);
 	}
 
 	public NBTIngredient(Item item, NBTTagCompound tag, boolean exactMatch) {
-		this(item, 0, tag, exactMatch);
+		this(item, 1, tag, exactMatch);
 	}
 
-	public NBTIngredient(Block block, int meta, NBTTagCompound tag, boolean exactMatch) {
-		this(Item.getItemFromBlock(block), meta, tag, exactMatch);
+	public NBTIngredient(Item item, int amount, NBTTagCompound tag, boolean exactMatch) {
+		this(item, amount, 0, tag, exactMatch);
 	}
 
-	public NBTIngredient(Item item, int meta, NBTTagCompound tag, boolean exactMatch) {
-		this(new ItemStack(item, meta), tag, exactMatch);
+	public NBTIngredient(Item item, int amount, int meta, NBTTagCompound tag, boolean exactMatch) {
+		this(new ItemStack(item, amount, meta), tag, exactMatch);
 	}
 
 	public NBTIngredient(ItemStack stack, NBTTagCompound tag, boolean exactMatch) {

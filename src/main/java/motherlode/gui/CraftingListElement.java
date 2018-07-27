@@ -1,7 +1,6 @@
 package motherlode.gui;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import contrivitive.gui.IContrivitiveGui;
@@ -37,16 +36,13 @@ public class CraftingListElement extends Element {
 		super.initClient();
 		Minecraft mc = Minecraft.getMinecraft();
 		updateActions.add((element, gui) -> {
-			craftableRecipes.clear();
-			for (IMotherlodeRecipe recipe : MotherlodeRecipes.getRecipeRegistry()) {
-				if (recipe.matches(mc.player.inventory.mainInventory, mc.player, Collections.emptyList()) != null) craftableRecipes.add(recipe);
-			}
+			craftableRecipes = MotherlodeRecipes.getAllPossibleRecipes(mc.player.inventory.mainInventory, mc.player, MotherlodeRecipes.getTables(mc.player));
 			if (!isHovering) hoverIndex = -1;
 		});
 		pressActions.add((element, gui, coordinates, mouseX, mouseY) -> {
 			if (hoverIndex >= 0 && hoverIndex < craftableRecipes.size()) {
 				IMotherlodeRecipe recipe = craftableRecipes.get(hoverIndex);
-				MotherlodeNetwork.networkWrapper.sendToServer(new PacketTryCraft(recipe));
+				MotherlodeNetwork.NETWORK.sendToServer(new PacketTryCraft(recipe));
 			}
 		});
 		hoverActions.add((element, gui, coordinate, mouseX, mouseY) -> {

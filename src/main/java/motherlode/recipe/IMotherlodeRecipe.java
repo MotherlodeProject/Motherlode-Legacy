@@ -9,8 +9,13 @@ import javax.annotation.Nullable;
 import contrivitive.gui.element.sprite.ItemStackSprite;
 import contrivitive.gui.element.sprite.Sprite;
 import motherlode.Motherlode;
+import motherlode.network.MotherlodeNetwork;
+import motherlode.network.packet.PacketUpdateHeld;
 import motherlode.recipe.ingredient.IIngredient;
+import motherlode.recipe.table.IRecipeTable;
+import motherlode.recipe.table.RecipeTables;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.registries.IForgeRegistryEntry;
@@ -43,17 +48,17 @@ public interface IMotherlodeRecipe extends IForgeRegistryEntry<IMotherlodeRecipe
 	 * @return A map of ingredients to matched stacks to be shrunk in onCrafted, or null, if this recipe cannot be crafted.  Arrays must not be empty, null, or contain empty stacks.
 	 * @param stacks Stacks that are available for crafting.  DO NOT mutate any of these at this step.  These stacks will be all of those in the crafting container, and can be empty.
 	 * @param player The crafting player.
-	 * @param table The nearby crafting tables.  If you require a specific table (other than {@link RecipeTable.NONE}) check with these.  May be empty, but not null.
+	 * @param table The nearby crafting tables.  If you require a specific table (other than {@link RecipeTables.NONE}) check with these.  May be empty, but not null.
 	 */
 	@Nullable
 	public Map<IIngredient, ItemStack[]> matches(NonNullList<ItemStack> stacks, EntityPlayer player, List<IRecipeTable> tables);
 
 	/**
-	 * The callback for when crafting actually happens.  Stacks should be shrunk in this method.
+	 * The callback for when crafting actually happens.  Should only be called on the server.  Stacks should be shrunk in this method, and the output given to the player.
 	 * @param stacks Stacks that are available for crafting.
 	 * @param matched The matched stacks, as returned by matches.
 	 * @param player The crafting player.
-	 * @param table The nearby crafting tables.  If you require a specific table (other than {@link RecipeTable.NONE}) check with these.  May be empty, but not null.
+	 * @param table The nearby crafting tables.  If you require a specific table (other than {@link RecipeTables.NONE}) check with these.  May be empty, but not null.
 	 */
 	public default void onCraft(NonNullList<ItemStack> stacks, Map<IIngredient, ItemStack[]> matched, EntityPlayer player, List<IRecipeTable> tables) {
 		for (Map.Entry<IIngredient, ItemStack[]> e : matched.entrySet()) {
@@ -65,6 +70,16 @@ public interface IMotherlodeRecipe extends IForgeRegistryEntry<IMotherlodeRecipe
 			}
 			if (needed != 0) Motherlode.LOGGER.error("An error has occured during crafting: Ingredient {} was unable to consume as many stacks as it needed.  Recipe: {}", e.getKey(), this.getRegistryName());
 		}
+
+		ItemStack s = player.inventory.getItemStack();
+		ItemStack old = s.copy();
+
+		if (s.isEmpty()) player.inventory.setItemStack(getOutput().copy());
+		else if (s.getCount() + getOutput().getCount() < s.getMaxStackSize()) s.grow(getOutput().getCount());
+		else player.inventory.addItemStackToInventory(getOutput().copy());
+
+		if (!player.world.isRemote && (!player.inventory.getItemStack().isItemEqual(old) || player.inventory.getItemStack().getCount() > old.getCount())) MotherlodeNetwork.NETWORK.sendTo(new PacketUpdateHeld(player.inventory.getItemStack()), (EntityPlayerMP) player);
+
 	}
 
 	/**
