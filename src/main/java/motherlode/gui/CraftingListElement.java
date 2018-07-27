@@ -66,7 +66,7 @@ public class CraftingListElement extends Element {
 		super.draw(gui, x, y, mouseX, mouseY, elapsedTicks);
 		for (IMotherlodeRecipe recipe : craftableRecipes) {
 			int i = 23 + 20 * craftableRecipes.indexOf(recipe);
-			if ((ticks += elapsedTicks) > 50F) {
+			if ((ticks += elapsedTicks) > 150F) {
 				ticks = 0;
 				counter++;
 			}

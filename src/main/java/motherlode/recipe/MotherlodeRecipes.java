@@ -41,8 +41,8 @@ public class MotherlodeRecipes {
 		addRecipe("oak_planks", new ItemStack(Blocks.PLANKS, 4, 0), new SimpleIngredient(Blocks.LOG, 1, 0));
 		addRecipe("crafting_table", new ItemStack(Blocks.CRAFTING_TABLE), new SimpleIngredient(Blocks.PLANKS, 4, 0));
 		addRecipe("sticks", new ItemStack(Items.STICK, 4), new OreIngredient("plankWood", 2));
-		addRecipe("wooden_pressure_plate", new ItemStack(Blocks.WOODEN_PRESSURE_PLATE), new OreIngredient("plankWood", 1));
-		addRecipe("wooden_button", new ItemStack(Blocks.WOODEN_BUTTON), new OreIngredient("plankWood", 2));
+		addRecipe("wooden_pressure_plate", new ItemStack(Blocks.WOODEN_PRESSURE_PLATE), new OreIngredient("plankWood", 2));
+		addRecipe("wooden_button", new ItemStack(Blocks.WOODEN_BUTTON), new OreIngredient("plankWood", 1));
 		addRecipe("torch", new ItemStack(Blocks.TORCH, 4), new SimpleIngredient(Items.COAL, 1, OreDictionary.WILDCARD_VALUE), new OreIngredient("stickWood"));
 		addRecipe("stone_bricks", new ItemStack(Blocks.STONEBRICK, 4), new SimpleIngredient(Blocks.STONE, 4));
 		addRecipe("stone_bricks_slab", new ItemStack(Blocks.STONE_SLAB, 2, 5), new SimpleIngredient(Blocks.STONEBRICK, 1));

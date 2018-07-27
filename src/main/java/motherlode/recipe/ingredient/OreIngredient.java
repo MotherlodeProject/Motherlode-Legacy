@@ -1,17 +1,18 @@
 package motherlode.recipe.ingredient;
 
-import java.util.List;
-
 import com.google.common.base.Preconditions;
 import com.google.common.base.Strings;
 import com.google.common.collect.ImmutableList;
-
 import it.unimi.dsi.fastutil.ints.IntArrayList;
 import it.unimi.dsi.fastutil.ints.IntList;
 import it.unimi.dsi.fastutil.ints.IntLists;
 import net.minecraft.client.util.RecipeItemHelper;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import net.minecraftforge.oredict.OreDictionary;
+
+import java.util.List;
 
 public class OreIngredient implements IIngredient {
 
@@ -53,12 +54,20 @@ public class OreIngredient implements IIngredient {
 				i.add(RecipeItemHelper.pack(s));
 			matches = IntLists.unmodifiable(i);
 		}
-		return matches.contains(RecipeItemHelper.pack(input));
+		return matches.contains(RecipeItemHelper.pack(input)) || matches.contains(RecipeItemHelper.pack(new ItemStack(input.getItem(), 1, OreDictionary.WILDCARD_VALUE)));
 	}
 
 	@Override
 	public List<ItemStack> getDisplayStacks() {
-		if (display == null) display = ImmutableList.copyOf(OreDictionary.getOres(ore, false));
+		NonNullList<ItemStack> stacks = NonNullList.create();
+		for (ItemStack stack : OreDictionary.getOres(ore, false)) {
+			if (stack.getMetadata() == OreDictionary.WILDCARD_VALUE) {
+				stack.getItem().getSubItems(CreativeTabs.SEARCH, stacks);
+			} else {
+				stacks.add(stack);
+			}
+		}
+		if (display == null) display = ImmutableList.copyOf(stacks);
 		return display;
 	}
 
