@@ -65,7 +65,9 @@ public interface IMotherlodeRecipe extends IForgeRegistryEntry<IMotherlodeRecipe
 			int needed = e.getKey().getCount();
 			for (ItemStack s : e.getValue()) {
 				int used = Math.min(needed, s.getCount());
+				ItemStack copy = s.copy();
 				s.shrink(used);
+				if(s.isEmpty()) player.inventory.addItemStackToInventory(copy.getItem().getContainerItem(copy));
 				needed -= used;
 			}
 			if (needed != 0) Motherlode.LOGGER.error("An error has occured during crafting: Ingredient {} was unable to consume as many stacks as it needed.  Recipe: {}", e.getKey(), this.getRegistryName());
