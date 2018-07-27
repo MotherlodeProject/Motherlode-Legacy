@@ -1,16 +1,20 @@
 [
-{
-  "modid": "motherlode",
-  "name": "Motherlode",
-  "description": "Overhaul mod, currently overhauls nothing.",
-  "version": "$0.0",
-  "mcversion": "${mcversion}",
-  "url": "",
-  "updateUrl": "",
-  "authorList": ["Glow/Phail, Hufsa, some more people"],
-  "credits": "my parents",
-  "logoFile": "",
-  "screenshots": [],
-  "dependencies": []
-}
+  {
+    "modid": "motherlode",
+    "name": "Motherlode",
+    "description": "Overhaul mod, currently overhauls nothing.",
+    "version": "$0.0",
+    "mcversion": "${mcversion}",
+    "url": "",
+    "updateUrl": "",
+    "authorList": [
+      "Glow/Phail",
+      "Hufsa",
+      "Prospector"
+    ],
+    "credits": "Shadows (the literal embodiment of the recipe system)",
+    "logoFile": "",
+    "screenshots": [],
+    "dependencies": []
+  }
 ]
