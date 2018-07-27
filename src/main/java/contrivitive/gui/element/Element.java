@@ -2,7 +2,6 @@ package contrivitive.gui.element;
 
 import contrivitive.gui.IContrivitiveGui;
 import contrivitive.gui.element.sprite.Sprite;
-import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -57,7 +56,7 @@ public class Element {
 	}
 
 	@SideOnly(Side.CLIENT)
-	public void draw(IContrivitiveGui gui, int x, int y, int mouseX, int mouseY, float elapsedTicks) {
+	public void draw(IContrivitiveGui<?,?> gui, int x, int y, int mouseX, int mouseY, float elapsedTicks) {
 		for (RelativeSprite sprite : sprites) {
 			sprite.sprite.draw(gui, x + sprite.relativePos.x, y + sprite.relativePos.y, elapsedTicks);
 		}
@@ -69,7 +68,7 @@ public class Element {
 	}
 
 	@SideOnly(Side.CLIENT)
-	public void renderUpdate(IContrivitiveGui gui) {
+	public void renderUpdate(IContrivitiveGui<?,?> gui) {
 		isHoveringLast = isHovering;
 		isPressingLast = isPressing;
 		isDraggingLast = isDragging;
@@ -78,12 +77,12 @@ public class Element {
 
 	@SideOnly(Side.CLIENT)
 	public interface InteractionAction {
-		void execute(Element element, IContrivitiveGui gui, Coordinate coordinate, int mouseX, int mouseY);
+		void execute(Element element, IContrivitiveGui<?,?> gui, Coordinate coordinate, int mouseX, int mouseY);
 	}
 
 	@SideOnly(Side.CLIENT)
 	public interface UpdateAction {
-		void update(Element element, IContrivitiveGui gui);
+		void update(Element element, IContrivitiveGui<?,?> gui);
 	}
 
 	public class RelativeSprite {

@@ -2,20 +2,10 @@ package motherlode.gui;
 
 import contrivitive.gui.GuiContainerBlueprint;
 import contrivitive.gui.element.Element;
-import motherlode.recipe.IMotherlodeRecipe;
-import motherlode.recipe.MotherlodeRecipes;
-import motherlode.recipe.ingredient.IRecipeIngredient;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static motherlode.recipe.MotherlodeRecipes.addCraftingRecipes;
 
 public class MLPlayerInv {
+
 	public static GuiContainerBlueprint getCTInventoryBlueprint() {
-		addCraftingRecipes();
 		int inventoryWidth = 176;
 		int inventoryHeight = 187;
 		int craftingWidth = MLSprites.CRAFTING_BACKGROUND.width + 2;

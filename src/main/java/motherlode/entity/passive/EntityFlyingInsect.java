@@ -70,7 +70,7 @@ public class EntityFlyingInsect extends EntityFlying {
 		if (!this.world.isRemote) {
 			EntityTracker tracker = FMLCommonHandler.instance().getMinecraftServerInstance().getWorld(0).getEntityTracker();
 			tracker.sendToTracking(this,
-					MotherlodeNetwork.networkWrapper.getPacketFrom(
+					MotherlodeNetwork.NETWORK.getPacketFrom(
 							new PacketEntityFlyingInsectUpdate(this.isSitting, this.facing.ordinal(), this.getEntityId())));
 		}
 	}

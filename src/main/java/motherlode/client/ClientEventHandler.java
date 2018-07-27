@@ -33,12 +33,12 @@ public class ClientEventHandler {
 	public static void onEvent(InputEvent.KeyInputEvent event) {
 		if (Minecraft.getMinecraft().gameSettings.keyBindJump.isKeyDown()) {
 			if (!lastJumping) {
-				MotherlodeNetwork.networkWrapper.sendToServer(new PacketClientJump(true));
+				MotherlodeNetwork.NETWORK.sendToServer(new PacketClientJump(true));
 			}
 			lastJumping = true;
 		} else {
 			if (lastJumping) {
-				MotherlodeNetwork.networkWrapper.sendToServer(new PacketClientJump(false));
+				MotherlodeNetwork.NETWORK.sendToServer(new PacketClientJump(false));
 			}
 			lastJumping = false;
 		}
@@ -64,7 +64,7 @@ public class ClientEventHandler {
 			if (event.getGui() instanceof GuiInventory && !Minecraft.getMinecraft().player.isSneaking() /*&& !Minecraft.getMinecraft().player.isCreative()*/) {
 				event.setCanceled(true);
 				PacketInventoryOpen packet = new PacketInventoryOpen();
-				MotherlodeNetwork.networkWrapper.sendToServer(packet);
+				MotherlodeNetwork.NETWORK.sendToServer(packet);
 			}
 		}
 	}

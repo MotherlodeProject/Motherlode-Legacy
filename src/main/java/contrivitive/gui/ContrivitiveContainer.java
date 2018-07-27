@@ -123,9 +123,8 @@ public class ContrivitiveContainer extends Container {
 
 	@Override
 	public void addListener(final IContainerListener listener) {
-		if (!page.justPlayerInv) {
+		//if (!page.justPlayerInv) 
 			super.addListener(listener);
-		}
 
 		int i = 0;
 		if (!this.shortValues.isEmpty())
