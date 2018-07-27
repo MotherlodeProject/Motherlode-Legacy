@@ -8,6 +8,7 @@ import it.unimi.dsi.fastutil.ints.IntList;
 import it.unimi.dsi.fastutil.ints.IntLists;
 import net.minecraft.client.util.RecipeItemHelper;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.oredict.OreDictionary;
@@ -54,7 +55,7 @@ public class OreIngredient implements IIngredient {
 				i.add(RecipeItemHelper.pack(s));
 			matches = IntLists.unmodifiable(i);
 		}
-		return matches.contains(RecipeItemHelper.pack(input)) || matches.contains(RecipeItemHelper.pack(new ItemStack(input.getItem(), 1, OreDictionary.WILDCARD_VALUE)));
+		return matches.contains(RecipeItemHelper.pack(input)) || matches.contains(Item.REGISTRY.getIDForObject(input.getItem()) << 16 | OreDictionary.WILDCARD_VALUE & 65535);
 	}
 
 	@Override
