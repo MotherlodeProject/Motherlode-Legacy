@@ -4,7 +4,7 @@ import contrivitive.gui.GuiContainerBlueprint;
 import contrivitive.gui.element.Element;
 import motherlode.recipe.IMotherlodeRecipe;
 import motherlode.recipe.MotherlodeRecipes;
-import motherlode.recipe.ingredient.IRecipeIngredient;
+import motherlode.recipe.ingredient.IIngredient;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 

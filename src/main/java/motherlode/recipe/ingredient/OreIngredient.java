@@ -8,7 +8,7 @@ import net.minecraftforge.oredict.OreDictionary;
 
 import java.util.List;
 
-public class OreIngredient implements IRecipeIngredient {
+public class OreIngredient implements IIngredient {
 	String oreDict;
 	int amount;
 	NonNullList<ItemStack> displayStacks = NonNullList.create();

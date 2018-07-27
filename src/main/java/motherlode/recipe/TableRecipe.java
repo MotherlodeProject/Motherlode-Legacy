@@ -1,6 +1,6 @@
 package motherlode.recipe;
 
-import motherlode.recipe.ingredient.IRecipeIngredient;
+import motherlode.recipe.ingredient.IIngredient;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import scala.actors.threadpool.Arrays;
@@ -11,10 +11,10 @@ public class TableRecipe implements IMotherlodeRecipe {
 	IRecipeTable table;
 	ResourceLocation registryName;
 	ItemStack output;
-	List<IRecipeIngredient> inputs;
+	List<IIngredient> inputs;
 
 	@SuppressWarnings("unchecked")
-	public TableRecipe(IRecipeTable table, ResourceLocation registryName, ItemStack output, IRecipeIngredient... inputs) {
+	public TableRecipe(IRecipeTable table, ResourceLocation registryName, ItemStack output, IIngredient... inputs) {
 		this.table = table;
 		this.registryName = registryName;
 		this.output = output;
@@ -27,7 +27,7 @@ public class TableRecipe implements IMotherlodeRecipe {
 	}
 
 	@Override
-	public List<IRecipeIngredient> getInputs() {
+	public List<IIngredient> getInputs() {
 		return inputs;
 	}
 

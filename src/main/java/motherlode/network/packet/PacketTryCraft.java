@@ -3,7 +3,7 @@ package motherlode.network.packet;
 import io.netty.buffer.ByteBuf;
 import motherlode.recipe.IMotherlodeRecipe;
 import motherlode.recipe.MotherlodeRecipes;
-import motherlode.recipe.ingredient.IRecipeIngredient;
+import motherlode.recipe.ingredient.IIngredient;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -48,8 +48,8 @@ public class PacketTryCraft implements IMessage {
 			IMotherlodeRecipe recipe = MotherlodeRecipes.CRAFTING_RECIPES.get(new ResourceLocation(message.registryName));
 			if (player.inventory.getItemStack().isEmpty() || (player.inventory.getItemStack().isItemEqual(recipe.getOutput()) && player.inventory.getItemStack().getCount() + recipe.getOutput().getCount() <= recipe.getOutput().getMaxStackSize())) {
 				boolean hasAllIngredients = true;
-				HashMap<IRecipeIngredient, ItemStack> playerIngredients = new HashMap<>();
-				for (IRecipeIngredient ingredient : recipe.getInputs()) {
+				HashMap<IIngredient, ItemStack> playerIngredients = new HashMap<>();
+				for (IIngredient ingredient : recipe.getInputs()) {
 					boolean hasIngredient = false;
 					for (ItemStack stack : player.inventory.mainInventory) {
 						if (ingredient.isStackGreaterOrEqual(stack)) {
@@ -62,7 +62,7 @@ public class PacketTryCraft implements IMessage {
 					}
 				}
 				if (hasAllIngredients) {
-					for (IRecipeIngredient ingredient : playerIngredients.keySet()) {
+					for (IIngredient ingredient : playerIngredients.keySet()) {
 						player.inventory.mainInventory.get(player.inventory.mainInventory.indexOf(playerIngredients.get(ingredient))).shrink(ingredient.getAmount());
 					}
 					if (player.inventory.getItemStack().isItemEqual(recipe.getOutput())) {

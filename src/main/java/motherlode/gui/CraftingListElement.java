@@ -8,7 +8,7 @@ import motherlode.network.MotherlodeNetwork;
 import motherlode.network.packet.PacketTryCraft;
 import motherlode.recipe.IMotherlodeRecipe;
 import motherlode.recipe.MotherlodeRecipes;
-import motherlode.recipe.ingredient.IRecipeIngredient;
+import motherlode.recipe.ingredient.IIngredient;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
@@ -39,7 +39,7 @@ public class CraftingListElement extends Element {
 			craftableRecipes.clear();
 			for (IMotherlodeRecipe recipe : MotherlodeRecipes.CRAFTING_RECIPES.values()) {
 				boolean hasAllIngredients = true;
-				for (IRecipeIngredient ingredient : recipe.getInputs()) {
+				for (IIngredient ingredient : recipe.getInputs()) {
 					boolean hasIngredient = false;
 					for (ItemStack stack : mc.player.inventory.mainInventory) {
 						if (ingredient.isStackGreaterOrEqual(stack)) {
@@ -65,8 +65,8 @@ public class CraftingListElement extends Element {
 				EntityPlayer player = Minecraft.getMinecraft().player;
 				if (player.inventory.getItemStack().isEmpty() || (player.inventory.getItemStack().isItemEqual(recipe.getOutput()) && player.inventory.getItemStack().getCount() + recipe.getOutput().getCount() <= recipe.getOutput().getMaxStackSize())) {
 					boolean hasAllIngredients = true;
-					HashMap<IRecipeIngredient, ItemStack> playerIngredients = new HashMap<>();
-					for (IRecipeIngredient ingredient : recipe.getInputs()) {
+					HashMap<IIngredient, ItemStack> playerIngredients = new HashMap<>();
+					for (IIngredient ingredient : recipe.getInputs()) {
 						boolean hasIngredient = false;
 						for (ItemStack stack : player.inventory.mainInventory) {
 							if (ingredient.isStackGreaterOrEqual(stack)) {
@@ -79,7 +79,7 @@ public class CraftingListElement extends Element {
 						}
 					}
 					if (hasAllIngredients) {
-						for (IRecipeIngredient ingredient : playerIngredients.keySet()) {
+						for (IIngredient ingredient : playerIngredients.keySet()) {
 							player.inventory.mainInventory.get(player.inventory.mainInventory.indexOf(playerIngredients.get(ingredient))).shrink(ingredient.getAmount());
 						}
 						if (player.inventory.getItemStack().isItemEqual(recipe.getOutput())) {
@@ -132,7 +132,7 @@ public class CraftingListElement extends Element {
 				RenderUtil.drawString(gui, String.valueOf(recipe.getOutput().getCount()), x + countX, y + i + 11F, 1, 0xFFFFFF, true);
 			}
 			int drawX = 25;
-			for (IRecipeIngredient ingredient : recipe.getInputs()) {
+			for (IIngredient ingredient : recipe.getInputs()) {
 				GlStateManager.pushMatrix();
 				float scale = 0.5F;
 				GlStateManager.scale(scale, scale, 1);
