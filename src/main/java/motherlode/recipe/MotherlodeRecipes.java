@@ -61,6 +61,7 @@ public class MotherlodeRecipes {
 		addRecipe("test4", new ItemStack(Items.CHICKEN), RecipeTables.STONE, new NBTIngredient(Items.MAGMA_CREAM, tag, false), new OreIngredient("blockEmerald", 80));
 		addRecipe("test5", new ItemStack(Items.COOKED_CHICKEN), RecipeTables.STONE, new NBTIngredient(Items.MAGMA_CREAM, tag, true), new OreIngredient("blockEmerald", 80));
 		addRecipe("test6", new ItemStack(Items.QUARTZ, 64), RecipeTables.STONE, new OreIngredient("blockDiamond", 128), new SimpleIngredient(Items.STICK, 630));
+		addRecipe("test7", new ItemStack(Items.ACACIA_BOAT), new SimpleIngredient(Items.WATER_BUCKET, 4));
 	}
 
 	private static void addRecipe(String name, ItemStack output, IIngredient... input) {
