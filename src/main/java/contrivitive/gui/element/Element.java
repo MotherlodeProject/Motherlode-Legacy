@@ -25,7 +25,7 @@ public class Element {
 	public boolean isPressingLast = false;
 	public boolean isReleasingLast = false;
 	public boolean buttonClick = true;
-	public InteractionAction drawTooltip = (element, gui, mouseX, mouseY) -> {
+	public InteractionAction drawTooltip = (element, gui, coordinates, mouseX, mouseY) -> {
 	};
 	public List<InteractionAction> hoverActions = new ArrayList<>();
 	public List<InteractionAction> dragActions = new ArrayList<>();
@@ -69,7 +69,7 @@ public class Element {
 	}
 
 	@SideOnly(Side.CLIENT)
-	public void renderUpdate(GuiScreen gui) {
+	public void renderUpdate(IContrivitiveGui gui) {
 		isHoveringLast = isHovering;
 		isPressingLast = isPressing;
 		isDraggingLast = isDragging;
@@ -78,7 +78,7 @@ public class Element {
 
 	@SideOnly(Side.CLIENT)
 	public interface InteractionAction {
-		void execute(Element element, IContrivitiveGui gui, int mouseX, int mouseY);
+		void execute(Element element, IContrivitiveGui gui, Coordinate coordinate, int mouseX, int mouseY);
 	}
 
 	@SideOnly(Side.CLIENT)

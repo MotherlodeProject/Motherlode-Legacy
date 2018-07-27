@@ -118,14 +118,26 @@ public class RenderUtil {
 	}
 
 	public static boolean isInRect(IContrivitiveGui gui, int x, int y, int xSize, int ySize, int mouseX, int mouseY) {
-		x = adjustX(gui, x);
-		y = adjustY(gui, y);
+		return isInRect(gui, x, y, xSize, ySize, mouseX, mouseY, true);
+	}
+
+	public static boolean isInRect(IContrivitiveGui gui, int x, int y, int xSize, int ySize, int mouseX, int mouseY, boolean adjust) {
+		if (adjust) {
+			x = adjustX(gui, x);
+			y = adjustY(gui, y);
+		}
 		return ((mouseX >= x && mouseX <= x + xSize) && (mouseY >= y && mouseY <= y + ySize));
 	}
 
 	public static void drawGradientRect(IContrivitiveGui gui, int x, int y, int width, int height, int startColor, int endColor) {
-		x = adjustX(gui, x);
-		y = adjustY(gui, y);
+		drawGradientRect(gui, x, y, width, height, startColor, endColor, true);
+	}
+
+	public static void drawGradientRect(IContrivitiveGui gui, int x, int y, int width, int height, int startColor, int endColor, boolean adjust) {
+		if (adjust) {
+			x = adjustX(gui, x);
+			y = adjustY(gui, y);
+		}
 
 		int left = x;
 		int top = y;
@@ -195,7 +207,7 @@ public class RenderUtil {
 		y = adjustY(gui, y);
 		GlStateManager.pushMatrix();
 		GlStateManager.scale(scale, scale, 1);
-		GlStateManager.translate(0  , 0, 1000);
+		GlStateManager.translate(0, 0, 1000);
 		gui.getGui().mc.fontRenderer.drawString(string, x / scale, y / scale, color, shadow);
 		GlStateManager.popMatrix();
 	}

@@ -77,7 +77,7 @@ public class ContrivitiveGuiScreen extends GuiScreen implements IContrivitiveGui
 			if (RenderUtil.isInRect(this, element.coordinate.x, element.coordinate.y, element.element.width, element.element.height, mouseX, mouseY)) {
 				element.element.isHovering = true;
 				for (Element.InteractionAction hoverAction : element.element.hoverActions) {
-					hoverAction.execute(element.element, this, mouseX, mouseY);
+					hoverAction.execute(element.element, this, element.coordinate, mouseX, mouseY);
 				}
 				for (PositionedElement e : elements) {
 					if (e != element) {
@@ -94,7 +94,7 @@ public class ContrivitiveGuiScreen extends GuiScreen implements IContrivitiveGui
 		for (int i = elements.size() - 1; i >= 0; i--) {
 			PositionedElement element = elements.get(i);
 			if (RenderUtil.isInRect(this, element.coordinate.x, element.coordinate.y, element.element.width, element.element.height, mouseX, mouseY)) {
-				element.element.drawTooltip.execute(element.element, this, mouseX, mouseY);
+				element.element.drawTooltip.execute(element.element, this, element.coordinate, mouseX, mouseY);
 				break;
 			}
 		}
@@ -109,7 +109,7 @@ public class ContrivitiveGuiScreen extends GuiScreen implements IContrivitiveGui
 				if (RenderUtil.isInRect(this, element.coordinate.x, element.coordinate.y, element.element.width, element.element.height, mouseX, mouseY)) {
 					element.element.isPressing = true;
 					for (Element.InteractionAction startPressAction : element.element.startPressActions) {
-						startPressAction.execute(element.element, this, mouseX, mouseY);
+						startPressAction.execute(element.element, this, element.coordinate, mouseX, mouseY);
 					}
 					for (PositionedElement e : elements) {
 						if (e != element) {
@@ -133,7 +133,7 @@ public class ContrivitiveGuiScreen extends GuiScreen implements IContrivitiveGui
 				if (RenderUtil.isInRect(this, element.coordinate.x, element.coordinate.y, element.element.width, element.element.height, mouseX, mouseY)) {
 					element.element.isDragging = true;
 					for (Element.InteractionAction dragAction : element.element.dragActions) {
-						dragAction.execute(element.element, this, mouseX, mouseY);
+						dragAction.execute(element.element, this, element.coordinate, mouseX, mouseY);
 					}
 					for (PositionedElement e : elements) {
 						if (e != element) {
@@ -157,11 +157,11 @@ public class ContrivitiveGuiScreen extends GuiScreen implements IContrivitiveGui
 				if (RenderUtil.isInRect(this, element.coordinate.x, element.coordinate.y, element.element.width, element.element.height, mouseX, mouseY)) {
 					element.element.isReleasing = true;
 					for (Element.InteractionAction releaseAction : element.element.releaseActions) {
-						releaseAction.execute(element.element, this, mouseX, mouseY);
+						releaseAction.execute(element.element, this, element.coordinate, mouseX, mouseY);
 					}
 					if (element.element.isPressing) {
 						for (Element.InteractionAction pressAction : element.element.pressActions) {
-							pressAction.execute(element.element, this, mouseX, mouseY);
+							pressAction.execute(element.element, this, element.coordinate, mouseX, mouseY);
 						}
 						if (!element.element.pressActions.isEmpty() && element.element.buttonClick) {
 							Minecraft.getMinecraft().getSoundHandler().playSound(PositionedSoundRecord.getMasterRecord(SoundEvents.UI_BUTTON_CLICK, 1.0F));

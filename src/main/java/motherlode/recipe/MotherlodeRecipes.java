@@ -8,6 +8,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.oredict.OreDictionary;
 
 import java.util.HashMap;
 
@@ -22,10 +23,16 @@ public class MotherlodeRecipes {
 
 	public static void addCraftingRecipes() {
 		CRAFTING_RECIPES.clear();
-		addBasicRecipe("crafting_table", new ItemStack(Blocks.CRAFTING_TABLE), new ItemIngredient(Blocks.PLANKS, 4, 0));
 		addBasicRecipe("oak_planks", new ItemStack(Blocks.PLANKS, 4, 0), new ItemIngredient(Blocks.LOG, 1, 0));
+		addBasicRecipe("crafting_table", new ItemStack(Blocks.CRAFTING_TABLE), new ItemIngredient(Blocks.PLANKS, 4, 0));
 		addBasicRecipe("sticks", new ItemStack(Items.STICK, 4), new OreIngredient("plankWood", 2));
-		addBasicRecipe("golden_sword", new ItemStack(Items.GOLDEN_SWORD), new OreIngredient("ingotGold", 2), new OreIngredient("stickWood"));
+		addBasicRecipe("wooden_pressure_plate", new ItemStack(Blocks.WOODEN_PRESSURE_PLATE), new OreIngredient("plankWood", 1));
+		addBasicRecipe("wooden_button", new ItemStack(Blocks.WOODEN_BUTTON), new OreIngredient("plankWood", 2));
+		addBasicRecipe("torch", new ItemStack(Blocks.TORCH, 4), new ItemIngredient(Items.COAL, 1, OreDictionary.WILDCARD_VALUE), new OreIngredient("stickWood"));
+		addBasicRecipe("stone_bricks", new ItemStack(Blocks.STONEBRICK, 4), new ItemIngredient(Blocks.STONE, 4));
+		addBasicRecipe("stone_bricks_slab", new ItemStack(Blocks.STONE_SLAB, 2, 5), new ItemIngredient(Blocks.STONEBRICK, 1));
+		addBasicRecipe("stone_pressure_plate", new ItemStack(Blocks.STONE_PRESSURE_PLATE), new ItemIngredient(Blocks.STONE, 2));
+		addBasicRecipe("stone_button", new ItemStack(Blocks.STONE_BUTTON), new ItemIngredient(Blocks.STONE, 1));
 	}
 
 	public static void addSmeltingRecipes() {

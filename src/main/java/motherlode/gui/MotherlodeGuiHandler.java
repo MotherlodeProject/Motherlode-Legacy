@@ -16,7 +16,7 @@ public class MotherlodeGuiHandler implements IGuiHandler {
 	@Nullable
 	@Override
 	public Object getServerGuiElement(int id, EntityPlayer player, World world, int x, int y, int z) {
-		GuiContainerBlueprint blueprint = MLPlayerInv.getCTInventoryBlueprint(player);
+		GuiContainerBlueprint blueprint = MLPlayerInv.getCTInventoryBlueprint();
 		if (id == 0) {
 			return new ContrivitiveContainer(blueprint, "main", player);
 		}
@@ -27,7 +27,7 @@ public class MotherlodeGuiHandler implements IGuiHandler {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public Object getClientGuiElement(int id, EntityPlayer player, World world, int x, int y, int z) {
-		GuiContainerBlueprint blueprint = MLPlayerInv.getCTInventoryBlueprint(player);
+		GuiContainerBlueprint blueprint = MLPlayerInv.getCTInventoryBlueprint();
 		if (id == 0) {
 			return new ContrivitiveGuiContainer(new ContrivitiveContainer(blueprint, "main", player));
 		}

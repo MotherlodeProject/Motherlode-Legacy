@@ -14,7 +14,7 @@ import java.util.List;
 import static motherlode.recipe.MotherlodeRecipes.addCraftingRecipes;
 
 public class MLPlayerInv {
-	public static GuiContainerBlueprint getCTInventoryBlueprint(EntityPlayer player) {
+	public static GuiContainerBlueprint getCTInventoryBlueprint() {
 		addCraftingRecipes();
 		int inventoryWidth = 176;
 		int inventoryHeight = 187;
@@ -40,28 +40,7 @@ public class MLPlayerInv {
 		blueprint.at(inventoryX + 50, inventoryY + 80, new PlayerEntityElement(28));
 		int craftingX = 0;
 		int craftingY = 8;
-		blueprint.at(craftingX, craftingY, new Element(MLSprites.CRAFTING_BACKGROUND.width, MLSprites.CRAFTING_BACKGROUND.height).sprite(MLSprites.CRAFTING_BACKGROUND));
-		List<IMotherlodeRecipe> playerCraftableRecipes = new ArrayList<>();
-		playerCraftableRecipes.addAll(MotherlodeRecipes.CRAFTING_RECIPES.values());
-		int i = 23;
-		for (IMotherlodeRecipe recipe : playerCraftableRecipes) {
-			boolean hasAllIngredients = true;
-			for (IRecipeIngredient ingredient : recipe.getInputs()) {
-				boolean hasIngredient = false;
-				for (ItemStack stack : player.inventory.mainInventory) {
-					if (ingredient.isStackGreaterOrEqual(stack)) {
-						hasIngredient = true;
-					}
-				}
-				if (!hasIngredient) {
-					hasAllIngredients = false;
-				}
-			}
-			if (hasAllIngredients) {
-				blueprint.at(craftingX, craftingY + i, new CraftingSlotElement(recipe));
-				i += 20;
-			}
-		}
+		blueprint.at(craftingX, craftingY, new CraftingListElement());
 		return blueprint;
 	}
 }

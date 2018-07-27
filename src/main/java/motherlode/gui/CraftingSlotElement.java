@@ -31,7 +31,7 @@ public class CraftingSlotElement extends Element {
 	@Override
 	public void initClient() {
 		super.initClient();
-		pressActions.add((element, gui, mouseX, mouseY) -> {
+		pressActions.add((element, gui, coordinate, mouseX, mouseY) -> {
 				MotherlodeNetwork.networkWrapper.sendToServer(new PacketTryCraft(recipe.getRegistryName().toString()));
 				EntityPlayer player = Minecraft.getMinecraft().player;
 				if (player.inventory.getItemStack().isEmpty() || (player.inventory.getItemStack().isItemEqual(recipe.getOutput()) && player.inventory.getItemStack().getCount() + recipe.getOutput().getCount() <= recipe.getOutput().getMaxStackSize())) {
@@ -62,7 +62,6 @@ public class CraftingSlotElement extends Element {
 						}
 					}
 				}
-				MotherlodeNetwork.networkWrapper.sendToServer(new PacketInventoryOpen());
 			}
 		);
 	}

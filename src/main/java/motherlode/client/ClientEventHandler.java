@@ -60,7 +60,7 @@ public class ClientEventHandler {
 	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
 	public static void onInventoryOpen(GuiOpenEvent event) {
-		if (false) {
+		if (true) {
 			if (event.getGui() instanceof GuiInventory && !Minecraft.getMinecraft().player.isSneaking() /*&& !Minecraft.getMinecraft().player.isCreative()*/) {
 				event.setCanceled(true);
 				PacketInventoryOpen packet = new PacketInventoryOpen();
