@@ -1,49 +1,75 @@
 package motherlode.recipe.ingredient;
 
-import motherlode.util.OreDictUtil;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.NonNullList;
-import net.minecraftforge.oredict.OreDictionary;
-
 import java.util.List;
 
+import com.google.common.base.Preconditions;
+import com.google.common.base.Strings;
+import com.google.common.collect.ImmutableList;
+
+import it.unimi.dsi.fastutil.ints.IntArrayList;
+import it.unimi.dsi.fastutil.ints.IntList;
+import it.unimi.dsi.fastutil.ints.IntLists;
+import net.minecraft.client.util.RecipeItemHelper;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
+
 public class OreIngredient implements IIngredient {
-	String oreDict;
-	int amount;
-	NonNullList<ItemStack> displayStacks = NonNullList.create();
 
-	public OreIngredient(String oreDict) {
-		this(oreDict, 1);
+	/**
+	 * The matching ore dict tag.
+	 */
+	String ore;
+
+	/**
+	 * The required amount of items.
+	 */
+	int count;
+
+	/**
+	 * Display stacks.  Not loaded until first invocation of getDisplayStacks.
+	 */
+	ImmutableList<ItemStack> display;
+
+	/**
+	 * Packed matches, since OreDict ignores NBT anyway.  Not loaded until first invocation of apply.
+	 */
+	IntList matches;
+
+	public OreIngredient(String ore) {
+		this(ore, 1);
 	}
 
-	public OreIngredient(String oreDict, int amount) {
-		this.oreDict = oreDict;
-		this.amount = amount;
+	public OreIngredient(String ore, int count) {
+		Preconditions.checkArgument(!Strings.isNullOrEmpty(ore), "Cannot create an OreIngredient with a null or empty string!");
+		this.ore = ore;
+		this.count = count;
 	}
 
 	@Override
-	public boolean isStackGreaterOrEqual(ItemStack stack) {
-		return stack.getCount() >= amount && OreDictUtil.isOre(stack, oreDict);
-	}
-
-	@Override
-	public List<ItemStack> getItemsForDisplay() {
-		if (displayStacks.isEmpty()) {
-			List<ItemStack> ores = OreDictionary.getOres(oreDict);
-			for (ItemStack stack : ores) {
-				if (stack.getMetadata() == OreDictionary.WILDCARD_VALUE) {
-					stack.getItem().getSubItems(CreativeTabs.SEARCH, displayStacks);
-				} else {
-					displayStacks.add(stack);
-				}
-			}
+	public boolean apply(ItemStack input) {
+		if (matches == null) {
+			IntList i = new IntArrayList();
+			for (ItemStack s : OreDictionary.getOres(ore))
+				i.add(RecipeItemHelper.pack(s));
+			matches = IntLists.unmodifiable(i);
 		}
-		return displayStacks;
+		return matches.contains(RecipeItemHelper.pack(input));
 	}
 
 	@Override
-	public int getAmount() {
-		return amount;
+	public List<ItemStack> getDisplayStacks() {
+		if (display == null) display = ImmutableList.copyOf(OreDictionary.getOres(ore, false));
+		return display;
 	}
+
+	@Override
+	public int getCount() {
+		return count;
+	}
+
+	@Override
+	public String toString() {
+		return "OreIngredient - Ore: " + ore;
+	}
+
 }

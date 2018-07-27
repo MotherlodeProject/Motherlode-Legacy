@@ -1,7 +1,5 @@
 package motherlode.recipe;
 
-import javax.annotation.Nullable;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -13,14 +11,9 @@ import net.minecraft.init.Blocks;
  */
 public enum RecipeTable implements IRecipeTable {
 
-	NONE,
 	CRAFTING_TABLE(Blocks.CRAFTING_TABLE);
 
 	IBlockState state;
-
-	RecipeTable() {
-		state = null;
-	}
 
 	RecipeTable(Block block) {
 		this.state = block.getDefaultState();
@@ -31,8 +24,12 @@ public enum RecipeTable implements IRecipeTable {
 	}
 
 	@Override
-	@Nullable
-	public IBlockState getState() {
+	public IBlockState getDisplayState() {
 		return state;
+	}
+
+	@Override
+	public boolean apply(IBlockState input) {
+		return input == state;
 	}
 }

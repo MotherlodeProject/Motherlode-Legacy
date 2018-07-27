@@ -1,15 +1,9 @@
 package motherlode.recipe.ingredient;
 
-import java.util.List;
-
-import it.unimi.dsi.fastutil.ints.IntList;
-import it.unimi.dsi.fastutil.ints.IntLists;
 import net.minecraft.block.Block;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.oredict.OreDictionary;
 
 /**
  * An Ingredient which can match NBT, either lenient or strictly.
@@ -28,93 +22,48 @@ public class NBTIngredient extends SimpleIngredient {
 	 */
 	boolean exactMatch;
 
-	public NBTIngredient(Block block) {
-		this(block, 0);
+	public NBTIngredient(Block block, NBTTagCompound tag, boolean exactMatch) {
+		this(block, 0, tag, exactMatch);
 	}
 
-	public NBTIngredient(Block block, int amount) {
-		this(block, amount, 0);
+	public NBTIngredient(Item item, NBTTagCompound tag, boolean exactMatch) {
+		this(item, 0, tag, exactMatch);
 	}
 
-	public NBTIngredient(Block block, int amount, int meta) {
-		this(block, amount, meta, null, false);
+	public NBTIngredient(Block block, int meta, NBTTagCompound tag, boolean exactMatch) {
+		this(Item.getItemFromBlock(block), meta, tag, exactMatch);
 	}
 
-	public NBTIngredient(Block block, int amount, int meta, NBTTagCompound tag, boolean exactMatch) {
-		this(Item.getItemFromBlock(block), amount, meta, tag, exactMatch);
-	}
-
-	public NBTIngredient(Item item) {
-		this(item, 0);
-	}
-
-	public NBTIngredient(Item item, int amount) {
-		this(item, amount, 0);
-	}
-
-	public NBTIngredient(Item item, int amount, int meta) {
-		this(item, amount, meta, null, false);
-	}
-
-	public NBTIngredient(Item item, int amount, int meta, NBTTagCompound tag, boolean exactMatch) {
-		this(new ItemStack(item, amount, meta), tag, exactMatch);
+	public NBTIngredient(Item item, int meta, NBTTagCompound tag, boolean exactMatch) {
+		this(new ItemStack(item, meta), tag, exactMatch);
 	}
 
 	public NBTIngredient(ItemStack stack, NBTTagCompound tag, boolean exactMatch) {
 		super(stack);
 		this.tag = tag;
 		this.exactMatch = exactMatch;
+		for (ItemStack s : this.getDisplayStacks())
+			s.setTagCompound(tag);
 	}
 
 	@Override
 	public boolean apply(ItemStack input) {
-		// TODO Auto-generated method stub
-		return false;
+		NBTTagCompound tag = input.getTagCompound();
+		if (exactMatch) return super.apply(input) && this.tag.equals(tag);
+		else return tag != null && super.apply(input) && matchesExistingTags(this.tag, tag);
 	}
 
 	@Override
-	public boolean isSimple() {
-		return false;
+	public String toString() {
+		return String.format("NBTIngredient - Stack: %s, NBT: %s", stack, tag);
 	}
 
-	@Override
-	public IntList getMatchingStacksPacked() {
-		return IntLists.EMPTY_LIST;
-	}
-
-	@Override
-	public boolean isStackGreaterOrEqual(ItemStack stack) {
-		if (stack.getItem() == item && stack.getMetadata() == meta && stack.getCount() >= amount) {
-			if (requiredNBT != null) {
-				if (stack.getTagCompound() != null) {
-					if (exactTagMatch) {
-						return stack.getTagCompound().equals(requiredNBT);
-					} else {
-						for (String requiredKey : requiredNBT.getKeySet()) {
-							if (!stack.getTagCompound().getKeySet().contains(requiredKey)) { return false; }
-							if (stack.getTagCompound().getTag(requiredKey).equals(requiredNBT.getTag(requiredKey))) { return false; }
-						}
-						return true;
-					}
-				}
-			} else {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	@Override
-	public List<ItemStack> getItemsForDisplay() {
-		if (displayStacks.isEmpty()) {
-			if (meta == OreDictionary.WILDCARD_VALUE) {
-				item.getSubItems(CreativeTabs.SEARCH, displayStacks);
-			} else {
-				ItemStack stack = new ItemStack(item, amount, meta);
-				stack.setTagCompound(requiredNBT);
-				displayStacks.add(stack);
-			}
-		}
-		return displayStacks;
+	/**
+	 * @return If the input param contains all tags with the same values as matcher.  Other tags on input will be ignored, only those present on matcher are checked for.
+	 */
+	public static boolean matchesExistingTags(NBTTagCompound matcher, NBTTagCompound input) {
+		for (String s : matcher.getKeySet())
+			if (!input.hasKey(s) || !matcher.getTag(s).equals(input.getTag(s))) return false;
+		return true;
 	}
 }

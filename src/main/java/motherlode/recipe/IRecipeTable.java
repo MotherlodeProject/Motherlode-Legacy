@@ -1,6 +1,6 @@
 package motherlode.recipe;
 
-import javax.annotation.Nullable;
+import com.google.common.base.Predicate;
 
 import net.minecraft.block.state.IBlockState;
 
@@ -9,11 +9,10 @@ import net.minecraft.block.state.IBlockState;
  * @author Shadows
  *
  */
-public interface IRecipeTable {
+public interface IRecipeTable extends Predicate<IBlockState> {
 
 	/**
-	 * The state that represents this table.  May be null.
+	 * The state that best represents this table.
 	 */
-	@Nullable
-	public IBlockState getState();
+	public IBlockState getDisplayState();
 }

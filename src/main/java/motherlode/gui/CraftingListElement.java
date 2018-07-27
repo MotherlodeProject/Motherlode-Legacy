@@ -1,5 +1,9 @@
 package motherlode.gui;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import contrivitive.gui.IContrivitiveGui;
 import contrivitive.gui.element.Element;
 import contrivitive.gui.element.sprite.ItemStackSprite;
@@ -11,19 +15,16 @@ import motherlode.recipe.MotherlodeRecipes;
 import motherlode.recipe.ingredient.IIngredient;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
 public class CraftingListElement extends Element {
+
 	List<IMotherlodeRecipe> craftableRecipes = new ArrayList<>();
 	int hoverIndex = -1;
-	float counter = 0;
+	int counter = 0;
+	float ticks = 0;
 
 	public CraftingListElement() {
 		super(MLSprites.CRAFTING_BACKGROUND.width, MLSprites.CRAFTING_BACKGROUND.height);
@@ -37,60 +38,15 @@ public class CraftingListElement extends Element {
 		Minecraft mc = Minecraft.getMinecraft();
 		updateActions.add((element, gui) -> {
 			craftableRecipes.clear();
-			for (IMotherlodeRecipe recipe : MotherlodeRecipes.CRAFTING_RECIPES.values()) {
-				boolean hasAllIngredients = true;
-				for (IIngredient ingredient : recipe.getInputs()) {
-					boolean hasIngredient = false;
-					for (ItemStack stack : mc.player.inventory.mainInventory) {
-						if (ingredient.isStackGreaterOrEqual(stack)) {
-							hasIngredient = true;
-						}
-					}
-					if (!hasIngredient) {
-						hasAllIngredients = false;
-					}
-				}
-				if (hasAllIngredients) {
-					craftableRecipes.add(recipe);
-				}
+			for (IMotherlodeRecipe recipe : MotherlodeRecipes.getRecipeRegistry()) {
+				if (recipe.matches(mc.player.inventory.mainInventory, mc.player, Collections.emptyList()) != null) craftableRecipes.add(recipe);
 			}
-			if (!isHovering) {
-				hoverIndex = -1;
-			}
+			if (!isHovering) hoverIndex = -1;
 		});
 		pressActions.add((element, gui, coordinates, mouseX, mouseY) -> {
 			if (hoverIndex >= 0 && hoverIndex < craftableRecipes.size()) {
 				IMotherlodeRecipe recipe = craftableRecipes.get(hoverIndex);
-				MotherlodeNetwork.networkWrapper.sendToServer(new PacketTryCraft(recipe.getRegistryName().toString()));
-				EntityPlayer player = Minecraft.getMinecraft().player;
-				if (player.inventory.getItemStack().isEmpty() || (player.inventory.getItemStack().isItemEqual(recipe.getOutput()) && player.inventory.getItemStack().getCount() + recipe.getOutput().getCount() <= recipe.getOutput().getMaxStackSize())) {
-					boolean hasAllIngredients = true;
-					HashMap<IIngredient, ItemStack> playerIngredients = new HashMap<>();
-					for (IIngredient ingredient : recipe.getInputs()) {
-						boolean hasIngredient = false;
-						for (ItemStack stack : player.inventory.mainInventory) {
-							if (ingredient.isStackGreaterOrEqual(stack)) {
-								hasIngredient = true;
-								playerIngredients.put(ingredient, stack);
-							}
-						}
-						if (!hasIngredient) {
-							hasAllIngredients = false;
-						}
-					}
-					if (hasAllIngredients) {
-						for (IIngredient ingredient : playerIngredients.keySet()) {
-							player.inventory.mainInventory.get(player.inventory.mainInventory.indexOf(playerIngredients.get(ingredient))).shrink(ingredient.getAmount());
-						}
-						if (player.inventory.getItemStack().isItemEqual(recipe.getOutput())) {
-							ItemStack stack = player.inventory.getItemStack();
-							stack.grow(recipe.getOutput().getCount());
-							player.inventory.setItemStack(stack);
-						} else {
-							player.inventory.setItemStack(recipe.getOutput().copy());
-						}
-					}
-				}
+				MotherlodeNetwork.networkWrapper.sendToServer(new PacketTryCraft(recipe));
 			}
 		});
 		hoverActions.add((element, gui, coordinate, mouseX, mouseY) -> {
@@ -110,11 +66,14 @@ public class CraftingListElement extends Element {
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public void draw(IContrivitiveGui gui, int x, int y, int mouseX, int mouseY, float elapsedTicks) {
+	public void draw(IContrivitiveGui<?, ?> gui, int x, int y, int mouseX, int mouseY, float elapsedTicks) {
 		super.draw(gui, x, y, mouseX, mouseY, elapsedTicks);
 		for (IMotherlodeRecipe recipe : craftableRecipes) {
 			int i = 23 + 20 * craftableRecipes.indexOf(recipe);
-			counter += elapsedTicks;
+			if ((ticks += elapsedTicks) > 50F) {
+				ticks = 0;
+				counter++;
+			}
 			GlStateManager.color(1, 1, 1, 1);
 			if (hoverIndex == craftableRecipes.indexOf(recipe)) {
 				MLSprites.HOVERED_CRAFTING_SLOT.draw(gui, x, y + i, elapsedTicks);
@@ -136,17 +95,15 @@ public class CraftingListElement extends Element {
 				GlStateManager.pushMatrix();
 				float scale = 0.5F;
 				GlStateManager.scale(scale, scale, 1);
-				int cycle = (int) Math.floor(counter) % ingredient.getItemsForDisplay().size() * 20;
-				//			System.out.println(cycle);
-				ItemStack stack = ingredient.getItemsForDisplay().get(0);
+				ItemStack stack = ingredient.getDisplayStacks().get(counter % ingredient.getDisplayStacks().size());
 				new ItemStackSprite(stack, scale).draw(gui, x + drawX, y + i + 9, elapsedTicks);
 				GlStateManager.popMatrix();
 				float ingCtX = drawX + 5.5F;
-				if (ingredient.getAmount() > 10) {
+				if (ingredient.getCount() > 10) {
 					ingCtX -= 3F;
 				}
-				if (ingredient.getAmount() > 1) {
-					RenderUtil.drawString(gui, String.valueOf(ingredient.getAmount()), x + ingCtX, y + i + 13.5F, 0.5F, 0xFFFFFF, true);
+				if (ingredient.getCount() > 1) {
+					RenderUtil.drawString(gui, String.valueOf(ingredient.getCount()), x + ingCtX, y + i + 13.5F, 0.5F, 0xFFFFFF, true);
 				}
 
 				drawX += 10;

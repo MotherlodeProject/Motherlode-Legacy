@@ -2,13 +2,9 @@ package motherlode.recipe.ingredient;
 
 import java.util.List;
 
-import javax.annotation.Nullable;
-
 import com.google.common.base.Predicate;
 
-import it.unimi.dsi.fastutil.ints.IntList;
 import motherlode.recipe.IMotherlodeRecipe;
-import net.minecraft.client.util.RecipeItemHelper;
 import net.minecraft.item.ItemStack;
 
 /**
@@ -24,14 +20,12 @@ public interface IIngredient extends Predicate<ItemStack> {
 	public List<ItemStack> getDisplayStacks();
 
 	/**
-	 * Returns a list of packed matching stacks, as created by {@link RecipeItemHelper#pack(ItemStack)}.  This list should be immutable.
-	 * @return Matching stacks, packed, or null, if this recipe is not simple.  A single packed stack will have a count of one.
+	 * @return The amount the matched stack will be shrunk by during crafting.
 	 */
-	@Nullable
-	public IntList getMatchingStacksPacked();
+	public int getCount();
 
 	/**
-	 * @return If this recipe is simple, determined by if all valid stacks can be packed.  For example, NBTIngredient is not simple.
+	 * Tests if this stack matches this ingredient.  Count should not be checked here, but should be left to the recipe logic to deal with.
 	 */
-	public boolean isSimple();
+	public boolean apply(ItemStack input);
 }

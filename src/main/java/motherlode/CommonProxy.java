@@ -22,7 +22,6 @@ public abstract class CommonProxy {
 		MotherlodeBiomes.load();
 		MotherlodeNetwork.registerMessages(Motherlode.MOD_ID);
 		GameRegistry.registerTileEntity(TileEntityPot.class, new ResourceLocation(Motherlode.MOD_ID, "pot"));
-		MotherlodeRecipes.addRecipes();
 	}
 
 	public void init() {
