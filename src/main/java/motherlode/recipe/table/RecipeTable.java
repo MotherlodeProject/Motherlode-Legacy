@@ -8,12 +8,14 @@ import net.minecraftforge.registries.IForgeRegistryEntry;
 /**
  * Simple recipe table, supports a single state.
  * @author Shadows
- *
  */
 public class RecipeTable extends IForgeRegistryEntry.Impl<IRecipeTable> implements IRecipeTable {
 
 	IBlockState state;
 
+	/**
+	 * Creates a recipe table that matches this block's default state.  For all valid states, see {@link MultiStateTable}
+	 */
 	public RecipeTable(Block block) {
 		this(block.getDefaultState());
 	}

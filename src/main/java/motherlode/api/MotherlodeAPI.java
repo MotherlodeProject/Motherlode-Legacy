@@ -9,16 +9,10 @@ import net.minecraftforge.registries.ForgeRegistry;
 import net.minecraftforge.registries.RegistryManager;
 
 /**
- * Main entry point to add things to Motherlode without messing with internal classes.
+ * Access point for certain things in Motherlode.
  * @author Shadows
- *
  */
 public class MotherlodeAPI {
-
-	/**
-	 * The API version.  If this changes, the API has changed.  API changes should be documented.
-	 */
-	public static final String API_VERSION = "1.0.0";
 
 	private static ForgeRegistry<IMotherlodeRecipe> recipeRegistry;
 	private static ForgeRegistry<IRecipeTable> tableRegistry;

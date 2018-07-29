@@ -2,13 +2,16 @@ package motherlode.api.recipe;
 
 import com.google.common.base.Predicate;
 
+import motherlode.recipe.table.RecipeTable;
 import net.minecraft.block.state.IBlockState;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 
 /**
- * Represents a Recipe Table.  A Recipe table is a block which when nearby the player, may unlock additional recipes in the crafting gui.
+ * Represents a Recipe Table.  Recipe Tables can unlock additional recipes when within 3 blocks of a player.<br>
+ * Tables should be registered during the {@link RegistryEvent.Register}<br>
+ * Default Implementation: {@link RecipeTable}
  * @author Shadows
- *
  */
 public interface IRecipeTable extends Predicate<IBlockState>, IForgeRegistryEntry<IRecipeTable> {
 

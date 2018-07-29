@@ -11,7 +11,6 @@ import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
 /**
  * Default Recipe Tables.
  * @author Shadows
- *
  */
 @EventBusSubscriber(modid = Motherlode.MOD_ID)
 @ObjectHolder(Motherlode.MOD_ID)
