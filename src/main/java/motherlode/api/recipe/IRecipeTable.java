@@ -1,4 +1,4 @@
-package motherlode.recipe.table;
+package motherlode.api.recipe;
 
 import com.google.common.base.Predicate;
 

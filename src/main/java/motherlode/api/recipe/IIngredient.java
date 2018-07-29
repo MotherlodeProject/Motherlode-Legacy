@@ -1,10 +1,9 @@
-package motherlode.recipe.ingredient;
+package motherlode.api.recipe;
 
 import java.util.List;
 
 import com.google.common.base.Predicate;
 
-import motherlode.recipe.IMotherlodeRecipe;
 import net.minecraft.item.ItemStack;
 
 /**

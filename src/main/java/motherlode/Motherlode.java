@@ -5,16 +5,32 @@ import java.util.Random;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import motherlode.api.recipe.IMotherlodeRecipe;
+import motherlode.api.recipe.IRecipeTable;
+import motherlode.block.MotherlodeBlocks;
+import motherlode.gui.MotherlodeGuiHandler;
+import motherlode.item.MotherlodeItems;
+import motherlode.network.MotherlodeNetwork;
 import motherlode.registry.MotherlodeRegistry;
+import motherlode.tileentity.TileEntityPot;
+import motherlode.world.biome.MotherlodeBiomes;
+import motherlode.world.gen.MotherlodeWorldGenerators;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.registries.RegistryBuilder;
 
+@Mod.EventBusSubscriber
 @Mod(modid = Motherlode.MOD_ID, name = Motherlode.NAME, version = Motherlode.VERSION)
 public class Motherlode {
 
@@ -35,19 +51,32 @@ public class Motherlode {
 	public static CommonProxy proxy;
 
 	public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
-	
+
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
+		MotherlodeBlocks.load();
+		MotherlodeItems.load();
+		MotherlodeBiomes.load();
+		MotherlodeNetwork.registerMessages();
+		GameRegistry.registerTileEntity(TileEntityPot.class, new ResourceLocation(Motherlode.MOD_ID, "pot"));
 		proxy.preInit();
 	}
 
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
+		NetworkRegistry.INSTANCE.registerGuiHandler(instance, new MotherlodeGuiHandler());
+		MotherlodeWorldGenerators.registerWorldGens();
 		proxy.init();
 	}
 
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
 		proxy.postInit();
+	}
+
+	@SubscribeEvent
+	public static void registryCreation(RegistryEvent.NewRegistry e) {
+		new RegistryBuilder<IMotherlodeRecipe>().setName(new ResourceLocation(Motherlode.MOD_ID, "recipes")).allowModification().setType(IMotherlodeRecipe.class).disableSaving().create();
+		new RegistryBuilder<IRecipeTable>().setName(new ResourceLocation(Motherlode.MOD_ID, "recipe_tables")).setType(IRecipeTable.class).disableSaving().create();
 	}
 }

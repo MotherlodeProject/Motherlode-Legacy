@@ -1,5 +1,6 @@
 package motherlode.recipe.table;
 
+import motherlode.api.recipe.IRecipeTable;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraftforge.registries.IForgeRegistryEntry;

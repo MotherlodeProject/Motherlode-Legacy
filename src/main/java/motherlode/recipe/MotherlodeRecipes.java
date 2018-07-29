@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import motherlode.Motherlode;
-import motherlode.recipe.ingredient.IIngredient;
+import motherlode.api.MotherlodeAPI;
+import motherlode.api.recipe.IIngredient;
+import motherlode.api.recipe.IMotherlodeRecipe;
+import motherlode.api.recipe.IRecipeTable;
 import motherlode.recipe.ingredient.NBTIngredient;
 import motherlode.recipe.ingredient.OreIngredient;
 import motherlode.recipe.ingredient.SimpleIngredient;
-import motherlode.recipe.table.IRecipeTable;
 import motherlode.recipe.table.RecipeTables;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -17,24 +19,14 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.NonNullList;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.oredict.OreDictionary;
-import net.minecraftforge.registries.ForgeRegistry;
-import net.minecraftforge.registries.RegistryBuilder;
 
 @EventBusSubscriber(modid = Motherlode.MOD_ID)
 public class MotherlodeRecipes {
-
-	private static ForgeRegistry<IMotherlodeRecipe> recipes;
-
-	@SubscribeEvent
-	public static void createRegistry(RegistryEvent.NewRegistry e) {
-		recipes = (ForgeRegistry<IMotherlodeRecipe>) new RegistryBuilder<IMotherlodeRecipe>().setName(new ResourceLocation(Motherlode.MOD_ID, "recipes")).allowModification().setType(IMotherlodeRecipe.class).disableSaving().create();
-	}
 
 	@SubscribeEvent
 	public static void addCraftingRecipes(RegistryEvent.Register<IMotherlodeRecipe> e) {
@@ -65,22 +57,18 @@ public class MotherlodeRecipes {
 	}
 
 	private static void addRecipe(String name, ItemStack output, IIngredient... input) {
-		recipes.register(new MotherlodeRecipe(output, null, input).setRegistryName(Motherlode.MOD_ID, name));
+		MotherlodeAPI.getRecipeRegistry().register(new MotherlodeRecipe(output, null, input).setRegistryName(Motherlode.MOD_ID, name));
 	}
 
 	private static void addRecipe(String name, ItemStack output, IRecipeTable table, IIngredient... input) {
-		recipes.register(new MotherlodeRecipe(output, table, input).setRegistryName(Motherlode.MOD_ID, name));
+		MotherlodeAPI.getRecipeRegistry().register(new MotherlodeRecipe(output, table, input).setRegistryName(Motherlode.MOD_ID, name));
 	}
 
 	public static List<IMotherlodeRecipe> getAllPossibleRecipes(NonNullList<ItemStack> stacks, EntityPlayer player, List<IRecipeTable> tables) {
 		List<IMotherlodeRecipe> matches = new ArrayList<>();
-		for (IMotherlodeRecipe recipe : recipes)
+		for (IMotherlodeRecipe recipe : MotherlodeAPI.getRecipeRegistry())
 			if (recipe.matches(stacks, player, tables) != null) matches.add(recipe);
 		return matches;
-	}
-
-	public static ForgeRegistry<IMotherlodeRecipe> getRegistry() {
-		return recipes;
 	}
 
 	/**
@@ -97,7 +85,7 @@ public class MotherlodeRecipes {
 		}
 
 		List<IRecipeTable> tables = new ArrayList<>();
-		for (IRecipeTable t : RecipeTables.getRegistry()) {
+		for (IRecipeTable t : MotherlodeAPI.getTableRegistry()) {
 			for (IBlockState state : states) {
 				if (t.apply(state)) {
 					tables.add(t);

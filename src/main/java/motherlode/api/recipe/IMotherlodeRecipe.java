@@ -1,12 +1,10 @@
-package motherlode.recipe;
+package motherlode.api.recipe;
 
 import contrivitive.gui.element.sprite.ItemStackSprite;
 import contrivitive.gui.element.sprite.Sprite;
 import motherlode.Motherlode;
 import motherlode.network.MotherlodeNetwork;
 import motherlode.network.packet.PacketUpdateHeld;
-import motherlode.recipe.ingredient.IIngredient;
-import motherlode.recipe.table.IRecipeTable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;

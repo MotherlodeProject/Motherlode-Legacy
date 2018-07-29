@@ -8,19 +8,19 @@ import net.minecraftforge.common.MinecraftForge;
 @SuppressWarnings({ "VariableUseSideOnly", "MethodCallSideOnly", "NewExpressionSideOnly" })
 public class ClientProxy extends CommonProxy {
 
+	@Override
 	public void preInit() {
-		super.preInit();
 		MinecraftForge.EVENT_BUS.register(MotherlodeModels.class);
 		MotherlodeRenders.registerEntityRenders();
 	}
 
+	@Override
 	public void init() {
-		super.init();
 		MotherlodeModels.registerColorHandlers();
 	}
 
+	@Override
 	public void postInit() {
-		super.postInit();
 	}
 
 	@Override

@@ -10,8 +10,9 @@ import javax.annotation.Nullable;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableList;
 
-import motherlode.recipe.ingredient.IIngredient;
-import motherlode.recipe.table.IRecipeTable;
+import motherlode.api.recipe.IIngredient;
+import motherlode.api.recipe.IMotherlodeRecipe;
+import motherlode.api.recipe.IRecipeTable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
