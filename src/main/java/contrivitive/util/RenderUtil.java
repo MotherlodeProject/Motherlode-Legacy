@@ -22,7 +22,7 @@ public class RenderUtil {
 		Minecraft.getMinecraft().getTextureManager().bindTexture(textureLocation);
 	}
 
-	public static void drawDefaultGuiBackground(IContrivitiveGui gui) {
+	public static void drawDefaultGuiBackground(IContrivitiveGui<?,?> gui) {
 		int x = gui.getStartingX();
 		int y = gui.getStartingY();
 		int width = gui.getWidth();
@@ -43,7 +43,7 @@ public class RenderUtil {
 		drawScaledBackgroundBit(gui, x + 4, y + 4, width - 8, height - 8, 5, 5, 1, 1);
 	}
 
-	private static void drawScaledBackgroundBit(IContrivitiveGui gui, int x, int y, int widthScale, int heightScale, int textureX, int textureY, int textureWidth, int textureHeight) {
+	private static void drawScaledBackgroundBit(IContrivitiveGui<?,?> gui, int x, int y, int widthScale, int heightScale, int textureX, int textureY, int textureWidth, int textureHeight) {
 		GlStateManager.pushMatrix();
 		GlStateManager.translate(x, y, 0);
 		GlStateManager.scale(widthScale, heightScale, 1);
@@ -51,7 +51,7 @@ public class RenderUtil {
 		GlStateManager.popMatrix();
 	}
 
-	public static void drawEntityFacingMouse(IContrivitiveGui gui, int x, int y, int scale, int mouseX, int mouseY, EntityLivingBase entity, int rotation) {
+	public static void drawEntityFacingMouse(IContrivitiveGui<?,?> gui, int x, int y, int scale, int mouseX, int mouseY, EntityLivingBase entity, int rotation) {
 		x = adjustX(gui, x);
 		y = adjustY(gui, y);
 		drawEntityOnScreen(x, y, scale, (float) x - mouseX, (float) y - (float) (50 / 30) * scale - mouseY, entity, rotation);
@@ -97,31 +97,31 @@ public class RenderUtil {
 		GlStateManager.setActiveTexture(OpenGlHelper.defaultTexUnit);
 	}
 
-	public static void drawRectFromSheet(IContrivitiveGui gui, ResourceLocation sheet, int posX, int posY, int textureX, int textureY, int width, int height) {
+	public static void drawRectFromSheet(IContrivitiveGui<?,?> gui, ResourceLocation sheet, int posX, int posY, int textureX, int textureY, int width, int height) {
 		setTextureSheet(sheet);
 		gui.getGui().drawTexturedModalRect(posX + gui.getStartingX(), posY + gui.getStartingY(), textureX, textureY, width, height);
 	}
 
-	public static void drawRectFromSheetNoAdjust(IContrivitiveGui gui, ResourceLocation sheet, int posX, int posY, int textureX, int textureY, int width, int height) {
+	public static void drawRectFromSheetNoAdjust(IContrivitiveGui<?,?> gui, ResourceLocation sheet, int posX, int posY, int textureX, int textureY, int width, int height) {
 		setTextureSheet(sheet);
 		gui.getGui().drawTexturedModalRect(posX, posY, textureX, textureY, width, height);
 	}
 
-	public static void drawSimpleTooltip(IContrivitiveGui gui, int mouseX, int mouseY, List<String> lines) {
+	public static void drawSimpleTooltip(IContrivitiveGui<?,?> gui, int mouseX, int mouseY, List<String> lines) {
 		GuiUtils.drawHoveringText(lines, mouseX, mouseY, gui.getWidth(), gui.getHeight(), -1, Minecraft.getMinecraft().fontRenderer);
 		GlStateManager.disableLighting();
 		GlStateManager.color(1, 1, 1, 1);
 	}
 
-	public static void drawSimpleTooltip(IContrivitiveGui gui, int mouseX, int mouseY, String... lines) {
+	public static void drawSimpleTooltip(IContrivitiveGui<?,?> gui, int mouseX, int mouseY, String... lines) {
 		drawSimpleTooltip(gui, mouseX, mouseY, Arrays.asList(lines));
 	}
 
-	public static boolean isInRect(IContrivitiveGui gui, int x, int y, int xSize, int ySize, int mouseX, int mouseY) {
+	public static boolean isInRect(IContrivitiveGui<?,?> gui, int x, int y, int xSize, int ySize, int mouseX, int mouseY) {
 		return isInRect(gui, x, y, xSize, ySize, mouseX, mouseY, true);
 	}
 
-	public static boolean isInRect(IContrivitiveGui gui, int x, int y, int xSize, int ySize, int mouseX, int mouseY, boolean adjust) {
+	public static boolean isInRect(IContrivitiveGui<?,?> gui, int x, int y, int xSize, int ySize, int mouseX, int mouseY, boolean adjust) {
 		if (adjust) {
 			x = adjustX(gui, x);
 			y = adjustY(gui, y);
@@ -129,11 +129,11 @@ public class RenderUtil {
 		return ((mouseX >= x && mouseX <= x + xSize) && (mouseY >= y && mouseY <= y + ySize));
 	}
 
-	public static void drawGradientRect(IContrivitiveGui gui, int x, int y, int width, int height, int startColor, int endColor) {
+	public static void drawGradientRect(IContrivitiveGui<?,?> gui, int x, int y, int width, int height, int startColor, int endColor) {
 		drawGradientRect(gui, x, y, width, height, startColor, endColor, true);
 	}
 
-	public static void drawGradientRect(IContrivitiveGui gui, int x, int y, int width, int height, int startColor, int endColor, boolean adjust) {
+	public static void drawGradientRect(IContrivitiveGui<?,?> gui, int x, int y, int width, int height, int startColor, int endColor, boolean adjust) {
 		if (adjust) {
 			x = adjustX(gui, x);
 			y = adjustY(gui, y);
@@ -170,39 +170,39 @@ public class RenderUtil {
 		GlStateManager.enableTexture2D();
 	}
 
-	public static int adjustX(IContrivitiveGui gui, int x) {
+	public static int adjustX(IContrivitiveGui<?,?> gui, int x) {
 		return gui.getStartingX() + x;
 	}
 
-	public static float adjustX(IContrivitiveGui gui, float x) {
+	public static float adjustX(IContrivitiveGui<?,?> gui, float x) {
 		return gui.getStartingX() + x;
 	}
 
-	public static int adjustY(IContrivitiveGui gui, int y) {
+	public static int adjustY(IContrivitiveGui<?,?> gui, int y) {
 		return gui.getStartingY() + y;
 	}
 
-	public static float adjustY(IContrivitiveGui gui, float y) {
+	public static float adjustY(IContrivitiveGui<?,?> gui, float y) {
 		return gui.getStartingY() + y;
 	}
 
-	public static void drawString(IContrivitiveGui gui, String string, int x, int y, int color) {
+	public static void drawString(IContrivitiveGui<?,?> gui, String string, int x, int y, int color) {
 		x = adjustX(gui, x);
 		y = adjustY(gui, y);
 		gui.getGui().mc.fontRenderer.drawString(string, x, y, color);
 	}
 
-	public static void drawString(IContrivitiveGui gui, String string, float x, float y, int color) {
+	public static void drawString(IContrivitiveGui<?,?> gui, String string, float x, float y, int color) {
 		x = adjustX(gui, x);
 		y = adjustY(gui, y);
 		gui.getGui().mc.fontRenderer.drawString(string, x, y, color, false);
 	}
 
-	public static void drawString(IContrivitiveGui gui, String string, float x, float y, float scale, int color) {
+	public static void drawString(IContrivitiveGui<?,?> gui, String string, float x, float y, float scale, int color) {
 		drawString(gui, string, x, y, scale, color, false);
 	}
 
-	public static void drawString(IContrivitiveGui gui, String string, float x, float y, float scale, int color, boolean shadow) {
+	public static void drawString(IContrivitiveGui<?,?> gui, String string, float x, float y, float scale, int color, boolean shadow) {
 		x = adjustX(gui, x);
 		y = adjustY(gui, y);
 		GlStateManager.pushMatrix();
@@ -212,19 +212,19 @@ public class RenderUtil {
 		GlStateManager.popMatrix();
 	}
 
-	public static void drawString(IContrivitiveGui gui, String string, float x, float y, float scale) {
+	public static void drawString(IContrivitiveGui<?,?> gui, String string, float x, float y, float scale) {
 		drawString(gui, string, x, y, scale, 16777215);
 	}
 
-	public static void drawString(IContrivitiveGui gui, String string, int x, int y) {
+	public static void drawString(IContrivitiveGui<?,?> gui, String string, int x, int y) {
 		drawString(gui, string, x, y, 16777215);
 	}
 
-	public static void drawCenteredString(IContrivitiveGui gui, String string, int y, int color) {
+	public static void drawCenteredString(IContrivitiveGui<?,?> gui, String string, int y, int color) {
 		drawString(gui, string, (gui.getWidth() / 2 - getStringWidth(string) / 2), y, color);
 	}
 
-	public static void drawCenteredString(IContrivitiveGui gui, String string, int x, int y, int color) {
+	public static void drawCenteredString(IContrivitiveGui<?,?> gui, String string, int x, int y, int color) {
 		drawString(gui, string, (x - getStringWidth(string) / 2), y, color);
 	}
 

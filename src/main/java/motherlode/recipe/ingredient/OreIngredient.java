@@ -6,6 +6,7 @@ import com.google.common.collect.ImmutableList;
 import it.unimi.dsi.fastutil.ints.IntArrayList;
 import it.unimi.dsi.fastutil.ints.IntList;
 import it.unimi.dsi.fastutil.ints.IntLists;
+import motherlode.api.recipe.IIngredient;
 import net.minecraft.client.util.RecipeItemHelper;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -60,15 +61,14 @@ public class OreIngredient implements IIngredient {
 
 	@Override
 	public List<ItemStack> getDisplayStacks() {
-		NonNullList<ItemStack> stacks = NonNullList.create();
-		for (ItemStack stack : OreDictionary.getOres(ore, false)) {
-			if (stack.getMetadata() == OreDictionary.WILDCARD_VALUE) {
-				stack.getItem().getSubItems(CreativeTabs.SEARCH, stacks);
-			} else {
-				stacks.add(stack);
+		if (display == null) {
+			NonNullList<ItemStack> stacks = NonNullList.create();
+			for (ItemStack stack : OreDictionary.getOres(ore, false)) {
+				if (stack.getMetadata() == OreDictionary.WILDCARD_VALUE) stack.getItem().getSubItems(CreativeTabs.SEARCH, stacks);
+				else stacks.add(stack);
 			}
+			display = ImmutableList.copyOf(stacks);
 		}
-		if (display == null) display = ImmutableList.copyOf(stacks);
 		return display;
 	}
 

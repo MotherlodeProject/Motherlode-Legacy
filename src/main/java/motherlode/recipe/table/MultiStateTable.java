@@ -1,16 +1,21 @@
 package motherlode.recipe.table;
 
-import java.util.List;
-
 import com.google.common.collect.ImmutableList;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 
+/**
+ * A recipe table that supports multiple states.
+ * @author Shadows
+ */
 public class MultiStateTable extends RecipeTable {
 
-	List<IBlockState> validStates;
+	final ImmutableList<IBlockState> validStates;
 
+	/**
+	 * Creates a recipe table using all valid states of the block.
+	 */
 	public MultiStateTable(Block block) {
 		super(block);
 		validStates = block.getBlockState().getValidStates();

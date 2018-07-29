@@ -1,27 +1,28 @@
-package motherlode.recipe;
+package motherlode.api.recipe;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+
+import javax.annotation.Nullable;
 
 import contrivitive.gui.element.sprite.ItemStackSprite;
 import contrivitive.gui.element.sprite.Sprite;
 import motherlode.Motherlode;
 import motherlode.network.MotherlodeNetwork;
 import motherlode.network.packet.PacketUpdateHeld;
-import motherlode.recipe.ingredient.IIngredient;
-import motherlode.recipe.table.IRecipeTable;
+import motherlode.recipe.MotherlodeRecipe;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 
-import javax.annotation.Nullable;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-
 /**
- * Represents a recipe.
- *
+ * Represents a recipe.  Recipes should be registered during the {@link RegistryEvent.Register}<br>
+ * Default Implementation: {@link MotherlodeRecipe}
  * @author Shadows
  */
 public interface IMotherlodeRecipe extends IForgeRegistryEntry<IMotherlodeRecipe> {
@@ -81,8 +82,7 @@ public interface IMotherlodeRecipe extends IForgeRegistryEntry<IMotherlodeRecipe
 		else if (ItemHandlerHelper.canItemStacksStack(s, getOutput())) s.grow(getOutput().getCount());
 		else player.inventory.addItemStackToInventory(getOutput().copy());
 
-		if (!player.world.isRemote && (!player.inventory.getItemStack().isItemEqual(old) || player.inventory.getItemStack().getCount() > old.getCount()))
-			MotherlodeNetwork.NETWORK.sendTo(new PacketUpdateHeld(player.inventory.getItemStack()), (EntityPlayerMP) player);
+		if (!player.world.isRemote && (!player.inventory.getItemStack().isItemEqual(old) || player.inventory.getItemStack().getCount() > old.getCount())) MotherlodeNetwork.NETWORK.sendTo(new PacketUpdateHeld(player.inventory.getItemStack()), (EntityPlayerMP) player);
 
 	}
 

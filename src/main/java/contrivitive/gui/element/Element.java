@@ -1,7 +1,9 @@
 package contrivitive.gui.element;
 
+import contrivitive.gui.GuiBlueprint;
 import contrivitive.gui.IContrivitiveGui;
 import contrivitive.gui.element.sprite.Sprite;
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -56,7 +58,7 @@ public class Element {
 	}
 
 	@SideOnly(Side.CLIENT)
-	public void draw(IContrivitiveGui<?,?> gui, int x, int y, int mouseX, int mouseY, float elapsedTicks) {
+	public <G extends GuiScreen, B extends GuiBlueprint> void draw(IContrivitiveGui<G,B> gui, int x, int y, int mouseX, int mouseY, float elapsedTicks) {
 		for (RelativeSprite sprite : sprites) {
 			sprite.sprite.draw(gui, x + sprite.relativePos.x, y + sprite.relativePos.y, elapsedTicks);
 		}

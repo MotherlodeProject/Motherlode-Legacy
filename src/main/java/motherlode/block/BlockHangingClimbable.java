@@ -70,6 +70,7 @@ public class BlockHangingClimbable extends BlockMotherlode implements IClimbable
 	}
 
 	@Override
+	@Deprecated
 	public void neighborChanged(IBlockState state, World world, BlockPos pos, Block blockIn, BlockPos fromPos) {
 		super.neighborChanged(state, world, pos, blockIn, fromPos);
 		if (!this.isSuitablePos(world, pos)) {

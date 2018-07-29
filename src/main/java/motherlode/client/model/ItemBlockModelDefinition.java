@@ -20,6 +20,7 @@ public class ItemBlockModelDefinition extends ItemModelDefinition {
 		this(definition, 0);
 	}
 
+	@SuppressWarnings("deprecation")
 	public ItemBlockModelDefinition(BlockModelDefinition definition, int maxMeta) {
 		this(definition.getBlock(), maxMeta, definition.getFileLocation());
 		this.setVariant(meta -> definition.getVariantForState(definition.getBlock().getStateFromMeta(meta)));

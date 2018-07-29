@@ -1,5 +1,9 @@
 package motherlode.block;
 
+import java.util.List;
+
+import javax.annotation.Nonnull;
+
 import motherlode.client.model.BlockModelDefinition;
 import motherlode.client.model.ItemBlockModelDefinition;
 import motherlode.client.model.ItemModelDefinition;
@@ -12,7 +16,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.NonNullList;
@@ -26,12 +29,9 @@ import net.minecraftforge.common.IShearable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import javax.annotation.Nonnull;
-import java.util.List;
-
 public class BlockThickVine extends BlockHangingClimbable implements IShearable {
 
-	public static final PropertyEnum FLOWERS = PropertyEnum.create("flowers", EnumFlower.class);
+	public static final PropertyEnum<EnumFlower> FLOWERS = PropertyEnum.create("flowers", EnumFlower.class);
 	public boolean hasFlowers;
 	public BlockStateContainer flowersState;
 
@@ -48,6 +48,7 @@ public class BlockThickVine extends BlockHangingClimbable implements IShearable 
 	}
 
 	@Override
+	@Deprecated
 	public IBlockState getStateFromMeta(int meta) {
 		return hasFlowers ? this.getDefaultState().withProperty(FLOWERS, EnumFlower.values()[meta]) : super.getStateFromMeta(meta);
 	}
@@ -125,7 +126,7 @@ public class BlockThickVine extends BlockHangingClimbable implements IShearable 
 			return new ItemBlockModelDefinition(getBlockModelDefinition(), FLOWERS.getAllowedValues().size() - 1).append("inventory=true")
 				.setIItemColor((stack, tintIndex) -> {
 					if (tintIndex == 0) {
-						IBlockState iblockstate = ((ItemBlock) stack.getItem()).getBlock().getStateFromMeta(stack.getMetadata());
+						IBlockState iblockstate = BlockThickVine.this.getStateFromMeta(stack.getMetadata());
 						return Minecraft.getMinecraft().getBlockColors().colorMultiplier(iblockstate, null, null, tintIndex);
 					}
 					return 0xFFFFFFFF;
@@ -135,7 +136,7 @@ public class BlockThickVine extends BlockHangingClimbable implements IShearable 
 			// IItemColor
 			.setIItemColor((stack, tintIndex) -> {
 				if (tintIndex == 0) {
-					IBlockState iblockstate = ((ItemBlock) stack.getItem()).getBlock().getStateFromMeta(stack.getMetadata());
+					IBlockState iblockstate = BlockThickVine.this.getStateFromMeta(stack.getMetadata());
 					return Minecraft.getMinecraft().getBlockColors().colorMultiplier(iblockstate, null, null, tintIndex);
 				}
 				return 0xFFFFFFFF;

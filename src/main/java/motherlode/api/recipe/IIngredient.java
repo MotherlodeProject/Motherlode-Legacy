@@ -1,16 +1,16 @@
-package motherlode.recipe.ingredient;
+package motherlode.api.recipe;
 
 import java.util.List;
 
 import com.google.common.base.Predicate;
 
-import motherlode.recipe.IMotherlodeRecipe;
 import net.minecraft.item.ItemStack;
 
 /**
- * Represents an Ingredient to be used in a {@link IMotherlodeRecipe}
+ * Represents an Ingredient to be used in a {@link IMotherlodeRecipe}<br>
+ * Default Implementations: {@link NBTIngredient}, {@link SimpleIngredient}, {@link OreIngredient}<br>
+ * Motherlode does not use {@link Ingredient} due to not needing most of the features provided by it.
  * @author Shadows
- *
  */
 public interface IIngredient extends Predicate<ItemStack> {
 

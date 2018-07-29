@@ -23,7 +23,7 @@ public class Page {
 	//Only used in containers
 	public int playerInvX = -1;
 	public int playerInvY = -1;
-	public HashMap<Integer, GuiContainerBlueprint.SlotEntry> slots = new HashMap<>();
+	public HashMap<Integer, GuiContainerBlueprint.SlotEntry<?>> slots = new HashMap<>();
 	public HashMap<Integer, PlayerSlotElement> playerSlots = new HashMap<>();
 	public boolean justPlayerInv = true;
 	public GetGuiInt guiLeft = (width1, height1, xSize, ySize, screenWidth, screenHeight) -> (width1 - xSize) / 2;

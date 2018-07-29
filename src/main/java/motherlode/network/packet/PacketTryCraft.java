@@ -4,10 +4,11 @@ import java.util.List;
 import java.util.Map;
 
 import io.netty.buffer.ByteBuf;
-import motherlode.recipe.IMotherlodeRecipe;
+import motherlode.api.MotherlodeAPI;
+import motherlode.api.recipe.IIngredient;
+import motherlode.api.recipe.IMotherlodeRecipe;
+import motherlode.api.recipe.IRecipeTable;
 import motherlode.recipe.MotherlodeRecipes;
-import motherlode.recipe.ingredient.IIngredient;
-import motherlode.recipe.table.IRecipeTable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.FMLCommonHandler;
@@ -28,13 +29,13 @@ public class PacketTryCraft implements IMessage {
 
 	@Override
 	public void toBytes(ByteBuf buf) {
-		buf.writeInt(MotherlodeRecipes.getRegistry().getID(recipe));
+		buf.writeInt(MotherlodeAPI.getRecipeRegistry().getID(recipe));
 	}
 
 	@Override
 	public void fromBytes(ByteBuf buf) {
 		int i = buf.readInt();
-		recipe = MotherlodeRecipes.getRegistry().getValue(i);
+		recipe = MotherlodeAPI.getRecipeRegistry().getValue(i);
 		if (recipe == null) throw new NullPointerException("Recived a packet with invalid recipe ID " + i);
 	}
 

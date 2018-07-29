@@ -1,9 +1,11 @@
 package contrivitive.gui.element.slot;
 
+import contrivitive.gui.GuiBlueprint;
 import contrivitive.gui.IContrivitiveGui;
 import contrivitive.gui.element.Element;
 import contrivitive.gui.element.sprite.Sprites;
 import contrivitive.util.ContrivitivePlayerSlot;
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -35,7 +37,7 @@ public class PlayerSlotElement extends Element {
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public void draw(IContrivitiveGui gui, int x, int y, int mouseX, int mouseY, float elapsedTicks) {
+	public <G extends GuiScreen, B extends GuiBlueprint> void draw(IContrivitiveGui<G,B> gui, int x, int y, int mouseX, int mouseY, float elapsedTicks) {
 		if (draw) {
 			super.draw(gui, x, y, mouseX, mouseY, elapsedTicks);
 		}

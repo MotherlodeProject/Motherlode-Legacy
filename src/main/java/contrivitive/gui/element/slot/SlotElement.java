@@ -35,7 +35,7 @@ public class SlotElement<B extends GuiBlueprint> extends Element {
 		return filter;
 	}
 
-	public SlotElement setFilter(ContrivitiveSlot.SlotFilter filter) {
+	public SlotElement<B> setFilter(ContrivitiveSlot.SlotFilter filter) {
 		this.filter = filter;
 		return this;
 	}
@@ -44,7 +44,7 @@ public class SlotElement<B extends GuiBlueprint> extends Element {
 		return slotTexture;
 	}
 
-	public SlotElement setSlotTexture(String slotTexture) {
+	public SlotElement<B> setSlotTexture(String slotTexture) {
 		this.slotTexture = slotTexture;
 		return this;
 	}
@@ -53,7 +53,7 @@ public class SlotElement<B extends GuiBlueprint> extends Element {
 		return stackSize;
 	}
 
-	public SlotElement setStackSize(int stackSize) {
+	public SlotElement<B> setStackSize(int stackSize) {
 		this.stackSize = stackSize;
 		return this;
 	}

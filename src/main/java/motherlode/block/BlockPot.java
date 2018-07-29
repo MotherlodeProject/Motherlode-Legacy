@@ -1,5 +1,9 @@
 package motherlode.block;
 
+import java.util.List;
+
+import javax.annotation.Nullable;
+
 import motherlode.client.model.BlockModelDefinition;
 import motherlode.client.model.ItemBlockModelDefinition;
 import motherlode.client.model.ItemModelDefinition;
@@ -10,6 +14,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -22,14 +27,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import javax.annotation.Nullable;
-import java.util.List;
 
 public class BlockPot extends BlockMotherlode {
 
@@ -123,11 +124,10 @@ public class BlockPot extends BlockMotherlode {
 	}
 
 	@Override
-	public void addInformation(ItemStack stack,
-	                           @Nullable
-		                           World player, List<String> tooltip, ITooltipFlag advanced) {
+	@SideOnly(Side.CLIENT)
+	public void addInformation(ItemStack stack, @Nullable World world, List<String> tooltip, ITooltipFlag advanced) {
 		if (stack.hasTagCompound() && stack.getTagCompound().hasKey("PatternColor")) {
-			tooltip.add(TextFormatting.GRAY + I18n.translateToLocal("item.fireworksCharge." + EnumDyeColor.byMetadata(stack.getTagCompound().getInteger("PatternColor")).getUnlocalizedName()) + " Pattern");
+			tooltip.add(TextFormatting.GRAY + I18n.format("item.fireworksCharge." + EnumDyeColor.byMetadata(stack.getTagCompound().getInteger("PatternColor")).getUnlocalizedName()) + " Pattern");
 			tooltip.add(TextFormatting.GRAY + "Pattern #" + stack.getTagCompound().getInteger("Pattern"));
 		}
 	}

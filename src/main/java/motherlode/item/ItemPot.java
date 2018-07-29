@@ -6,6 +6,7 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.translation.I18n;
 
+@SuppressWarnings("deprecation")
 public class ItemPot extends ItemBlock {
 	public ItemPot(Block block) {
 		super(block);

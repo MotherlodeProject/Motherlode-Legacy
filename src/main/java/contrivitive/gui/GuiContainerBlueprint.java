@@ -35,15 +35,15 @@ public class GuiContainerBlueprint extends GuiBlueprint {
 		return addPlayerSlot("main", x, y, index, draw);
 	}
 
-	public GuiContainerBlueprint addSlot(String page, SlotElement slot, IItemHandler inventory) {
-		getPage(page).slots.put(getPage(page).slots.size(), new SlotEntry(slot, inventory));
+	public GuiContainerBlueprint addSlot(String page, SlotElement<?> slot, IItemHandler inventory) {
+		getPage(page).slots.put(getPage(page).slots.size(), new SlotEntry<>(slot, inventory));
 		getPage(page).justPlayerInv = false;
 		at(page, slot.getSlotX(), slot.getSlotY(), slot);
 		return this;
 	}
 
 	public GuiContainerBlueprint addSlot(String page, IItemHandler inventory, SlotType type, int x, int y) {
-		addSlot(page, new SlotElement(x + type.getSlotOffsetX(), y + type.getSlotOffsetY(), type), inventory);
+		addSlot(page, new SlotElement<>(x + type.getSlotOffsetX(), y + type.getSlotOffsetY(), type), inventory);
 		return this;
 	}
 
@@ -51,7 +51,7 @@ public class GuiContainerBlueprint extends GuiBlueprint {
 		return addSlot(page, inventory, SlotType.NORMAL, x, y);
 	}
 
-	public GuiContainerBlueprint addSlot(SlotElement slot, IItemHandler inventory) {
+	public GuiContainerBlueprint addSlot(SlotElement<?> slot, IItemHandler inventory) {
 		return addSlot("main", slot, inventory);
 	}
 
@@ -65,7 +65,7 @@ public class GuiContainerBlueprint extends GuiBlueprint {
 	}
 
 	public GuiContainerBlueprint addSlot(IItemHandler inventory, SlotType type, int x, int y, ContrivitiveSlot.SlotFilter filter) {
-		addSlot(new SlotElement(x + type.getSlotOffsetX(), y + type.getSlotOffsetY(), type).setFilter(filter), inventory);
+		addSlot(new SlotElement<>(x + type.getSlotOffsetX(), y + type.getSlotOffsetY(), type).setFilter(filter), inventory);
 		return this;
 	}
 
@@ -124,16 +124,16 @@ public class GuiContainerBlueprint extends GuiBlueprint {
 		return this;
 	}
 
-	public class SlotEntry {
-		private SlotElement element;
+	public class SlotEntry<B extends GuiBlueprint> {
+		private SlotElement<B> element;
 		private IItemHandler inventory;
 
-		public SlotEntry(SlotElement element, IItemHandler inventory) {
+		public SlotEntry(SlotElement<B> element, IItemHandler inventory) {
 			this.element = element;
 			this.inventory = inventory;
 		}
 
-		public SlotElement getElement() {
+		public SlotElement<B> getElement() {
 			return element;
 		}
 

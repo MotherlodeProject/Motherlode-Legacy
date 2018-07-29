@@ -5,6 +5,7 @@ import java.util.List;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableList;
 
+import motherlode.api.recipe.IIngredient;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -13,7 +14,7 @@ import net.minecraft.util.NonNullList;
 import net.minecraftforge.oredict.OreDictionary;
 
 /**
- * A simple Ingredient.  Matches only a single stack.  Supports count, meta, and wildcard meta.  Ignores NBT.
+ * A simple ingredient.  Matches only a single stack.  Supports count, meta, and wildcard meta.  Ignores NBT.
  * @author Shadows
  *
  */
