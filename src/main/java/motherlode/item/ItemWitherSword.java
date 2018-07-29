@@ -1,6 +1,11 @@
 package motherlode.item;
 
+import java.util.List;
+
+import javax.annotation.Nullable;
+
 import motherlode.Motherlode;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntityWitherSkeleton;
@@ -11,16 +16,12 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.living.LivingSpawnEvent.SpecialSpawn;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import javax.annotation.Nullable;
-import java.util.List;
 
 @Mod.EventBusSubscriber(modid = Motherlode.MOD_ID)
 public class ItemWitherSword extends ItemMotherlodeSword {
@@ -41,14 +42,12 @@ public class ItemWitherSword extends ItemMotherlodeSword {
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public void addInformation(ItemStack stack,
-	                           @Nullable
-		                           World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		tooltip.add(TextFormatting.RED + I18n.translateToLocal(WITHER_EFFECT.getEffectName()).trim() + " (" + Potion.getPotionDurationString(WITHER_EFFECT, 1F) + ")");
+	public void addInformation(ItemStack stack, @Nullable World world, List<String> tooltip, ITooltipFlag flag) {
+		tooltip.add(TextFormatting.RED + I18n.format(WITHER_EFFECT.getEffectName()).trim() + " (" + Potion.getPotionDurationString(WITHER_EFFECT, 1F) + ")");
 	}
 
 	@SubscribeEvent
-	public static void onEntitySpawn(EntityJoinWorldEvent event) {
+	public static void onEntitySpawn(SpecialSpawn event) {
 		if (event.getEntity() instanceof EntityWitherSkeleton) {
 			if (((EntityWitherSkeleton) event.getEntity()).getHeldItemMainhand().getItem().equals(Items.STONE_SWORD)) {
 				((EntityWitherSkeleton) event.getEntity()).setHeldItem(EnumHand.MAIN_HAND, new ItemStack(MotherlodeItems.WITHER_SWORD));

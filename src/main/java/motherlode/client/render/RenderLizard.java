@@ -1,5 +1,7 @@
 package motherlode.client.render;
 
+import javax.annotation.Nullable;
+
 import motherlode.Motherlode;
 import motherlode.client.model.entity.ModelLizard;
 import motherlode.entity.passive.EntityLizard;
@@ -7,13 +9,10 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import javax.annotation.Nullable;
 
 @SideOnly(Side.CLIENT)
 public class RenderLizard extends RenderLiving<EntityLizard> {

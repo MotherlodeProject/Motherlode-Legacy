@@ -1,7 +1,9 @@
 package contrivitive.gui.element.sprite;
 
+import contrivitive.gui.GuiBlueprint;
 import contrivitive.gui.IContrivitiveGui;
 import contrivitive.util.RenderUtil;
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.item.ItemStack;
@@ -24,7 +26,7 @@ public class ItemStackSprite extends Sprite {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void draw(IContrivitiveGui gui, int x, int y, float elapsedTicks) {
+	public <G extends GuiScreen, B extends GuiBlueprint> void draw(IContrivitiveGui<G,B> gui, int x, int y, float elapsedTicks) {
 		x = RenderUtil.adjustX(gui, x);
 		y = RenderUtil.adjustY(gui, y);
 		RenderHelper.enableGUIStandardItemLighting();

@@ -1,8 +1,10 @@
 package contrivitive.gui.element.sprite;
 
+import contrivitive.gui.GuiBlueprint;
 import contrivitive.gui.IContrivitiveGui;
 import contrivitive.gui.element.Coordinate;
 import contrivitive.lib.ContrivitiveConstants;
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -49,7 +51,7 @@ public class AnimatedSprite extends Sprite {
 	@SideOnly(Side.CLIENT)
 	@SubscribeEvent
 	public static void drawScreenEvent(GuiScreenEvent.DrawScreenEvent event) {
-		if (event.getGui() instanceof IContrivitiveGui && !((IContrivitiveGui) event.getGui()).disableAnimations()) {
+		if (event.getGui() instanceof IContrivitiveGui && !((IContrivitiveGui<?,?>) event.getGui()).disableAnimations()) {
 		}
 	}
 
@@ -60,7 +62,7 @@ public class AnimatedSprite extends Sprite {
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public void draw(IContrivitiveGui gui, int x, int y, float elapsedTicks) {
+	public <G extends GuiScreen, B extends GuiBlueprint> void draw(IContrivitiveGui<G,B> gui, int x, int y, float elapsedTicks) {
 		counter += elapsedTicks;
 		Pair<Sprite, Coordinate> frame = getFrame();
 		frame.getLeft().draw(gui, x + offsetX + frame.getRight().x, y + offsetY + frame.getRight().y, elapsedTicks);

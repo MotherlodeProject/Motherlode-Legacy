@@ -45,7 +45,7 @@ public class MotherlodeModels {
 			for (int i = 0; i <= definition.maxMeta; i++) {
 				if (definition.meshDefinition != null) {
 					ModelLoader.setCustomMeshDefinition(definition.item, definition.meshDefinition);
-					List list = new ArrayList();
+					List<ModelResourceLocation> list = new ArrayList<>();
 					definition.itemVariantGetter.addItemVariants(list);
 					ModelResourceLocation[] array = new ModelResourceLocation[list.size()];
 					//noinspection SuspiciousToArrayCall

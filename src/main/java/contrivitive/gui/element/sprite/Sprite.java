@@ -1,6 +1,8 @@
 package contrivitive.gui.element.sprite;
 
+import contrivitive.gui.GuiBlueprint;
 import contrivitive.gui.IContrivitiveGui;
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -22,5 +24,5 @@ public abstract class Sprite {
 	}
 
 	@SideOnly(Side.CLIENT)
-	public abstract void draw(IContrivitiveGui gui, int posX, int posY, float elapsedTicks);
+	public abstract <G extends GuiScreen, B extends GuiBlueprint> void draw(IContrivitiveGui<G,B> gui, int posX, int posY, float elapsedTicks);
 }

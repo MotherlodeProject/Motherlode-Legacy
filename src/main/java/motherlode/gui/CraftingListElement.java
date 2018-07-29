@@ -3,6 +3,7 @@ package motherlode.gui;
 import java.util.ArrayList;
 import java.util.List;
 
+import contrivitive.gui.GuiBlueprint;
 import contrivitive.gui.IContrivitiveGui;
 import contrivitive.gui.element.Element;
 import contrivitive.gui.element.sprite.ItemStackSprite;
@@ -13,6 +14,7 @@ import motherlode.network.MotherlodeNetwork;
 import motherlode.network.packet.PacketTryCraft;
 import motherlode.recipe.MotherlodeRecipes;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
@@ -62,7 +64,7 @@ public class CraftingListElement extends Element {
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public void draw(IContrivitiveGui<?, ?> gui, int x, int y, int mouseX, int mouseY, float elapsedTicks) {
+	public <G extends GuiScreen, B extends GuiBlueprint> void draw(IContrivitiveGui<G,B> gui, int x, int y, int mouseX, int mouseY, float elapsedTicks) {
 		super.draw(gui, x, y, mouseX, mouseY, elapsedTicks);
 		for (IMotherlodeRecipe recipe : craftableRecipes) {
 			int i = 23 + 20 * craftableRecipes.indexOf(recipe);

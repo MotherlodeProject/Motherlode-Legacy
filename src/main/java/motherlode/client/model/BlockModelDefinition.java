@@ -22,19 +22,19 @@ public class BlockModelDefinition extends StateMapperBase {
 	protected ResourceLocation fileLocation;
 	protected List<String> prepends = new ArrayList<>();
 	protected List<String> appends = new ArrayList<>();
-	protected IProperty[] ignoredProperties = null;
+	protected IProperty<?>[] ignoredProperties = null;
 	protected VariantStateGetter variant = state -> "";
 	protected IBlockColor iBlockColor = null;
 
-	public BlockModelDefinition(Block block, IProperty... ignoredProperties) {
+	public BlockModelDefinition(Block block, IProperty<?>... ignoredProperties) {
 		this(block, block.getRegistryName(), ignoredProperties);
 	}
 
-	public BlockModelDefinition(Block block, String fileLocation, IProperty... ignoredProperties) {
+	public BlockModelDefinition(Block block, String fileLocation, IProperty<?>... ignoredProperties) {
 		this(block, new ResourceLocation(Motherlode.MOD_ID, fileLocation), ignoredProperties);
 	}
 
-	public BlockModelDefinition(Block block, ResourceLocation fileLocation, IProperty... ignoredProperties) {
+	public BlockModelDefinition(Block block, ResourceLocation fileLocation, IProperty<?>... ignoredProperties) {
 		this.block = block;
 		this.fileLocation = fileLocation;
 		this.ignoredProperties = ignoredProperties;
@@ -85,7 +85,7 @@ public class BlockModelDefinition extends StateMapperBase {
 		return variant;
 	}
 
-	public IProperty[] getIgnoredProperties() {
+	public IProperty<?>[] getIgnoredProperties() {
 		return ignoredProperties;
 	}
 

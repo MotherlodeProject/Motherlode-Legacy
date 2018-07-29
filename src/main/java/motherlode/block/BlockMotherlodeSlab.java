@@ -33,8 +33,9 @@ public abstract class BlockMotherlodeSlab extends BlockSlab implements IModeledB
 	public static final String[] HARDNESS_MAPPINGS = new String[] { "q", "field_149782_v", "blockHardness" };
 	public static final String[] RESISTANCE_MAPPINGS = new String[] { "r", "field_149781_w", "blockResistance" };
 
+	@SuppressWarnings("deprecation")
 	public BlockMotherlodeSlab(String name, String blockstate, Block baseBlock) {
-		super(baseBlock.getMaterial(baseBlock.getDefaultState()));
+		super(baseBlock.getDefaultState().getMaterial());
 		this.name = name;
 		this.blockstate = blockstate;
 		IBlockState iblockstate = this.blockState.getBaseState();
