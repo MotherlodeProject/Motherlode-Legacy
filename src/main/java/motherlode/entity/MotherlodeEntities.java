@@ -3,6 +3,8 @@ package motherlode.entity;
 import motherlode.Motherlode;
 import motherlode.entity.item.EntityBomb;
 import motherlode.entity.item.EntityDynamite;
+import motherlode.entity.monster.EntityGrizzlyBear;
+import motherlode.entity.monster.EntitySmallSpider;
 import motherlode.entity.passive.*;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.util.ResourceLocation;
@@ -24,6 +26,7 @@ public class MotherlodeEntities {
 
 		registerItemEntities(event);
 		registerPassiveEntities(event);
+		registerMonsterEntities(event);
 	}
 
 	private static void registerItemEntities(RegistryEvent.Register<EntityEntry> event) {
@@ -127,5 +130,64 @@ public class MotherlodeEntities {
 			.spawn(EnumCreatureType.AMBIENT, 5, 5, 15, BiomeDictionary.getBiomes(Type.SANDY))
 			.build();
 		event.getRegistry().register(sandLizard);
+		
+		EntityEntry mole = EntityEntryBuilder.create()
+				.entity(EntityMole.class)
+				.id(new ResourceLocation(Motherlode.MOD_ID, "mole"), ID++)
+				.name("mole")
+				.tracker(64, 1, true)
+				.build();
+		event.getRegistry().register(mole);
+		
+		EntityEntry clam = EntityEntryBuilder.create()
+				.entity(EntityClam.class)
+				.id(new ResourceLocation(Motherlode.MOD_ID, "clam"), ID++)
+				.name("clam")
+				.tracker(64, 1, true)
+				.build();
+		event.getRegistry().register(clam);
+		
+		EntityEntry chipmunk = EntityEntryBuilder.create()
+				.entity(EntityChipmunk.class)
+				.id(new ResourceLocation(Motherlode.MOD_ID, "chipmunk"), ID++)
+				.name("chipmunk")
+				.tracker(64, 1, true)
+				.build();
+		event.getRegistry().register(chipmunk);
+		
+		EntityEntry antlion = EntityEntryBuilder.create()
+				.entity(EntityAntlion.class)
+				.id(new ResourceLocation(Motherlode.MOD_ID, "antlion"), ID++)
+				.name("antlion")
+				.tracker(64, 1, true)
+				.build();
+		event.getRegistry().register(antlion);
+		
+		EntityEntry armadillo = EntityEntryBuilder.create()
+				.entity(EntityArmadillo.class)
+				.id(new ResourceLocation(Motherlode.MOD_ID, "armadillo"), ID++)
+				.name("armadillo")
+				.tracker(64, 1, true)
+				.build();
+		event.getRegistry().register(armadillo);
+	}
+	
+	private static void registerMonsterEntities(RegistryEvent.Register<EntityEntry> event) {
+		
+		EntityEntry smallSpider = EntityEntryBuilder.create()
+				.entity(EntitySmallSpider.class)
+				.id(new ResourceLocation(Motherlode.MOD_ID, "small_spider"), ID++)
+				.name("small_spider")
+				.tracker(64, 1, true)
+				.build();
+		event.getRegistry().register(smallSpider);
+		
+		EntityEntry grizzlyBear = EntityEntryBuilder.create()
+				.entity(EntityGrizzlyBear.class)
+				.id(new ResourceLocation(Motherlode.MOD_ID, "grizzly_bear"), ID++)
+				.name("grizzly_bear")
+				.tracker(64, 1, true)
+				.build();
+		event.getRegistry().register(grizzlyBear);
 	}
 }
