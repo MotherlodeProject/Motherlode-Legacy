@@ -29,13 +29,10 @@ import net.minecraft.world.gen.NoiseGeneratorSimplex;
 public class CaveGen extends MapGenBase {
 	/**
 	 * Avoid repeatedly initializing noise generators.
-	 * Initialize these with static seeds in case world is null.
-	 * 
-	 * Note: world is often null. Not sure why.
 	 */
-	protected static SimplexNoiseGenerator3D noise;// = new SimplexNoiseGenerator3D(12345L);
-	protected static NoiseGeneratorSimplex noise2D1;// = new NoiseGeneratorSimplex(new Random(12345));
-	protected static NoiseGeneratorSimplex noise2D2;// = new NoiseGeneratorSimplex(new Random(12345 >> 4));
+	protected static SimplexNoiseGenerator3D noise;
+	protected static NoiseGeneratorSimplex noise2D1;
+	protected static NoiseGeneratorSimplex noise2D2;
 
 	protected Random indRand = new Random(12345); //Prevents artifacting.
 	
@@ -92,8 +89,7 @@ public class CaveGen extends MapGenBase {
 	}
 	
 	@Override
-	protected void recursiveGenerate(World worldIn, int chunkX, int chunkZ, int originalX, int originalZ, ChunkPrimer primer)
-	{
+	protected void recursiveGenerate(World worldIn, int chunkX, int chunkZ, int originalX, int originalZ, ChunkPrimer primer) {
 		int caveFrequency = rand.nextInt(rand.nextInt(rand.nextInt(7) + 1) + 1);
 		if (rand.nextInt(7) != 0) caveFrequency = 0;
 
@@ -106,8 +102,7 @@ public class CaveGen extends MapGenBase {
 		}
 	}
     
-    private void runGenerator(int numDirections, ChunkPrimer primer, int originalX, int originalZ, double x, double y, double z)
-    {
+    private void runGenerator(int numDirections, ChunkPrimer primer, int originalX, int originalZ, double x, double y, double z) {
 		for (int j = 0; j < numDirections; j++) {
         	float slopeXZ = 1.0F *(rand.nextFloat() * PI_TIMES_2);
         	float slopeY = 0.25F * (rand.nextFloat() - 0.5F);
@@ -149,14 +144,10 @@ public class CaveGen extends MapGenBase {
 	 * 
 	 * Where caverns cannot generate, stone layers are placed, if applicable.
 	 */
-	protected void addNoiseFeatures(int chunkX, int chunkZ, ChunkPrimer primer)
-	{
-		for (int x = 0; x < 16; x++)
-		{
-			for (int z = 0; z < 16; z++)
-			{
-				for (int y = cavernMaxHeight + 2; y >= 6; y--)
-				{
+	protected void addNoiseFeatures(int chunkX, int chunkZ, ChunkPrimer primer) {
+		for (int x = 0; x < 16; x++) {
+			for (int z = 0; z < 16; z++) {
+				for (int y = cavernMaxHeight + 2; y >= 6; y--) {
 					decidePlace(chunkX, chunkZ, primer, x, y, z);
 				}
 			}
@@ -166,29 +157,24 @@ public class CaveGen extends MapGenBase {
 	/**
 	 * Add other noise-base features here.
 	 */
-	private void decidePlace(int chunkX, int chunkZ, ChunkPrimer primer, int x, int y, int z)
-	{
-		if (!primer.getBlockState(x, y, z).equals(BLK_WATER) && !primer.getBlockState(x, y + 1, z).equals(BLK_WATER))
-		{
+	private void decidePlace(int chunkX, int chunkZ, ChunkPrimer primer, int x, int y, int z) {
+		if (!primer.getBlockState(x, y, z).equals(BLK_WATER) && !primer.getBlockState(x, y + 1, z).equals(BLK_WATER)) {
 			double actualX = x + (chunkX * 16);
 			double actualZ = z + (chunkZ * 16);
 			
 			double caveNoise = noise.getFractalNoise(actualX, (float) y / cavernScaleY, actualZ, 1, cavernFrequency, cavernAmplitude);
 			
-			if (caveNoise >= cavernSelectionThreshold)
-			{
+			if (caveNoise >= cavernSelectionThreshold) {
 				//Don't immediately calculate both of these to save time.
 				double floorNoise, ceilNoise;
 				
 				//More blocks are likely to be above this point than to be below floor noise.
 				ceilNoise = get2DNoiseFractal(noise2D2, actualX, actualZ, 1, cavernFrequency * 0.75, cavernAmplitude);
 				
-				if (y < cavernMaxHeight + (7.0 * ceilNoise - 7.0))
-				{
+				if (y < cavernMaxHeight + (7.0 * ceilNoise - 7.0)) {
 					floorNoise = get2DNoiseFractal(noise2D1, actualX, actualZ, 1, cavernFrequency * 0.75, cavernAmplitude);
 					
-					if (y > cavernMinHeight + (3.0 * floorNoise + 3.0))
-					{
+					if (y > cavernMinHeight + (3.0 * floorNoise + 3.0)) {
 						replaceBlock(primer, x, y, z, chunkX, chunkZ, false);
 						
 						return;
@@ -228,8 +214,7 @@ public class CaveGen extends MapGenBase {
 	 * @param distance      The length of the tunnel. 0 = get distance from MapGenBase.
 	 * @param scaleY        A vertical cave size multiple. 1.0 = same as scale.
 	 */
-	protected void addTunnel(long seed, int chunkX, int chunkZ, ChunkPrimer primer, double posX, double posY, double posZ, float scale, float slopeXZ, float slopeY, int startingPoint, int distance, double scaleY)
-	{
+	protected void addTunnel(long seed, int chunkX, int chunkZ, ChunkPrimer primer, double posX, double posY, double posZ, float scale, float slopeXZ, float slopeY, int startingPoint, int distance, double scaleY) {
 		float twistXZ = 0.0F, twistY = 0.0F;
 		
 		double centerX = chunkX * 16 + 8,
@@ -299,26 +284,22 @@ public class CaveGen extends MapGenBase {
 		}
 	}
 	
-	private int applyLimitXZ(int xz)
-	{
+	private int applyLimitXZ(int xz) {
 		return xz < 0 ? 0 : xz > 16 ? 16 : xz;
 	}
 	
-	private int applyLimitY(int y)
-	{
+	private int applyLimitY(int y) {
 		return y < 1 ? 1 : y > 248 ? 248 : y;
 	}
 	
-	private float adjustTwist(float original, Random rand, float factor, float randFactor)
-	{
+	private float adjustTwist(float original, Random rand, float factor, float randFactor) {
 		original *= factor;
 		original += randFactor * (rand.nextFloat() - rand.nextFloat()) * rand.nextFloat();
 		
 		return original;
 	}
 	
-	private double adjustScale(double original, Random rand, float factor, float randFactor)
-	{
+	private double adjustScale(double original, Random rand, float factor, float randFactor) {
 		original *= factor;
 		original += randFactor * (rand.nextFloat() - 0.5F);
 		if (original < 0) original = 0;
@@ -326,8 +307,7 @@ public class CaveGen extends MapGenBase {
 		return original;
 	}
 	
-	private boolean testForWater(ChunkPrimer primer, double stretchXZ, double stretchY, int chunkX, int chunkZ, int x1, int x2, double posX, int y1, int y2, double posY, int z1, int z2, double posZ)
-	{
+	private boolean testForWater(ChunkPrimer primer, double stretchXZ, double stretchY, int chunkX, int chunkZ, int x1, int x2, double posX, int y1, int y2, double posY, int z1, int z2, double posZ) {
 		for (int x = x1; x < x2; x++) {
 			double finalX = ((x + chunkX * 16) + 0.5D - posX) / stretchXZ;
 
@@ -351,15 +331,13 @@ public class CaveGen extends MapGenBase {
 		return false;
 	}
 	
-	protected boolean isOceanBlock(ChunkPrimer primer, int x, int y, int z, int chunkX, int chunkZ)
-	{
+	protected boolean isOceanBlock(ChunkPrimer primer, int x, int y, int z, int chunkX, int chunkZ) {
 		Block block = primer.getBlockState(x, y, z).getBlock();
 		
 		return block.equals(Blocks.FLOWING_WATER) || block.equals(Blocks.WATER);
 	}
 	
-	private void replaceSection(ChunkPrimer primer, double stretchXZ, double stretchY, int chunkX, int chunkZ, int x1, int x2, double posX, int y1, int y2, double posY, int z1, int z2, double posZ)
-	{
+	private void replaceSection(ChunkPrimer primer, double stretchXZ, double stretchY, int chunkX, int chunkZ, int x1, int x2, double posX, int y1, int y2, double posY, int z1, int z2, double posZ) {
 		for (int x = x1; x < x2; x++) {
 			double finalX = ((x + chunkX * 16) + 0.5 - posX) / stretchXZ;
 
@@ -389,8 +367,7 @@ public class CaveGen extends MapGenBase {
 	 * Determine if the block at the specified location is the top block for the biome, we take into account
 	 * Vanilla bugs to make sure that we generate the map the same way vanilla does.
 	 */
-	private boolean isTopBlock(ChunkPrimer data, int x, int y, int z, int chunkX, int chunkZ)
-	{
+	private boolean isTopBlock(ChunkPrimer data, int x, int y, int z, int chunkX, int chunkZ) {
 		Biome biome = world.getBiome(new BlockPos(x + chunkX * 16, 0, z + chunkZ * 16));
 		IBlockState state = data.getBlockState(x, y, z);
 
@@ -400,8 +377,7 @@ public class CaveGen extends MapGenBase {
 	/*
 	 * From Forge: to help imitate vanilla generation.
 	 */
-	private boolean isExceptionBiome(Biome biome)
-	{
+	private boolean isExceptionBiome(Biome biome) {
 		for (Biome biome2 : exceptionBiomes) {
 			if (biome.equals(biome2)) return true;
 		}
