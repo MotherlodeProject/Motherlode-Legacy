@@ -71,7 +71,7 @@ public class CaveGen extends MapGenBase {
 	private final float
 		cavernAmplitude = 1.0F,
 		cavernFrequency = 70.0F, //Technically the opposite of frequency.
-		cavernScaleY = 0.5F,
+		cavernScaleY = 0.38F,
 		cavernSelectionThreshold = 0.6F; //0 - 1; higher = smaller.
 	
 	private final int
