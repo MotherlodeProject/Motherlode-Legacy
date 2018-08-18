@@ -2,7 +2,7 @@ package motherlode;
 
 import motherlode.api.recipe.IMotherlodeRecipe;
 import motherlode.api.recipe.IRecipeTable;
-import motherlode.command.CommandFindBiome;
+//import motherlode.command.CommandFindBiome;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
 import java.util.ArrayList;

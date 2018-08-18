@@ -37,6 +37,8 @@ public class MotherlodeBlocks {
 	public static final Block POT;
 	public static final Block LANTERN;
 
+	public static final Block THORNS = register(new BlockThorns("thorns"));
+
 	public static final Block THICK_VINE = register(new BlockThickVine(false));
 	public static final Block FLOWERED_THICK_VINE;
 	public static final Block ROPE = register(new BlockHangingClimbable("rope", Material.CARPET));

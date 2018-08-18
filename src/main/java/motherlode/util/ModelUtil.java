@@ -1,32 +1,62 @@
 package motherlode.util;
 
+import net.minecraft.block.Block;
+import net.minecraft.block.properties.IProperty;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.block.statemap.DefaultStateMapper;
+import net.minecraft.client.renderer.block.statemap.IStateMapper;
+import net.minecraft.item.Item;
+import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.fml.relauncher.ReflectionHelper;
+import net.minecraftforge.registries.IRegistryDelegate;
+
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class ModelUtil {
-	public static String addPrependsAndAppends(String string, List<String> prepends, List<String> appends) {
-		StringBuilder stringBuilder = new StringBuilder();
+    private static final Map<IRegistryDelegate<Block>, IStateMapper> stateMappers = ReflectionHelper.getPrivateValue(ModelLoader.class, null, "customStateMappers");
+    private static final IStateMapper defaultStateMapper = new DefaultStateMapper();
 
-		//Add prepends
-		for (String prepend : prepends) {
-			if (stringBuilder.length() != 0) {
-				stringBuilder.append(",");
-			}
-			stringBuilder.append(prepend);
-		}
+    public static String addPrependsAndAppends(String string, List<String> prepends, List<String> appends) {
+        StringBuilder stringBuilder = new StringBuilder();
 
-		// Add string
-		if (stringBuilder.length() != 0) {
-			stringBuilder.append(",");
-		}
-		stringBuilder.append(string);
+        //Add prepends
+        for (String prepend : prepends) {
+            if (stringBuilder.length() != 0) {
+                stringBuilder.append(",");
+            }
+            stringBuilder.append(prepend);
+        }
 
-		// Add appends
-		for (String append : appends) {
-			if (stringBuilder.length() != 0) {
-				stringBuilder.append(",");
-			}
-			stringBuilder.append(append);
-		}
-		return stringBuilder.toString();
-	}
+        // Add string
+        if (stringBuilder.length() != 0) {
+            stringBuilder.append(",");
+        }
+        stringBuilder.append(string);
+
+        // Add appends
+        for (String append : appends) {
+            if (stringBuilder.length() != 0) {
+                stringBuilder.append(",");
+            }
+            stringBuilder.append(append);
+        }
+        return stringBuilder.toString();
+    }
+
+    public static void registerToState(Block b, int itemMeta, IBlockState state) {
+        ModelResourceLocation mrl = stateMappers.getOrDefault(state.getBlock().delegate, defaultStateMapper)
+                .putStateModelLocations(state.getBlock())
+                .get(state);
+        ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(b), itemMeta, mrl);
+    }
+
+    public static <T extends Comparable<T>> void registerToStateSingleVariant(Block b, IProperty<T> variant) {
+        List<T> variants = new ArrayList<>(variant.getAllowedValues());
+        for (int i = 0; i < variants.size(); i++) {
+            registerToState(b, i, b.getDefaultState().withProperty(variant, variants.get(i)));
+        }
+    }
 }
