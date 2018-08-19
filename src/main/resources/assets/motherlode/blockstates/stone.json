@@ -279,6 +279,36 @@
         "textures": {
           "all": "motherlode:block/stone/granite_cobblestone"
         }
+      },
+      "platinum_bricks": {
+        "textures": {
+          "all": "motherlode:block/platinum_brick_large"
+        }
+      },
+      "silver_bricks": {
+        "textures": {
+          "all": "motherlode:block/silver_brick_large"
+        }
+      },
+      "titanium_bricks": {
+        "textures": {
+          "all": "motherlode:block/titanium_brick_large"
+        }
+      },
+      "copper_bricks": {
+        "textures": {
+          "all": "motherlode:block/copper_brick_large"
+        }
+      },
+      "gold_bricks": {
+        "textures": {
+          "all": "motherlode:block/gold_brick_large"
+        }
+      },
+      "iron_bricks": {
+        "textures": {
+          "all": "motherlode:block/iron_brick_large"
+        }
       }
     }
   }

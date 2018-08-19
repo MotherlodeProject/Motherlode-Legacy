@@ -82,6 +82,15 @@ public class MotherlodeBlocks {
 	public static final Block GRANITE_COBBLESTONE_SLAB = registerSlab(GRANITE_COBBLESTONE, STONE);
 	public static final Block GRANITE_COBBLESTONE_STAIRS = registerStairs(GRANITE_COBBLESTONE.getDefaultState(), STONE);
 
+	public static final Block PLATNINUM_BRICKS = register(new BlockMotherlodeSimple("platinum_bricks", STONE, Material.ROCK));
+	public static final Block SILVER_BRICKS = register(new BlockMotherlodeSimple("silver_bricks", STONE, Material.ROCK));
+	public static final Block TITANIUM_BIRKCS = register(new BlockMotherlodeSimple("titanium_bricks", STONE, Material.ROCK));
+	public static final Block COPPER_BRICKS = register(new BlockMotherlodeSimple("copper_bricks", STONE, Material.ROCK));
+	public static final Block IRON_BRICKS = register(new BlockMotherlodeSimple("iron_bricks", STONE, Material.ROCK));
+	public static final Block GOLD_BRICKS = register(new BlockMotherlodeSimple("gold_bricks", STONE, Material.ROCK));
+
+
+
 	static {
 		POT = new BlockPot();
 		register(POT, new ItemPot(POT));

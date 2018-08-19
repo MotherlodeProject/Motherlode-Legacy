@@ -101,5 +101,12 @@ tile.motherlode.granite_cobblestone.name=Granite Cobblestone
 tile.motherlode.granite_cobblestone_slab.name=Granite Cobblestone Slab
 tile.motherlode.granite_cobblestone_stairs.name=Granite Cobblestone Stairs
 
+tile.motherlode.platinum_bricks.name=Platinum Bricks
+tile.motherlode.silver_bricks.name=Silver Bricks
+tile.motherlode.titanium_bricks.name=Titanium Bricks
+tile.motherlode.copper_bricks.name=Copper Bricks
+tile.motherlode.gold_bricks.name=Gold Bricks
+tile.motherlode.iron_bricks.name=Iron Bricks
+
 tile.thorns.name=Thorns
 
