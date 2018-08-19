@@ -27,6 +27,7 @@ import java.util.List;
 
 @EventBusSubscriber(modid = Motherlode.MOD_ID)
 public class MotherlodeRecipes {
+    protected static int searchradius = 3;
 
     @SubscribeEvent
     public static void addCraftingRecipes(RegistryEvent.Register<IMotherlodeRecipe> e) {
@@ -108,7 +109,7 @@ public class MotherlodeRecipes {
         int y = pos.getY();
         int z = pos.getZ();
         List<IBlockState> states = new ArrayList<>(216);
-        for (BlockPos p : BlockPos.getAllInBox(x - 3, y - 3, z - 3, x + 3, y + 3, z + 3)) {
+        for (BlockPos p : BlockPos.getAllInBox(x - searchradius, y - searchradius, z - searchradius, x + searchradius, y + searchradius, z + searchradius)) {
             states.add(player.world.getBlockState(p));
         }
 
