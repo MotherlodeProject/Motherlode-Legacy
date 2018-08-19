@@ -55,6 +55,7 @@ public class MotherlodeRecipes {
         //Utility
         addRecipe("crafting_table", new ItemStack(Blocks.CRAFTING_TABLE), new OreIngredient("plankWood", 4));
         addRecipe("torch", new ItemStack(Blocks.TORCH, 4), new SimpleIngredient(Items.COAL, 1, OreDictionary.WILDCARD_VALUE), new OreIngredient("stickWood"));
+        addRecipe("jack-o-lantern", new ItemStack(Blocks.LIT_PUMPKIN, 1), new SimpleIngredient(Blocks.PUMPKIN, 1), new SimpleIngredient(Blocks.TORCH, 1));
 
         //Crafting Materials
         addRecipe("sticks", new ItemStack(Items.STICK, 4), new OreIngredient("plankWood", 2));
@@ -65,7 +66,9 @@ public class MotherlodeRecipes {
         addRecipe("stone_pressure_plate", new ItemStack(Blocks.STONE_PRESSURE_PLATE), new SimpleIngredient(Blocks.STONE, 2));
         addRecipe("stone_button", new ItemStack(Blocks.STONE_BUTTON), new SimpleIngredient(Blocks.STONE, 1));
 
+        //Test
         addRecipe("test1", new ItemStack(Items.NETHER_STAR), RecipeTables.CRAFTING_TABLE, new OreIngredient("oreDiamond", 6));
+        addRecipe("armor_test", new ItemStack(Items.IRON_HELMET), RecipeTables.ANVIL, new SimpleIngredient(Items.IRON_INGOT, 10));
 
         NBTTagCompound tag = new NBTTagCompound();
         tag.setString("beef", "soup");
@@ -97,6 +100,7 @@ public class MotherlodeRecipes {
 
     /**
      * Gets all valid {@link IRecipeTable}s near a player.  Might be laggy?  Needs testing.
+     * No lag on client side, server side testing required.
      */
     public static List<IRecipeTable> getTables(EntityPlayer player) {
         BlockPos pos = player.getPosition();

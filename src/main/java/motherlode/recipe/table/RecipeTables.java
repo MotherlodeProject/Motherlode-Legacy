@@ -17,10 +17,11 @@ import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
 public class RecipeTables {
 
 	public static final IRecipeTable CRAFTING_TABLE = new RecipeTable(Blocks.CRAFTING_TABLE).setRegistryName(Motherlode.MOD_ID, "crafting_table");
+	public static final IRecipeTable ANVIL = new MultiStateTable(Blocks.ANVIL).setRegistryName(Motherlode.MOD_ID, "anvil");
 	public static final IRecipeTable STONE = new MultiStateTable(Blocks.STONE).setRegistryName(Motherlode.MOD_ID, "stone");
 
 	@SubscribeEvent
 	public static void registerTables(RegistryEvent.Register<IRecipeTable> e) {
-		e.getRegistry().registerAll(CRAFTING_TABLE, STONE);
+		e.getRegistry().registerAll(CRAFTING_TABLE, STONE, ANVIL);
 	}
 }
