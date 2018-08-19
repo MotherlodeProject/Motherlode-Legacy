@@ -3,9 +3,9 @@
   "defaults": {
     "transform": "forge:default-block",
     "textures": {
-      "end": "motherlode:block/brown_thorns_top",
-      "side": "motherlode:block/brown_thorns_side",
-      "particle": "#end"
+      "end": "motherlode:block/nether/netherthorn_top",
+      "side": "motherlode:block/netherthorn_side",
+      "particle": "#side"
     },
     "model": "motherlode:thorns_main"
   },
@@ -66,11 +66,11 @@
       "false": {}
     },
     "variant": {
-      "brown": {
+      "nether": {
         "textures": {
-          "end": "motherlode:block/brown_thorns_top",
-          "side": "motherlode:block/brown_thorns_side",
-          "particle": "motherlode:block/brown_thorns_top"
+          "end": "motherlode:block/nether/netherthorn_top",
+          "side": "motherlode:block/nether/netherthorn_side",
+          "particle": "#side"
         }
       }
     }

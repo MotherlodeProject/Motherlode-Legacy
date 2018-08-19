@@ -66,6 +66,7 @@ public class MotherlodeRecipes {
         addRecipe("wooden_button", new ItemStack(Blocks.WOODEN_BUTTON), new OreIngredient("plankWood", 1));
         addRecipe("stone_pressure_plate", new ItemStack(Blocks.STONE_PRESSURE_PLATE), new SimpleIngredient(Blocks.STONE, 2));
         addRecipe("stone_button", new ItemStack(Blocks.STONE_BUTTON), new SimpleIngredient(Blocks.STONE, 1));
+        addRecipe("redstone_torch", new ItemStack(Blocks.REDSTONE_TORCH, 1), new SimpleIngredient(Items.REDSTONE, 1, OreDictionary.WILDCARD_VALUE), new OreIngredient("stickWood"));
 
         //Test
         addRecipe("test1", new ItemStack(Items.NETHER_STAR), RecipeTables.CRAFTING_TABLE, new OreIngredient("oreDiamond", 6));

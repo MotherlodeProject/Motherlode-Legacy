@@ -44,7 +44,7 @@ public class BlockThorns extends MotherlodeConnectedPillar implements Motherlode
         this.setSoundType(SoundType.WOOD);
 
         if (hasVariant())
-            this.setDefaultState(this.getDefaultState().withProperty(VARIANT, ThornVariant.BROWN));
+            this.setDefaultState(this.getDefaultState().withProperty(VARIANT, ThornVariant.NETHER));
     }
 
     @Override
@@ -148,7 +148,7 @@ public class BlockThorns extends MotherlodeConnectedPillar implements Motherlode
     }
 
     public enum ThornVariant implements IStringSerializable {
-        BROWN;
+        NETHER;
 
         @Override
         public String getName() {

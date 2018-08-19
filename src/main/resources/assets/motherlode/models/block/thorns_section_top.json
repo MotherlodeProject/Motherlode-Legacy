@@ -1,91 +1,99 @@
 {
   "parent": "block/block",
   "textures": {
+    "0": "#end",
+    "1": "#side",
     "particle": "#side"
   },
   "elements": [
     {
       "from": [
         16,
-        0,
-        0
+        4,
+        4
       ],
       "to": [
         16,
-        16,
-        16
+        12,
+        12
       ],
       "faces": {
         "east": {
-          "texture": "#end",
+          "uv": [
+            4,
+            4,
+            12,
+            12
+          ],
+          "texture": "#0",
           "cullface": "east"
         }
       }
     },
     {
       "from": [
-        13,
+        12,
         0,
-        3
+        4
       ],
       "to": [
         16,
         16,
-        13
+        12
       ],
       "faces": {
         "north": {
-          "texture": "#side",
           "uv": [
             0,
-            3,
+            4,
             16,
             0
           ],
+          "texture": "#1",
           "rotation": 90
         },
         "south": {
-          "texture": "#side",
           "uv": [
             16,
             0,
             0,
-            3
+            4
           ],
+          "texture": "#1",
           "rotation": 90
         }
       }
     },
     {
       "from": [
-        13,
-        3,
+        12,
+        4,
         0
       ],
       "to": [
         16,
-        13,
+        12,
         16
       ],
       "faces": {
-        "down": {
-          "texture": "#side",
+        "up": {
           "uv": [
             0,
             0,
             16,
-            3
+            4
           ],
+          "texture": "#1",
           "rotation": 90
         },
-        "up": {
-          "texture": "#side",
+        "down": {
           "uv": [
             0,
             0,
             16,
-            3
+            4
           ],
+          "texture": "#1",
           "rotation": 90
         }
       }
