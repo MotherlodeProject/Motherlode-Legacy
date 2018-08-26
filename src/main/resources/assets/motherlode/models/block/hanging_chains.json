@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:cross",
+  "textures": {
+    "cross": "motherlode:block/chains_hanging"
+  }
+}

@@ -8,8 +8,8 @@
   "variants": {
     "inventory": {
       "true": {
-        "model": "builtin/generated",
-        "transform": "forge:default-item",
+        "model": "motherlode:platform",
+        "transform": "forge:default-block",
         "textures": {
           "layer0": "#side"
         }

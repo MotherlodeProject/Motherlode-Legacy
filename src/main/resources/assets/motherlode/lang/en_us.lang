@@ -63,6 +63,8 @@ tile.motherlode.flowered_thick_vine.white_dark.name=White/Dark Flowered Thick Vi
 tile.motherlode.flowered_thick_vine.white_light.name=White/Light Flowered Thick Vine
 tile.motherlode.flowered_thick_vine.mix_black_white.name=Black and White Flowered Thick Vine
 tile.motherlode.rope.name=Rope
+tile.motherlode.oak_wood_platform.name=Oak Platform
+tile.motherlode.oak_wood_platform_step.name=Oak Platform Step
 
 tile.motherlode.polished_granite_slab.name=Polished Granite Slab
 tile.motherlode.polished_granite_stairs.name=Polished Granite Stairs
