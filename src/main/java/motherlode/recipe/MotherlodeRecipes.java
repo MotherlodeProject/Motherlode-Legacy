@@ -1,5 +1,6 @@
 package motherlode.recipe;
 
+import com.google.common.collect.Lists;
 import motherlode.Motherlode;
 import motherlode.api.MotherlodeAPI;
 import motherlode.api.recipe.IIngredient;
@@ -9,18 +10,23 @@ import motherlode.recipe.ingredient.NBTIngredient;
 import motherlode.recipe.ingredient.OreIngredient;
 import motherlode.recipe.ingredient.SimpleIngredient;
 import motherlode.recipe.table.RecipeTables;
+import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.oredict.OreDictionary;
+import net.minecraftforge.registries.ForgeRegistry;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,6 +77,11 @@ public class MotherlodeRecipes {
         //Test
         addRecipe("test1", new ItemStack(Items.NETHER_STAR), RecipeTables.CRAFTING_TABLE, new OreIngredient("oreDiamond", 6));
         addRecipe("armor_test", new ItemStack(Items.IRON_HELMET), RecipeTables.ANVIL, new SimpleIngredient(Items.IRON_INGOT, 10));
+
+        //Disable Vanilla Recipes
+        disableItemRecipe(Items.MAP);
+
+        disableBlockRecipe(Blocks.CRAFTING_TABLE);
 
         NBTTagCompound tag = new NBTTagCompound();
         tag.setString("beef", "soup");
@@ -126,4 +137,29 @@ public class MotherlodeRecipes {
         return tables;
     }
 
+    private static void disableItemRecipe(Item item) {
+        ForgeRegistry<IRecipe> recipeRegistry = (ForgeRegistry<IRecipe>) ForgeRegistries.RECIPES;
+        ArrayList<IRecipe> recipes = Lists.newArrayList(recipeRegistry.getValues());
+
+        for (IRecipe r : recipes) {
+            ItemStack output = r.getRecipeOutput();
+            if (output.getItem() == item) {
+                recipeRegistry.remove(r.getRegistryName());
+                recipeRegistry.register(DummyRecipe.from(r));
+            }
+        }
+    }
+
+    private static void disableBlockRecipe(Block block) {
+        ForgeRegistry<IRecipe> recipeRegistry = (ForgeRegistry<IRecipe>) ForgeRegistries.RECIPES;
+        ArrayList<IRecipe> recipes = Lists.newArrayList(recipeRegistry.getValues());
+
+        for (IRecipe r : recipes) {
+            ItemStack output = r.getRecipeOutput();
+            if (output.getItem() == Item.getItemFromBlock(block)) {
+                recipeRegistry.remove(r.getRegistryName());
+                recipeRegistry.register(DummyRecipe.from(r));
+            }
+        }
+    }
 }
